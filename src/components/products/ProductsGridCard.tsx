@@ -12,7 +12,7 @@ export const ProductsGridCard = ({ product }: Props) => {
     <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-3 pb-5'>
       <Link href='#'>
         <Image
-          className='object-cover rounded-t-lg w-[100%] h-[250]'
+          className='object-fit rounded-t-lg w-full h-[250]'
           src={product.image}
           alt='product image'
           width={500}
@@ -22,7 +22,7 @@ export const ProductsGridCard = ({ product }: Props) => {
 
       <div className='flex flex-col px-5 mt-4 items-center h-[60]'>
         <a href='#'>
-          <h5 className='text-xl font-semibold tracking-tight text-[#F1F1F1]'>
+          <h5 className='text-lg font-semibold tracking-tight text-[#F1F1F1]'>
             {product.name}
           </h5>
         </a>

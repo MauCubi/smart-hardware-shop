@@ -3,12 +3,19 @@
 @theme {
   --font-navbar: var(--font-orbitron), system-ui, sans-serif;
   --font-inter: var(--inter-default), system-ui, sans-serif;
+  --font-roboto: var(--font-roboto-slab), system-ui, sans-serif;
+  --font-titillium: var(--font-titillium), system-ui, sans-serif;
 }
 
 @layer components {
   .navbar-text {
     @apply text-[#F1F1F1];
     font-family: var(--font-navbar, 'Orbitron');
+  }
+
+  .titles {
+    @apply text-[#F1F1F1] tracking-wider;
+    font-family: var(--font-titillium, 'Titillium_Web');
   }
 
   .navbar-button {
