@@ -28,7 +28,10 @@ export const NavBar = () => {
 
       <div>
         <div className='flex gap-25'>
-          <button className='navbar-button navbar-text'><IoCartOutline size={35} color='#0A84FF'/></button>
+          <div className='relative'>
+            <button className='navbar-button navbar-text'><IoCartOutline size={35} color='#0A84FF'/></button>
+            <div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>2</div>
+          </div>
           <button className='navbar-button navbar-text flex flex-row align-middle items-center gap-2'><FaRegUser size={30} color='#0A84FF' />Login</button>
         </div>
       </div>

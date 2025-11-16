@@ -1,3 +1,4 @@
+import { Footer } from '@/components/ui/footer/Footer';
 import { NavBar } from '@/components/ui/navbar/NavBar';
 import { SubNavBar } from '@/components/ui/navbar/SubNavBar';
 
@@ -17,6 +18,7 @@ export default function ShopLayout({ children }: {children: React.ReactNode;}) {
       {children}
     </div>
     
+    <Footer />
     
   </div>
   );
