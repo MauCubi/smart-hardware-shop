@@ -64,7 +64,7 @@ export const SubNavBar = () => {
         </Link>
         
         <Link href='/help'>
-          <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2'>Help</button>      
+          <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2'>F.A.Q</button>      
         </Link>     
         
       </div>
