@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { BsCpu, BsDeviceSsd, BsKeyboard, BsMotherboard } from 'react-icons/bs'
+import { BsDeviceSsd, BsKeyboard, BsMotherboard } from 'react-icons/bs'
 import { CategoryCard } from './CategoryCard';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { PiComputerTowerDuotone, PiCpuDuotone, PiGraphicsCard, PiGraphicsCardDuotone, PiHeadphonesDuotone, PiMemoryDuotone, PiMonitorDuotone, PiOfficeChairDuotone, PiPrinterDuotone, PiSpeakerHifiDuotone } from 'react-icons/pi';
+import { PiComputerTowerDuotone, PiCpuDuotone, PiGraphicsCardDuotone, PiHeadphonesDuotone, PiMemoryDuotone, PiMonitorDuotone, PiOfficeChairDuotone, PiPrinterDuotone } from 'react-icons/pi';
 import { ImPower } from 'react-icons/im';
 import { MdOutlineSevereCold } from 'react-icons/md';
 import { BiWifi } from 'react-icons/bi';
