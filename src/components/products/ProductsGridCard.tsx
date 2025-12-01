@@ -10,7 +10,7 @@ interface Props {
 export const ProductsGridCard = ({ product }: Props) => {
   return (
     <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-3 pb-5'>
-      <Link href={`/product/${product.name.replace(/\s+/g, "_")}`}>
+      <Link href={`/product/${product.slug}`}>
         <Image
           className='object-fit rounded-t-lg w-full h-[250]'
           src={product.image}
