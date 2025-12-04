@@ -24,14 +24,14 @@ const ProductDetails = ({ prod }: Props) => {
             className='hover:text-[#637a91] transform duration-300'
             href='#'
           >
-            Categoria
+            Category
           </Link>
           <span className='text-gray-500'>&gt;</span>
           <Link
             className='hover:text-[#637a91] transform duration-300'
             href='#'
           >
-            SubCategoria
+            SubCategory
           </Link>
           <span className='text-gray-500'>&gt;</span>
           <span>{prod?.name}</span>
@@ -42,17 +42,17 @@ const ProductDetails = ({ prod }: Props) => {
         {prod?.stock === 0 ? (
           <div className='flex flex-row items-center mt-3 bg-red-600 rounded-md px-2 w-fit gap-1'>
             <FaX color='#F1F1F1' />
-            <p className='titles'>Producto sin Stock</p>
+            <p className='titles'>Product out of Stock</p>
           </div>
         ) : (prod?.stock as number) > 5 ? (
           <div className='flex flex-row items-center mt-3 bg-green-600 rounded-md px-2 w-fit gap-1'>
             <FaCheck color='#F1F1F1' />
-            <p className='titles'>Producto en Stock</p>
+            <p className='titles'>Product in Stock</p>
           </div>
         ) : (
           <div className='flex flex-row items-center mt-3 bg-orange-600 rounded-md px-2 w-fit gap-1'>
             <FaArrowDown color='#F1F1F1' />
-            <p className='titles'>Bajo en Stock</p>
+            <p className='titles'>Low on Stock</p>
           </div>
         )}
 
