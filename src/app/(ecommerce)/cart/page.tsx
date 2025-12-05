@@ -1,3 +1,4 @@
+import ScrollToTop from '@/components/ui/scroll/ScrollToTop';
 import { products } from '@/data/products';
 import Image from 'next/image';
 import { BiTrash } from 'react-icons/bi';
@@ -9,7 +10,7 @@ import { TiDeleteOutline } from 'react-icons/ti';
 export default function CartPage() {
 
   return (
-    <div className='flex p-5'>
+    <div className='flex p-5'>      
 
       {/* <div className='flex justify-center w-full'>
         <div className='flex justify-center align-middle items-center rounded-2xl w-[95%] md:w-[50%] h-120 bg-[#121212]'>

@@ -1,5 +1,4 @@
 'use client'
-
 import Link from 'next/link'
 import { BsDeviceSsd, BsKeyboard, BsMotherboard } from 'react-icons/bs'
 import { CategoryCard } from './CategoryCard';
@@ -8,9 +7,12 @@ import { PiComputerTowerDuotone, PiCpuDuotone, PiGraphicsCardDuotone, PiHeadphon
 import { ImPower } from 'react-icons/im';
 import { MdOutlineSevereCold } from 'react-icons/md';
 import { BiWifi } from 'react-icons/bi';
+import { useAppSelector } from '@/store/hooks';
 
 export const SubNavBar = () => {
 
+
+  const { isSideMenuOpen } = useAppSelector( state => state.ui )
   const categoryMenu = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -38,14 +40,14 @@ export const SubNavBar = () => {
       document.removeEventListener("mousedown", handleCloseOutside);
     }
   }, [isOpen, handleCategoryMenu])
-  
+
 
   return (
 
-    <div className='relative'>
-      <div className='flex h-16 justify-center px-20 align-middle items-center gap-8 bg-[#1e1e1e]'>
+    <div className={`z-11 md:z-1 relative md:w-full ${ !isSideMenuOpen ? 'hidden' : 'block'} md:block `}>    
+      
+      <div className='flex md:flex-row flex-col md:h-16 md:justify-center md:py-0 p-3 md:px-20 md:align-middle md:items-center md:gap-8 bg-[#181818] md:bg-[#1e1e1e]'>
 
-        
         <button 
           ref={buttonRef}          
           className={`subbar-button navbar-text flex flex-row align-middle items-center gap-2 ${isOpen?'text-[#0A84FF]': ''} `} 
