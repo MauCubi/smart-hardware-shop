@@ -17,7 +17,7 @@ export const Carousel = () => {
 
   return (
     <div className='flex justify-center'> 
-      <div className='relative rounded-4xl w-260 h-130 flex items-center overflow-hidden'>
+      <div className='relative md:rounded-4xl w-260 h-65 mt-11 md:h-130 flex md:items-center overflow-hidden'>
 
         <Swiper
           rewind
@@ -26,13 +26,18 @@ export const Carousel = () => {
           spaceBetween={10}
           autoplay={ { delay: 3000 } }
           modules={[Navigation, Pagination, Autoplay]}
-          style={{ '--swiper-pagination-bullet-size': '12px', height: '100%' } as React.CSSProperties
+          breakpoints={{
+            360: {
+              
+            }
+          }}
+          style={{ '--swiper-pagination-bullet-size': '12px', height: '100%'  } as React.CSSProperties
         }
         >
           {
             images.map( (image, i) => 
               <SwiperSlide key={i}>
-                <Image src={`/img/${image}.jpg`} alt={`carousel${i}`} className='rounded-4xl ' fill/>
+                <Image src={`/img/${image}.jpg`} alt={`carousel${i}`} className='md:rounded-4xl ' fill/>
               </SwiperSlide>
             )
           }

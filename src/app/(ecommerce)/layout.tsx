@@ -5,9 +5,8 @@ import SearchBox from '@/components/ui/navbar/SearchBox';
 import { SubNavBar } from '@/components/ui/navbar/SubNavBar';
 import ScrollToTop from '@/components/ui/scroll/ScrollToTop';
 
-export default function ShopLayout({ children }: {children: React.ReactNode;}) {
 
-
+export default function ShopLayout({ children }: {children: React.ReactNode;}) { 
 
   return (
   <div className='bg-[#1e1e1e] min-h-screen relative'>
@@ -20,7 +19,7 @@ export default function ShopLayout({ children }: {children: React.ReactNode;}) {
       </div>
 
       <ScrollToTop />
-      <div className='px-0 pt-[185]'>        
+      <div className='px-0 md:pt-[185]'>        
         {children}
       </div>
       

@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface SliceAuth {
     isSideMenuOpen: boolean
-    isSearchMenuOpen: boolean
+    isSearchMenuOpen: boolean    
 }
 
 const initialState: SliceAuth = {
     isSideMenuOpen: false,
-    isSearchMenuOpen: false
+    isSearchMenuOpen: false, 
   }
 
 export const uiSlice = createSlice({
@@ -21,12 +21,12 @@ export const uiSlice = createSlice({
         },        
         onToggleSearchMenu: ( state ) => {
             state.isSearchMenuOpen = !state.isSearchMenuOpen            
-        },        
+        }
     }
 });
 
 
 export const { 
     onToggleSideMenu,  
-    onToggleSearchMenu  
+    onToggleSearchMenu
  } = uiSlice.actions;

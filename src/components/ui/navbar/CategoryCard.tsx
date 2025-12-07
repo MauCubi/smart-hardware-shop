@@ -14,18 +14,14 @@ export const CategoryCard = ({ title, subCategories, Icon }: Props) => {
   const [showMore, setShowMore] = useState<boolean>(false)  
 
 
-  if (subCategories.length > 4) {
-    console.log('largo')
-  }
-
   return (
-    <div className='flex flex-col  min-h-60 min-w-50 px-2'>
-      <Icon size={60} color='#0A84FF'/>
-      <h1 className='font-navbar font-bold text-lg text-[#0A84FF] my-3'>{ title }</h1>
+    <div className='flex flex-col h-60 md:min-h-60 min-w-40 md:min-w-50 px-2'>
+      <Icon className='text-[40px] md:text-[60px]' color='#0A84FF'/>
+      <h1 className='font-navbar font-bold text-md md:text-lg text-[#0A84FF] my-3'>{ title }</h1>
 
       {
         subCategories.slice(0,4).map( subCategory => (
-          <p key={subCategory} className='titles tracking-normal'>{subCategory}</p>
+          <p key={subCategory} className='titles md:text-md text-sm tracking-normal'>{subCategory}</p>
         ))        
       }
 

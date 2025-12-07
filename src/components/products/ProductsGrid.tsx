@@ -9,7 +9,7 @@ export const ProductsGrid = () => {
 
   return (
     <div>
-      <div className='grid grid-cols-4 grid-rows-2-2 mx-auto gap-10 my-6 content-center'>      
+      <div className='grid grid-cols-1 md:grid-cols-4 grid-rows-2-2 mx-auto gap-10 my-6 content-center px-8'>      
         {products.map((product) => (
           <div className='flex justify-center rounded-md' key={product.id}>
             <ProductsGridCard product={product} />

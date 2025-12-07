@@ -5,11 +5,11 @@ import { MdEmail } from 'react-icons/md';
 export const Footer = () => {
   return (
     <footer className='bg-[#121212] rounded-base shadow-xs border mt-8'>
-      <div className='mx-auto w-full p-4 py-6 lg:py-8'>        
+      <div className='mx-auto w-full px-4 md:py-6 lg:py-8'>        
         
-        <div className='flex justify-between'>
+        <div className='flex flex-col md:flex-row  md:justify-between'>
 
-          <div className='flex gap-3 align-middle justify-center items-center w-1/3'>
+          <div className='flex md:gap-3 align-middle justify-center items-center md:w-1/3 py-10 md:py-0'>
             <FaComputer size={50} color='#0A84FF' />
             <div className='flex flex-col'>
               <h1 className='navbar-text font-bold text-3xl italic'>
@@ -18,7 +18,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className='flex flex-col border-l-2 text-sm justify-center items-center gap-6 w-1/3 titles'>
+          <div className='flex flex-col border-t-2 md:border-t-0 md:border-l-2 text-sm justify-center items-center md:gap-6 md:w-1/3 titles py-10 md:py-0'>
 
             <div className='flex flex-col text-lg'>
               <h2 className='flex flex-row mb-5 font-semibold text-heading uppercase place-self-center items-center'>
@@ -38,9 +38,9 @@ export const Footer = () => {
 
           </div>
 
-          <div className='flex flex-col border-l-2 text-sm justify-center items-center gap-6 w-1/3 titles'>
+          <div className='flex flex-col border-t-2 md:border-t-0 md:border-l-2 text-sm justify-center items-center gap-6 md:w-1/3 titles py-10 md:py-0'>
 
-            <div className='text-sm'>
+            <div className='text-sm flex flex-col justify-center items-center md:block'>
               <h2 className='flex flex-row mb-2 font-semibold text-heading uppercase place-self-center items-center'>
                 <FaMapLocation size={20} className='mr-2'/> Shop Location
               </h2>
@@ -48,7 +48,7 @@ export const Footer = () => {
               <p>Monday to Saturday 8:00 - 12:00 / 16:00 - 20:00</p>
             </div>
 
-            <div className='flex flex-row gap-10'> 
+            <div className='flex flex-col md:flex-row gap-10'> 
 
               <div className='flex flex-col justify-center items-center'>
                 <h2 className='flex flex-row mb-2 font-semibold text-heading uppercase place-self-center items-center'>
