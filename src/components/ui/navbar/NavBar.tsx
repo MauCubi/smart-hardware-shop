@@ -14,12 +14,12 @@ export const NavBar = () => {
 
   const onToggleMenu = () => {
     if (isSearchMenuOpen) dispatch(onToggleSearchMenu())      
-    dispatch(onToggleSideMenu()) 
+    dispatch(onToggleSideMenu(!isSideMenuOpen)) 
     }
   
 
   const onToggleSearch = () => {
-    if (isSideMenuOpen) dispatch(onToggleSideMenu())  
+    if (isSideMenuOpen) dispatch(onToggleSideMenu(!isSideMenuOpen))  
     dispatch(onToggleSearchMenu())
   }
 

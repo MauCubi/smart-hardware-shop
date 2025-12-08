@@ -86,17 +86,17 @@ const questionMenu: QuestionMenu[] = [
     topic: 'Payments', 
     questions: [
       {
-        title:'firstQuestion2', 
+        title:'firstQuestion3', 
         answer: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit unde eius sunt voluptas ipsa at temporibus delectus architecto repudiandae itaque ipsam sapiente, asperiores labore? Ab voluptates voluptatum placeat at eligendi?', 
         isActive: false 
       },
       {
-        title:'secondQuestion2', 
+        title:'secondQuestion3', 
         answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio velit hic, optio ab, blanditiis illum enim omnis consequatur rem eos corrupti iusto doloribus odio dolorem fuga laudantium facere excepturi provident!', 
         isActive: false 
       },      
       {
-        title:'thirdQuestion2', 
+        title:'thirdQuestion3', 
         answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque nulla voluptate veniam? Commodi, dignissimos. Sequi neque quaerat voluptas tempore culpa consectetur commodi accusantium placeat officia, eum delectus nulla unde qui.', 
         isActive: false 
       },      
@@ -107,17 +107,17 @@ const questionMenu: QuestionMenu[] = [
     topic: 'Devolutions', 
     questions: [
       {
-        title:'firstQuestion2', 
+        title:'firstQuestion4', 
         answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor adipisci et quam maiores expedita excepturi ipsa. Facere, nobis voluptatem! Perspiciatis, delectus quasi debitis eum natus placeat totam magnam incidunt quibusdam?', 
         isActive: false 
       },
       {
-        title:'secondQuestion2', 
+        title:'secondQuestion4', 
         answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet veniam doloribus assumenda quidem reprehenderit consequatur exercitationem accusamus eveniet vitae quaerat voluptate sint, maiores maxime neque magnam cum deserunt consequuntur nisi.', 
         isActive: false 
       },      
       {
-        title:'thirdQuestion2', 
+        title:'thirdQuestion4', 
         answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi officiis saepe, vero aperiam cum nemo corrupti incidunt velit consequuntur officia aliquid deserunt voluptatibus explicabo sit maxime impedit ea in porro.', 
         isActive: false 
       },      
@@ -128,17 +128,17 @@ const questionMenu: QuestionMenu[] = [
     topic: 'About us', 
     questions: [
       {
-        title:'firstQuestion3', 
+        title:'firstQuestion5', 
         answer: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim eius cumque fuga esse laboriosam cum odit, expedita magni nulla ullam ad. Quam dolorem impedit consectetur qui expedita voluptates soluta incidunt.', 
         isActive: false 
       },
       {
-        title:'secondQuestion3', 
+        title:'secondQuestion5', 
         answer: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium soluta eos inventore sed nihil labore alias reiciendis aliquid fugiat sunt amet pariatur earum praesentium corrupti totam, ad harum neque perspiciatis?', 
         isActive: false 
       },      
       {
-        title:'thirdQuestion3', 
+        title:'thirdQuestion5', 
         answer: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, ab quaerat aperiam dignissimos eius cumque commodi consequatur placeat, sunt laudantium, saepe ipsam earum reiciendis ratione minima similique in. Porro, blanditiis?', 
         isActive: false 
       },      
@@ -175,9 +175,9 @@ const HelpPage = () => {
 
   return (
     <div className='flex justify-center py-25'>
-      <div className='flex border p-6 border-gray-400 rounded-xl gap-2'>
+      <div className='flex md:flex-row flex-col w-full md:w-auto border p-6 border-gray-400 md:rounded-xl gap-2'>
 
-        <div className='flex flex-col w-80 px-2 gap-1'>
+        <div className='flex flex-col w-full md:w-80 px-2 gap-1'>
           <h1 className='titles font-bold text-xl mb-4'>Frequent Questions</h1>
           {
             questionMenu.map( question =>
@@ -192,7 +192,7 @@ const HelpPage = () => {
           }
         </div>
 
-        <div className='flex flex-col w-140 px-2'>
+        <div className='flex flex-col w-full md:w-140 px-2'>
           <h1 className='titles font-bold text-xl mb-4'>Title</h1>
           {
             selectedQuestionMenu?.questions.map( question => 
@@ -200,7 +200,7 @@ const HelpPage = () => {
                 <div className='cursor-pointer p-3 bg-gray-600' onClick={() => handleShowAnswer(question)}>
                   <p className='titles select-none tracking-widest'>{ question.title }</p>
                 </div>
-                <div className={`${question.title !== selectedSubQuestion?.title ? 'max-h-0' :  'max-h-25' } px-3 transition-all duration-500  bg-[#0a84ff1e] overflow-hidden`}>
+                <div className={`${question.title !== selectedSubQuestion?.title ? 'max-h-0' :  'max-h-40 md:max-h-25' } px-3 transition-all duration-500  bg-[#0a84ff1e] overflow-hidden`}>
                   <p className='titles text-sm py-3'>{ question.answer }</p>
                 </div>
               </div>

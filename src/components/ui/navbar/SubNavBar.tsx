@@ -7,13 +7,16 @@ import { PiComputerTowerDuotone, PiCpuDuotone, PiGraphicsCardDuotone, PiHeadphon
 import { ImPower } from 'react-icons/im';
 import { MdOutlineSevereCold } from 'react-icons/md';
 import { BiWifi } from 'react-icons/bi';
-import { useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { onToggleSideMenu } from '@/store/ui/uiSlice';
 
 
 export const SubNavBar = () => {
 
 
   const { isSideMenuOpen } = useAppSelector( state => state.ui )
+
+  const dispatch = useAppDispatch()
   
   
   const categoryMenu = useRef<HTMLDivElement>(null)
@@ -21,6 +24,9 @@ export const SubNavBar = () => {
 
   const [isOpen, setisOpen] = useState<boolean>(false)
 
+  const handleSideMenu = () => {
+    dispatch(onToggleSideMenu(false))
+  }
  
 
   const handleCategoryMenu = useCallback(() => {
@@ -62,15 +68,15 @@ export const SubNavBar = () => {
           
 
           <Link href='/buildpc'>
-            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2'>Build your PC</button>
+            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>Build your PC</button>
           </Link>
           
           <Link href='/contact'>
-            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2'>Contact us</button>
+            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>Contact us</button>
           </Link>
           
           <Link href='/help'>
-            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2'>F.A.Q</button>      
+            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>F.A.Q</button>      
           </Link>     
           
         </div>

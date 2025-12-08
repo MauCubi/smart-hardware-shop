@@ -16,8 +16,8 @@ export const uiSlice = createSlice({
     initialState,
 
     reducers: {
-        onToggleSideMenu: ( state ) => {
-            state.isSideMenuOpen = !state.isSideMenuOpen            
+        onToggleSideMenu: ( state, { payload } ) => {
+            state.isSideMenuOpen = payload     
         },        
         onToggleSearchMenu: ( state ) => {
             state.isSearchMenuOpen = !state.isSearchMenuOpen            
