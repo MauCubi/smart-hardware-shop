@@ -67,10 +67,12 @@ export const NavBar = () => {
             </Link>
             <div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>2</div>
           </div>
-          <button className='navbar-button navbar-text flex flex-row align-middle items-center md:gap-2'>
-            <FaRegUser className='text-[25px] md:text-[35px]' color='#0A84FF' />
-            <span className='hidden md:block'>Login</span>            
-          </button>
+          <Link href={'/auth'}>
+            <button className='navbar-button navbar-text flex flex-row align-middle items-center md:gap-2'>
+              <FaRegUser className='text-[25px] md:text-[35px]' color='#0A84FF' />
+              <span className='hidden md:block'>Login</span>            
+            </button>
+          </Link>
         </div>
       </div>
 
