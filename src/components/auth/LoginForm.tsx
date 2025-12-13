@@ -1,11 +1,29 @@
-import React from 'react';
+import { useForm, SubmitHandler } from "react-hook-form"
+
+type LoginInput = {
+  email: string,
+  password: string
+}
 
 export const LoginForm = () => {
+
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+  } = useForm<LoginInput>()
+
+  const onSubmit: SubmitHandler<LoginInput> = (data) => {
+    console.log(data)
+  }
+
+
   return (
-    <form className='w-full my-5'>
+    <form className='w-full my-5' onSubmit={handleSubmit(onSubmit)}> 
+
       <div className='mb-5'>
         <label
-          htmlFor='email-alternative'
+          htmlFor='email'
           className='block mb-2.5 text-sm titles'
         >
           Email
@@ -13,10 +31,11 @@ export const LoginForm = () => {
         <input
           type='email'
           id='email'
-          className='bg-zinc-100 rounded-md text-heading text-sm focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body'
-          placeholder='yourmail@mail.com'
-          required
+          className={`bg-zinc-100 rounded-md text-heading text-sm focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body  ${errors.email ? 'border border-red-500 focus:outline-red-500' : '' } `}
+          placeholder='yourmail@mail.com'          
+          { ...register('email',  { required: 'Email required' }) }
         />
+        { errors.email && <span className='text-red-800'>{errors.email.message}</span> }
       </div>
 
       <div className='mb-5'>
@@ -28,18 +47,19 @@ export const LoginForm = () => {
         </label>
         <input
           type='password'
-          id='password-alternative'
-          className='bg-zinc-100 rounded-md text-heading text-sm focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body'
+          id='password'
+          className={`bg-zinc-100 rounded-md text-heading text-sm focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body ${errors.password ? 'border border-red-500 focus:outline-red-500' : '' }`}
           placeholder='••••••••'
-          required
+          { ...register('password',  { required: 'Password required', minLength: { value: 6, message: 'Password must have at least 6 characters' } })}
         />
+        { errors.password && <span className='text-red-800'>{errors.password?.message}</span> }
       </div>
 
       <button
         type='submit'
         className='titles w-full cursor-pointer bg-[#0A84FF] hover:bg-[#0a84ffad] rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none'
       >
-        Submit
+        Login
       </button>
     </form>
   );
