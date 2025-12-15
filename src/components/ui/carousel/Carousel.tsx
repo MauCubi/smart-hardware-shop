@@ -17,7 +17,7 @@ export const Carousel = () => {
 
   return (
     <div className='flex justify-center'> 
-      <div className='relative md:rounded-4xl w-260 h-65 mt-11 md:h-130 flex md:items-center overflow-hidden'>
+      <div className='relative xl:rounded-4xl w-260 h-65 mt-11 xl:h-130 flex xl:items-center overflow-hidden'>
 
         <Swiper
           rewind
@@ -37,7 +37,7 @@ export const Carousel = () => {
           {
             images.map( (image, i) => 
               <SwiperSlide key={i}>
-                <Image src={`/img/${image}.jpg`} alt={`carousel${i}`} className='md:rounded-4xl ' fill/>
+                <Image src={`/img/${image}.jpg`} alt={`carousel${i}`} className='xl:rounded-4xl ' fill/>
               </SwiperSlide>
             )
           }

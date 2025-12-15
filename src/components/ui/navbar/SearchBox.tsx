@@ -9,7 +9,7 @@ const SearchBox = () => {
   const { isSearchMenuOpen } = useAppSelector( state => state.ui)
 
   return (
-    <div className={`md:hidden ${!isSearchMenuOpen ? 'hidden' : 'flex'} w-full justify-center relative z-1 h-15 bg-[#121212] items-center`}>
+    <div className={`xl:hidden ${!isSearchMenuOpen ? 'hidden' : 'flex'} w-full justify-center relative z-1 h-15 bg-[#121212] items-center`}>
       <input
         placeholder='Search Product'
         className='flex p-2 text-md bg-zinc-100 w-[70%] h-8 rounded-l-md align-middle focus:outline-solid'

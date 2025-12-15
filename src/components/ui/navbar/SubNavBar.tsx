@@ -54,9 +54,9 @@ export const SubNavBar = () => {
 
   return (    
     
-      <div className={`z-11 md:z-1 relative h-full md:w-full ${ !isSideMenuOpen ? 'hidden' : 'block'} md:block `}>    
+      <div className={`z-11 xl:z-1 relative h-full xl:w-full ${ !isSideMenuOpen ? 'hidden' : 'block'} xl:block `}>    
         
-        <div className='flex md:flex-row flex-col md:h-16 md:justify-center md:py-0 p-3 md:px-20 md:align-middle md:items-center md:gap-8 bg-[#181818] md:bg-[#1e1e1e]'>
+        <div className='flex xl:flex-row flex-col xl:h-16 xl:justify-center xl:py-0 p-3 xl:px-20 xl:align-middle xl:items-center xl:gap-8 bg-[#181818] xl:bg-[#1e1e1e]'>
 
           <button 
             ref={buttonRef}          
@@ -85,9 +85,9 @@ export const SubNavBar = () => {
         {
           isOpen 
           ?
-            <div ref={categoryMenu} className='absolute bg-[#131313] w-full h-150 md:h-150 md:px-60 pb-45 pt-15 md:py-10 overflow-y-auto scroll-smooth'>
+            <div ref={categoryMenu} className='absolute bg-[#131313] w-full h-150 xl:h-150 xl:px-60 pb-45 pt-15 xl:py-10 overflow-y-auto scroll-smooth'>
 
-              <div className='grid grid-cols-2 md:grid-cols-6 justify-around md:justify-start md:gap-7 flex-wrap'>
+              <div className='grid grid-cols-2 xl:grid-cols-6 justify-around xl:justify-start xl:gap-7 flex-wrap'>
 
                 <CategoryCard title='Motherboard' subCategories={['AMD Motherboards', 'Intel Motherboards']} Icon={BsMotherboard} />
 

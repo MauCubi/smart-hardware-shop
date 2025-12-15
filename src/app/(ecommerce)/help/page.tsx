@@ -175,9 +175,9 @@ const HelpPage = () => {
 
   return (
     <div className='flex justify-center py-25'>
-      <div className='flex md:flex-row flex-col w-full md:w-auto border p-6 border-gray-400 md:rounded-xl gap-2'>
+      <div className='flex xl:flex-row flex-col w-full xl:w-auto border p-6 border-gray-400 xl:rounded-xl gap-2'>
 
-        <div className='flex flex-col w-full md:w-80 px-2 gap-1'>
+        <div className='flex flex-col w-full xl:w-80 px-2 gap-1'>
           <h1 className='titles font-bold text-xl mb-4'>Frequent Questions</h1>
           {
             questionMenu.map( question =>
@@ -192,7 +192,7 @@ const HelpPage = () => {
           }
         </div>
 
-        <div className='flex flex-col w-full md:w-140 px-2'>
+        <div className='flex flex-col w-full xl:w-140 px-2'>
           <h1 className='titles font-bold text-xl mb-4'>Title</h1>
           {
             selectedQuestionMenu?.questions.map( question => 
@@ -200,7 +200,7 @@ const HelpPage = () => {
                 <div className='cursor-pointer p-3 bg-gray-600' onClick={() => handleShowAnswer(question)}>
                   <p className='titles select-none tracking-widest'>{ question.title }</p>
                 </div>
-                <div className={`${question.title !== selectedSubQuestion?.title ? 'max-h-0' :  'max-h-40 md:max-h-25' } px-3 transition-all duration-500  bg-[#0a84ff1e] overflow-hidden`}>
+                <div className={`${question.title !== selectedSubQuestion?.title ? 'max-h-0' :  'max-h-40 xl:max-h-25' } px-3 transition-all duration-500  bg-[#0a84ff1e] overflow-hidden`}>
                   <p className='titles text-sm py-3'>{ question.answer }</p>
                 </div>
               </div>

@@ -19,7 +19,7 @@ export default function ShopLayout({ children }: {children: React.ReactNode;}) {
       </div>
 
       <ScrollToTop />
-      <div className='px-0 md:pt-[185]'>        
+      <div className='px-0 xl:pt-[185]'>        
         {children}
       </div>
       

@@ -24,9 +24,9 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className='flex bg-[#121212] md:h-30 md:justify-between px-2 md:px-20 align-middle items-center z-10'>
+    <nav className='flex bg-[#121212] xl:h-30 xl:justify-between px-2 xl:px-20 align-middle items-center z-10'>
 
-      <div className='md:hidden mr-3'>
+      <div className='xl:hidden mr-3'>
         <button className='flex items-center' onClick={ onToggleMenu }>
           <IoMenu className='text-[26px]' color='gray'/>
         </button>
@@ -34,14 +34,14 @@ export const NavBar = () => {
 
       
         <Link href='/'>
-          <div className='flex gap-1 md:gap-3 items-center'>
-            <FaComputer className='text-[30px] md:text-[70px]'  color='#0A84FF' />
+          <div className='flex gap-1 xl:gap-3 items-center'>
+            <FaComputer className='text-[30px] xl:text-[70px]'  color='#0A84FF' />
 
             <div className='flex flex-col'>
-              <h1 className='navbar-text font-bold text-sm md:text-3xl italic'>
+              <h1 className='navbar-text font-bold text-sm xl:text-3xl italic'>
                 CubiHardware
               </h1>
-              <h1 className='mdflex navbar-text hidden  md:text-md justify-center'>
+              <h1 className='xl:flex navbar-text hidden  xl:text-md justify-center'>
                 Next-Level Hardware
               </h1>
             </div>
@@ -49,28 +49,28 @@ export const NavBar = () => {
         </Link>
       
 
-      <div className='md:flex hidden'>
+      <div className='xl:flex hidden'>
         <input placeholder='Search Product' className='flex p-2 text-lg bg-zinc-100 w-150 h-12 rounded-l-md align-middle focus:outline-solid' />
         <button className='flex items-center cursor-pointer bg-[#0A84FF] h-12 p-4 rounded-r-md'><FaSearch size={20}/></button>
       </div>
 
-      <div className='flex justify-end md:w-auto w-full align-middle'>
-        <div className='flex md:gap-25'>
-          <button className='md:hidden navbar-button navbar-text flex flex-row align-middle items-center md:gap-2' onClick={ onToggleSearch }>
-            <FaSearch className='text-[25px] md:text-[35px]' color='#0A84FF' />                    
+      <div className='flex justify-end xl:w-auto w-full align-middle'>
+        <div className='flex xl:gap-25'>
+          <button className='xl:hidden navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ onToggleSearch }>
+            <FaSearch className='text-[25px] xl:text-[35px]' color='#0A84FF' />                    
           </button>
           <div className='relative'>
             <Link href={'/cart'}>
               <button className='navbar-button navbar-text'>
-                <IoCartOutline className='text-[30px] md:text-[35px]' color='#0A84FF'/>
+                <IoCartOutline className='text-[30px] xl:text-[35px]' color='#0A84FF'/>
               </button>
             </Link>
             <div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>2</div>
           </div>
           <Link href={'/auth'}>
-            <button className='navbar-button navbar-text flex flex-row align-middle items-center md:gap-2'>
-              <FaRegUser className='text-[25px] md:text-[35px]' color='#0A84FF' />
-              <span className='hidden md:block'>Login</span>            
+            <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>
+              <FaRegUser className='text-[25px] xl:text-[35px]' color='#0A84FF' />
+              <span className='hidden xl:block'>Login</span>            
             </button>
           </Link>
         </div>
