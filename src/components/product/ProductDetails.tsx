@@ -13,13 +13,13 @@ interface Props {
 
 const ProductDetails = ({ prod }: Props) => {
   return (
-    <div className='flex flex-row'>
-      <div className='w-[50%]'>
+    <div className='flex flex-col xl:flex-row'>
+      <div className='w-full xl:w-[50%]'>
         <SlideShow />
       </div>
 
-      <div className='h-50 w-[50%]'>
-        <div className='text-gray-300 flex gap-1 mb-4'>
+      <div className='xl:h-50 w-full xl:w-[50%]'>
+        <div className='text-gray-300 flex gap-1 mb-4 text-xs xl:text-base wrap-normal'>
           <Link
             className='hover:text-[#637a91] transform duration-300'
             href='#'
@@ -34,10 +34,10 @@ const ProductDetails = ({ prod }: Props) => {
             SubCategory
           </Link>
           <span className='text-gray-500'>&gt;</span>
-          <span>{prod?.name}</span>
+          <span className='flex wrap-'>{prod?.name}</span>
         </div>
 
-        <h1 className='titles text-4xl'>{prod?.name}</h1>
+        <h1 className='titles mt-6 xl:mt-0 text-3xl xl:text-4xl'>{prod?.name}</h1>
 
         {prod?.stock === 0 ? (
           <div className='flex flex-row items-center mt-3 bg-red-600 rounded-md px-2 w-fit gap-1'>
@@ -56,8 +56,8 @@ const ProductDetails = ({ prod }: Props) => {
           </div>
         )}
 
-        <div className='flex my-8'>
-          <p className='titles text-5xl'>${prod?.price.toFixed(2)}</p>
+        <div className='flex my-8 justify-center'>
+          <p className='titles text-3xl xl:text-5xl'>${prod?.price.toFixed(2)}</p>
         </div>
 
         <div className='flex flex-col'>
@@ -74,7 +74,7 @@ const ProductDetails = ({ prod }: Props) => {
           </div>
         </div>
 
-        <div className='flex flex-row justify-between'>
+        <div className='flex flex-col justify-center items-center xl:items-start xl:flex-row xl:justify-between'>
           <div className='flex flex-row items-center titles p-3 mt-4'>
             <p className='font-bold mr-6'>Quantity:</p>
 
@@ -91,18 +91,21 @@ const ProductDetails = ({ prod }: Props) => {
             </button>
           </div>
 
-          <div className='flex flex-row items-center mt-4 gap-3'>
-            <button className='cursor-pointer flex flex-row items-center px-4 py-2 gap-2 bg-[#0A84FF] rounded-lg text-[#F1F1F1] hover:bg-[#0a84ffad]'>
+          <div className='flex flex-col xl:flex-row items-center mt-4 gap-3 w-full xl:w-auto'>
+            <button className='cursor-pointer flex flex-row w-full xl:w-auto justify-center xl:justify-start items-center px-4 py-4 xl:py-2 gap-2 bg-[#0A84FF] rounded-lg text-[#F1F1F1] hover:bg-[#0a84ffad]'>
               <RiMoneyDollarCircleLine size={30} />{' '}
               <p className='font-bold'> Buy Now</p>
             </button>
 
-            <button className='cursor-pointer flex flex-row items-center px-4 py-2 gap-2 border border-[#0A84FF] rounded-lg text-[#0A84FF] hover:border-[#0a84ffad] hover:text-[#0a84ffad]'>
+            <button className='
+              cursor-pointer flex flex-row w-full xl:w-auto items-center justify-center xl:justify-start px-4 py-4 xl:py-2 gap-2 border border-[#0A84FF] 
+              rounded-lg text-[#0A84FF] hover:border-[#0a84ffad] hover:text-[#0a84ffad]'>
               <FaCartShopping size={30} />{' '}
               <p className='font-bold'> Add to Cart</p>
             </button>
           </div>
         </div>
+
       </div>
     </div>
   );

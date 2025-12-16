@@ -20,7 +20,7 @@ const SlideShow = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperObject>();
 
   return (
-    <div className='block w-[500] h-[500] select-none'>
+    <div className='block w-full xl:w-[500]  xl:h-[500] select-none'>
       <Swiper
         style={
           {

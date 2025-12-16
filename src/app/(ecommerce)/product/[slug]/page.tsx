@@ -12,8 +12,8 @@ export default async function ProductDetailPage( { params }: Props) {
   const prod : Product | undefined = products.find( e => e.slug === slug)  
 
   return (
-    <div className='flex min-h-dvh justify-center items-center align-middle'>
-      <div className='flex flex-col border border-[#637a91] min-h-200  p-12 min-w-350 rounded-2xl'>
+    <div className='flex xl:min-h-dvh justify-center items-center align-middle'>
+      <div className='flex flex-col border border-[#637a91] xl:min-h-200 xl:mt-0 mt-20 p-12 xl:w-350 w-full rounded-2xl'>
 
         <ProductDetails prod={prod}/>
         
