@@ -24,7 +24,7 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className='flex bg-[#121212] xl:h-30 xl:justify-between px-2 xl:px-20 align-middle items-center z-10'>
+    <nav className='flex bg-[#121212] xl:h-30 md:h-15 xl:justify-between px-2 xl:px-20 align-middle items-center z-10'>
 
       <div className='xl:hidden mr-3'>
         <button className='flex items-center' onClick={ onToggleMenu }>
@@ -38,7 +38,7 @@ export const NavBar = () => {
             <FaComputer className='text-[30px] xl:text-[70px]'  color='#0A84FF' />
 
             <div className='flex flex-col'>
-              <h1 className='navbar-text font-bold text-sm xl:text-3xl italic'>
+              <h1 className='navbar-text font-bold text-sm md:text-lg xl:text-3xl italic'>
                 CubiHardware
               </h1>
               <h1 className='xl:flex navbar-text hidden  xl:text-md justify-center'>

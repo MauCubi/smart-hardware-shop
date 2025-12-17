@@ -21,7 +21,7 @@ export default function AuthPage() {
     <div className='py-15'>
 
       <div className='flex flex-col self-center justify-center place-self-center w-[358]'>
-        <div className='flex flex-row mt-5 w-full justify-center'>
+        <div className='flex flex-row mt-5 md:mt-15 xl:mt-5 w-full justify-center'>
           <button 
             className={`titles w-full py-3 rounded-l ${selectedTab === 'login' ? 'bg-[#0A84FF]' : '' }  border-[#0A84FF] border cursor-pointer transform duration-300`}
             onClick={ () => handleTabSelection('login') }

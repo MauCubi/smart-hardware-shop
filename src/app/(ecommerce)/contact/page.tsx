@@ -4,7 +4,7 @@ import { FaComputer, FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaTwitch, Fa
 const ContactPage = () => {
   return (
     <div className='flex flex-row justify-center'>
-      <div className='bg-[#121212] p-10 my-10 xl:rounded-3xl  '>
+      <div className='bg-[#121212] p-10 my-10 md:mb-60 xl:mb-10 xl:rounded-3xl md:w-full xl:w-auto  '>
         <div className='flex align-middle items-center gap-2'>
           <FaComputer size={50} color='#0A84FF' />
           <div className='flex flex-col'>

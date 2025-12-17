@@ -87,7 +87,7 @@ export const SubNavBar = () => {
           ?
             <div ref={categoryMenu} className='absolute bg-[#131313] w-full h-150 xl:h-150 xl:px-60 pb-45 pt-15 xl:py-10 overflow-y-auto scroll-smooth'>
 
-              <div className='grid grid-cols-2 xl:grid-cols-6 justify-around xl:justify-start xl:gap-7 flex-wrap'>
+              <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 justify-around xl:justify-start xl:gap-7 flex-wrap'>
 
                 <CategoryCard title='Motherboard' subCategories={['AMD Motherboards', 'Intel Motherboards']} Icon={BsMotherboard} />
 

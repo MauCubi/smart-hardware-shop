@@ -15,7 +15,7 @@ export const CategoryCard = ({ title, subCategories, Icon }: Props) => {
 
 
   return (
-    <div className='flex flex-col h-60 xl:min-h-60 min-w-40 xl:min-w-50 px-2'>
+    <div className='flex flex-col h-60 xl:min-h-60 min-w-40 xl:min-w-50 px-2 md:px-5 lg:px-2'>
       <Icon className='text-[40px] xl:text-[60px]' color='#0A84FF'/>
       <h1 className='font-navbar font-bold text-md xl:text-lg text-[#0A84FF] my-3'>{ title }</h1>
 

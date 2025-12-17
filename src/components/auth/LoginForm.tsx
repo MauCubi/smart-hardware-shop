@@ -24,14 +24,14 @@ export const LoginForm = () => {
       <div className='mb-5'>
         <label
           htmlFor='email'
-          className='block mb-2.5 text-sm titles'
+          className='block mb-2.5 text-sm md:text-base titles'
         >
           Email
         </label>
         <input
           type='email'
           id='email'
-          className={`bg-zinc-100 rounded-md text-heading text-sm focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body  ${errors.email ? 'border border-red-500 focus:outline-red-500' : '' } `}
+          className={`bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body  ${errors.email ? 'border border-red-500 focus:outline-red-500' : '' } `}
           placeholder='yourmail@mail.com'          
           { ...register('email',  { required: 'Email required' }) }
         />
@@ -41,14 +41,14 @@ export const LoginForm = () => {
       <div className='mb-5'>
         <label
           htmlFor='password-alternative'
-          className='block mb-2.5 text-sm titles'
+          className='block mb-2.5 text-sm md:text-base titles'
         >
           Password
         </label>
         <input
           type='password'
           id='password'
-          className={`bg-zinc-100 rounded-md text-heading text-sm focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body ${errors.password ? 'border border-red-500 focus:outline-red-500' : '' }`}
+          className={`bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body ${errors.password ? 'border border-red-500 focus:outline-red-500' : '' }`}
           placeholder='••••••••'
           { ...register('password',  { required: 'Password required', minLength: { value: 6, message: 'Password must have at least 6 characters' } })}
         />
@@ -57,7 +57,7 @@ export const LoginForm = () => {
 
       <button
         type='submit'
-        className='titles w-full cursor-pointer bg-[#0A84FF] hover:bg-[#0a84ffad] rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none'
+        className='titles w-full cursor-pointer bg-[#0A84FF] hover:bg-[#0a84ffad] rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base px-4 py-2.5 focus:outline-none'
       >
         Login
       </button>

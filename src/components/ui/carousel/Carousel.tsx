@@ -17,7 +17,7 @@ export const Carousel = () => {
 
   return (
     <div className='flex justify-center'> 
-      <div className='relative xl:rounded-4xl w-260 h-65 mt-11 xl:h-130 flex xl:items-center overflow-hidden'>
+      <div className='relative xl:rounded-4xl w-260 h-65 md:h-100 mt-11 xl:h-130 flex xl:items-center overflow-hidden'>
 
         <Swiper
           rewind
