@@ -1,3 +1,5 @@
+import { MobileFilter } from '@/components/filters/MobileFilter';
+import { ProductsGrid } from '@/components/products/ProductsGrid';
 import { IoFilterSharp } from 'react-icons/io5';
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -12,7 +14,7 @@ export default async function SearchPage({ searchParams }: Props) {
   
 
   return (
-    <div className='h-200 pt-20'>
+    <div className='min-h-200 pt-20'>
       
       <h1 className='text-3xl titles px-8 mb-2'>{ filters['subcategory'] ? JSON.stringify(filters['subcategory'], null, 2).replace(/"/g, "") : JSON.stringify(filters['category'], null, 2).replace(/"/g, "") }</h1>
 
@@ -28,50 +30,12 @@ export default async function SearchPage({ searchParams }: Props) {
         </select>
       </div>
 
-      <div className='flex justify-center mt-4 items-center w-full'>
-        <button className='flex gap-1 border border-white rounded-lg py-2 px-3'>
-          <IoFilterSharp className='titles text-2xl'/>
-          <h1 className='titles text-lg'>Filters</h1>
-        </button>
+
+      <div className='xl:hidden'>
+        <MobileFilter />
       </div>
 
-      <div className='w-full h-fit pb-8 bg-[#181818] absolute'>
-        <h1 className='titles text-3xl p-8'>Filters</h1>
-
-        <div className='flex flex-col px-8 mb-4'>
-          <h1 className='titles text-2xl font-bold text-[#7eb7ef]'>Filter Title One</h1>
-          <div className='flex justify-between'>
-            <p className='titles'>Filter one</p>
-            <span className='titles'>(2)</span>
-          </div>
-          <div className='flex justify-between'>
-            <p className='titles'>Filter two</p>
-            <span className='titles'>(4)</span>
-          </div>
-          <div className='flex justify-between'>
-            <p className='titles'>Filter one</p>
-            <span className='titles'>(1)</span>
-          </div>
-        </div>
-
-        <div className='flex flex-col px-8'>
-          <h1 className='titles text-2xl font-bold text-[#7eb7ef]'>Filter Title Two</h1>
-          <div className='flex justify-between'>
-            <p className='titles'>Filter one</p>
-            <span className='titles'>(2)</span>
-          </div>
-          <div className='flex justify-between'>
-            <p className='titles'>Filter two</p>
-            <span className='titles'>(4)</span>
-          </div>
-          <div className='flex justify-between'>
-            <p className='titles'>Filter one</p>
-            <span className='titles'>(1)</span>
-          </div>
-        </div>
-
-
-      </div>
+      <ProductsGrid />
 
       
 
