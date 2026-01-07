@@ -1,6 +1,6 @@
 export const Pagination = () => {
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center py-8'>
       <nav aria-label='Page navigation example'>
         <ul className='flex -space-x-px text-sm'>
           <li>
