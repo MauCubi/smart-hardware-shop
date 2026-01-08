@@ -15,15 +15,15 @@ export default async function SearchPage({ searchParams }: Props) {
   
 
   return (
-    <div className='min-h-200 py-20 xl:py-0'>
+    <div className='min-h-200 py-20 md:pt-14 xl:py-0'>
 
       <div className='flex flex-row'>
 
-        <div className='hidden xl:flex bg-[#181818]'>
+        <div className='hidden md:flex bg-[#181818]'>
           <DesktopFilter />          
         </div>
 
-        <div className='flex flex-col justify-center w-full'>
+        <div className='flex flex-col justify-center w-full md:pt-8 xl:pt-6'>
           <h1 className='text-3xl titles px-8 mb-2'>{ filters['subcategory'] ? JSON.stringify(filters['subcategory'], null, 2).replace(/"/g, "") : JSON.stringify(filters['category'], null, 2).replace(/"/g, "") }</h1>
 
           <div className='flex flex-col justify-center px-8'>
@@ -39,7 +39,7 @@ export default async function SearchPage({ searchParams }: Props) {
           </div>
 
 
-          <div className='xl:hidden'>
+          <div className='md:hidden'>
             <MobileFilter />
           </div>
 

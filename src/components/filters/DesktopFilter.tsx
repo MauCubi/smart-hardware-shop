@@ -1,6 +1,6 @@
 export const DesktopFilter = () => {
   return (
-    <div className='h-full w-100'>
+    <div className='h-full w-60 lg:w-100'>
       <h1 className='titles text-3xl p-8'>Filters</h1>
 
       <div className='flex flex-col px-8 mb-4'>

@@ -28,16 +28,16 @@ export const ProductsGridCard = ({ product }: Props) => {
         </a>
       </div>
 
-      <div className='flex flex-col justify-end items-center h-fit px-6 mt-6 xl:mt-15 gap-3'>
+      <div className='flex flex-col justify-end items-center h-fit px-6 md:px-3 xl:px-6 mt-6 xl:mt-15 gap-3'>
         <span className='text-2xl xl:text-3xl font-bold text-[#F1F1F1]'>
           $ {product.price.toFixed(2)}
         </span>
         <Link
           href='#'
           className='flex align-middle items-center justify-center gap-3 text-[#F1F1F1] bg-blue-700 w-full hover:bg-blue-800 focus:ring-4
-            focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+            focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg md:text-sm xl:text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
-          { <IoCartOutline size={26}/> } Add to cart
+          { <IoCartOutline className='text-[26px] md:text-[20px] xl:text-[26px]'/> } Add to cart
         </Link>
       </div>
     </div>
