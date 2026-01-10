@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { onToggleSideMenu } from '@/store/ui/uiSlice';
+import { onToggleProductsMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
 import Link from 'next/link';
 import { useState } from 'react'
 import { IconType } from 'react-icons'
@@ -20,6 +20,7 @@ export const CategoryCard = ({ title, subCategories, Icon }: Props) => {
 
     const handleSideMenu = () => {
       dispatch(onToggleSideMenu(false))
+      dispatch(onToggleProductsMenu(false))
     }
 
 

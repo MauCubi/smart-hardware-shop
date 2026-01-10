@@ -8,13 +8,13 @@ import { ImPower } from 'react-icons/im';
 import { MdOutlineSevereCold } from 'react-icons/md';
 import { BiWifi } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { onToggleSideMenu } from '@/store/ui/uiSlice';
+import { onToggleProductsMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
 
 
 export const SubNavBar = () => {
 
 
-  const { isSideMenuOpen } = useAppSelector( state => state.ui )
+  const { isSideMenuOpen, isProductsMenuOpen } = useAppSelector( state => state.ui )
 
   const dispatch = useAppDispatch()
   
@@ -22,7 +22,7 @@ export const SubNavBar = () => {
   const categoryMenu = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const [isOpen, setisOpen] = useState<boolean>(false)
+  
 
   const handleSideMenu = () => {
     dispatch(onToggleSideMenu(false))
@@ -30,8 +30,8 @@ export const SubNavBar = () => {
  
 
   const handleCategoryMenu = useCallback(() => {
-    setisOpen(!isOpen)
-  },[isOpen])
+    dispatch(onToggleProductsMenu(!isProductsMenuOpen))
+  },[isProductsMenuOpen ,dispatch])
 
 
 
@@ -42,14 +42,14 @@ export const SubNavBar = () => {
       }
     }
 
-    if (isOpen) {
+    if (isProductsMenuOpen) {
       document.addEventListener('mousedown', handleCloseOutside)      
     }    
   
     return () => {
       document.removeEventListener("mousedown", handleCloseOutside);
     }
-  }, [isOpen, handleCategoryMenu])
+  }, [isProductsMenuOpen, handleCategoryMenu])
 
 
   return (    
@@ -60,7 +60,7 @@ export const SubNavBar = () => {
 
           <button 
             ref={buttonRef}          
-            className={`subbar-button navbar-text flex flex-row align-middle items-center gap-2 ${isOpen?'text-[#0A84FF]': ''} `} 
+            className={`subbar-button navbar-text flex flex-row align-middle items-center gap-2 ${isProductsMenuOpen?'text-[#0A84FF]': ''} `} 
             onClick={ handleCategoryMenu }
           >
               Products
@@ -83,7 +83,7 @@ export const SubNavBar = () => {
 
 
         {
-          isOpen 
+          isProductsMenuOpen 
           ?
             <div ref={categoryMenu} className='absolute bg-[#131313] w-full h-150 xl:h-150 xl:px-60 pb-45 pt-15 xl:py-10 overflow-y-auto scroll-smooth'>
 

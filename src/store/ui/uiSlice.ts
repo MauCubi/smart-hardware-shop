@@ -4,11 +4,13 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface SliceAuth {
     isSideMenuOpen: boolean
     isSearchMenuOpen: boolean    
+    isProductsMenuOpen: boolean    
 }
 
 const initialState: SliceAuth = {
     isSideMenuOpen: false,
     isSearchMenuOpen: false, 
+    isProductsMenuOpen: false, 
   }
 
 export const uiSlice = createSlice({
@@ -21,6 +23,9 @@ export const uiSlice = createSlice({
         },        
         onToggleSearchMenu: ( state ) => {
             state.isSearchMenuOpen = !state.isSearchMenuOpen            
+        },                
+        onToggleProductsMenu: ( state, { payload } ) => {
+            state.isProductsMenuOpen = payload                
         }
     }
 });
@@ -28,5 +33,6 @@ export const uiSlice = createSlice({
 
 export const { 
     onToggleSideMenu,  
-    onToggleSearchMenu
+    onToggleSearchMenu,
+    onToggleProductsMenu
  } = uiSlice.actions;
