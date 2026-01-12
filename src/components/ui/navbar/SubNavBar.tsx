@@ -67,7 +67,7 @@ export const SubNavBar = () => {
           </button>      
           
 
-          <Link href='/buildpc'>
+          <Link href='/builder'>
             <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>Build your PC</button>
           </Link>
           

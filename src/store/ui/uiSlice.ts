@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-export interface SliceAuth {
+export interface SliceUi {
     isSideMenuOpen: boolean
     isSearchMenuOpen: boolean    
     isProductsMenuOpen: boolean    
 }
 
-const initialState: SliceAuth = {
+const initialState: SliceUi = {
     isSideMenuOpen: false,
     isSearchMenuOpen: false, 
     isProductsMenuOpen: false, 

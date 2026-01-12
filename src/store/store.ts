@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { uiSlice } from './ui/uiSlice'
+import { builderSlice } from './ui/builderSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       ui: uiSlice.reducer,
+      builder: builderSlice.reducer
     },
   })
 }
