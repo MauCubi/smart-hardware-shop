@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface SliceBuilder {
   platform: 'AMD' | 'Intel' | null;
+  componentSelect: string | null,
 }
 
 const initialState: SliceBuilder = {
   platform: null,
+  componentSelect: null,
 };
 
 export const builderSlice = createSlice({
@@ -15,10 +17,14 @@ export const builderSlice = createSlice({
   reducers: {
     onPlatformSelect: ( state, { payload } ) => {
       state.platform = payload
+    },
+    onComponentSelectToggle: ( state, { payload } ) => {
+      state.componentSelect = payload
     }
   },
 });
 
 export const { 
-    onPlatformSelect
+    onPlatformSelect,
+    onComponentSelectToggle
  } = builderSlice.actions;
