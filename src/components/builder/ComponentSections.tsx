@@ -18,9 +18,9 @@ export const ComponentSections = () => {
   };
 
   return (
-    <div className='md:flex md:flex-col md:mt-6 md:w-150'>
+    <div className='xl:flex xl:flex-col xl:mt-6 xl:w-150'>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit'  onClick={ () => onToggleComponent('Motherboard') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer'  onClick={ () => onToggleComponent('Motherboard') }>
         <BsMotherboard className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -37,7 +37,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('Processor') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('Processor') }>
         <PiCpuDuotone className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -54,7 +54,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('Memory') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('Memory') }>
         <PiMemoryDuotone className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -72,7 +72,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('Storage') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('Storage') }>
         <BsDeviceSsd className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -87,7 +87,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('Graphic Card') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('Graphic Card') }>
         <BsDeviceSsd className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -102,7 +102,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('PCU') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('PCU') }>
         <ImPower className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -115,7 +115,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('Case') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('Case') }>
         <PiComputerTowerDuotone className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>
@@ -130,7 +130,7 @@ export const ComponentSections = () => {
         <FaAngleRight className='text-[20px] text-gray-600 self-center ml-auto' />
       </div>
 
-      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit' onClick={ () => onToggleComponent('Refrigeration') }>
+      <div className='flex p-4 flex-row bg-[#181818] w-full md:w-full gap-4 h-fit hover:cursor-pointer' onClick={ () => onToggleComponent('Refrigeration') }>
         <MdOutlineSevereCold className='text-[27px] text-gray-600 self-center' />
         <div className='flex flex-col'>
           <div className='flex gap-1'>

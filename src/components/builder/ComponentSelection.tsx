@@ -26,10 +26,10 @@ export const ComponentSelection = () => {
 
   return (
     <div className='flex w-full'>
-      <div className='hidden md:flex w-full'>
+      <div className='hidden xl:flex w-full'>
         <ComponentSelectionDesktop />
       </div>
-      <div className='flex md:hidden w-full'>
+      <div className='flex xl:hidden w-full'>
         <ComponentSelectionMobile />
       </div>
     </div>

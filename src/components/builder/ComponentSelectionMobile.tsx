@@ -24,7 +24,7 @@ export const ComponentSelectionMobile = () => {
     <div className='flex w-full'>
       <div className='flex flex-col w-full justify-center'>
 
-        <div className='md:hidden flex flex-col justify-center'>
+        <div className='flex flex-col justify-center'>
           <button
             className='titles text-2xl p-4'
             onClick={() => resetPlatform()}
@@ -34,7 +34,7 @@ export const ComponentSelectionMobile = () => {
           <h1 className='titles self-center'>Choose your PC components</h1>
         </div>
 
-        <div className='md:hidden flex flex-col justify-center px-4 my-7'>
+        <div className='flex flex-col justify-center px-4 my-7'>
           {componentSelect ? <ComponentList /> : <ComponentSections />}
         </div>
 
