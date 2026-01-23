@@ -22,7 +22,7 @@ export const PlatformSelection = () => {
         <button className='border h-[100px] md:h-[150px] px-5 md:px-12 justify-center items-center flex titles text-5xl xl:hover:border-[#0A84FF] hover:bg-gray-900 transform duration-400 cursor-pointer hover:shadow-lg/60 shadow-gray-700' 
           onClick={ () => handlePlatformSelect('Intel') }
         >
-          <Image src={'/img/intel.png'} width={100} height={100} alt='amd'/>
+          <Image src={'/img/Intel.png'} width={100} height={100} alt='intel'/>
         </button>
       </div>
     </div>
