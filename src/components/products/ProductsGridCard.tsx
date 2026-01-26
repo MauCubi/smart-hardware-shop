@@ -9,16 +9,19 @@ interface Props {
 
 export const ProductsGridCard = ({ product }: Props) => {
   return (
-    <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-3 pb-5'>
+    <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-0 pb-5'>
+
+    <div className='pt-2 bg-white rounded-t-lg justify-center align-middle items-center flex'>
       <Link href={`/product/${product.slug}`}>
         <Image
-          className='object-fit rounded-t-lg self-center place-self-center w-auto xl:w-full h-[180] xl:h-[250]'
+          className='object-fit rounded-t-lg self-center place-self-center w-auto px-3 xl:w-full h-[180] xl:h-[250]'
           src={product.image}
           alt='product image'
           width={500}
-          height={500}          
+          height={500}   
         />
       </Link>
+    </div>
 
       <div className='flex flex-col px-5 mt-4 items-center h-[60]'>
         <a href='#'>

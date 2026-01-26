@@ -36,7 +36,7 @@ export const Carousel = () => {
         >
           {
             images.map( (image, i) => 
-              <SwiperSlide key={i}>
+              <SwiperSlide key={i} className='swiper-slide-3'>
                 <Image src={`/img/${image}.jpg`} alt={`carousel${i}`} className='xl:rounded-4xl ' fill/>
               </SwiperSlide>
             )

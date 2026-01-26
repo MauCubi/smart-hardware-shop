@@ -20,7 +20,7 @@ const SlideShow = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperObject>();
 
   return (
-    <div className='block w-full xl:w-[500]  xl:h-[500] select-none'>
+    <div className='block w-full xl:w-[500]  xl:h-[450] select-none'>
       <Swiper
         style={
           {
@@ -36,19 +36,17 @@ const SlideShow = () => {
       >
         <SwiperSlide>
           <Image
-            src='/img/1024.png'
+            src='/img/products/mouse.png'
             alt='alt1'
-            width={450}
-            height={400}
-            className='rounded-lg object-fill'
+            fill
+            className='rounded-lg'
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
             src='/img/10242.png'
             alt='alt2'
-            width={450}
-            height={400}
+            fill
             className='rounded-lg object-fill'
           />
         </SwiperSlide>
@@ -56,8 +54,7 @@ const SlideShow = () => {
           <Image
             src='/img/10243.png'
             alt='alt3'
-            width={450}
-            height={400}
+            fill
             className='rounded-lg object-fill'
           />
         </SwiperSlide>
@@ -65,8 +62,7 @@ const SlideShow = () => {
           <Image
             src='/img/10244.png'
             alt='alt4'
-            width={450}
-            height={400}
+            fill
             className='rounded-lg object-fill'
           />
         </SwiperSlide>
@@ -74,12 +70,14 @@ const SlideShow = () => {
           <Image
             src='/img/10245.png'
             alt='alt5'
-            width={450}
-            height={400}
+            fill
             className='rounded-lg object-fill'
           />
         </SwiperSlide>
       </Swiper>
+
+
+
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
@@ -92,7 +90,7 @@ const SlideShow = () => {
       >
         <SwiperSlide>
           <Image
-            src='/img/1024.png'
+            src='/img/products/mousev2.png'
             alt='alt1'
             width={100}
             height={100}
