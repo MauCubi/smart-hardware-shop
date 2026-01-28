@@ -29,7 +29,7 @@ export const ComponentSections = () => {
           <div className='flex'>
             <ul>
               <li className='titles text-sm'>
-                ASUS Super mega overpower op as shit
+                ASUS Motherboard Gaming version2.0 
               </li>
             </ul>
           </div>
@@ -46,7 +46,7 @@ export const ComponentSections = () => {
           <div className='flex'>
             <ul>
               <li className='titles text-sm'>
-                AMD Super mega overpower op as shit
+                AMD Processor gaming 3.5ghz 6 cores
               </li>
             </ul>
           </div>

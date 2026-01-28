@@ -1,8 +1,6 @@
 import { Product } from '@/data/products';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FaPlus } from 'react-icons/fa6';
-import { IoCartOutline } from 'react-icons/io5';
 
 
 interface Props {
@@ -11,16 +9,20 @@ interface Props {
 
 export const ComponentListCard = ({ product }: Props) => {
   return (
-    <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-3 pb-5'>      
+    <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-0 pb-5'>      
+
+      <div className='pt-2 bg-white rounded-t-lg justify-center align-middle items-center flex'>
         <Image
-          className='object-fit rounded-t-lg self-center place-self-center w-auto xl:w-full h-[100] xl:h-[150]'
-          src={product.image}
+          className='object-contain rounded-t-lg self-center place-self-center w-auto xl:w-full h-[100] xl:h-[250]'
+          src={product.image[0]}
           alt='product image'
           width={500}
           height={500}
-        />      
+        />     
 
-      <div className='flex flex-col px-5 mt-4 items-center h-[30]'>
+      </div>
+
+      <div className='flex flex-col px-5 mt-4 items-center min-h-[60]'>
         <a href='#'>
           <h5 className='text-sm xl:text-md font-semibold tracking-tight text-[#F1F1F1]'>
             {product.name}
@@ -33,7 +35,7 @@ export const ComponentListCard = ({ product }: Props) => {
           $ {product.price.toFixed(2)}
         </span>
         <button          
-          className='flex align-middle items-center justify-center gap-3 text-[#F1F1F1] bg-blue-700 w-fit hover:bg-blue-800 focus:ring-4
+          className='flex align-middle items-center justify-center gap-3 text-[#F1F1F1] bg-blue-700 w-fit hover:bg-blue-800 focus:ring-4 hover:cursor-pointer
             focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-sm xl:text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
           {

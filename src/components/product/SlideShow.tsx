@@ -15,7 +15,11 @@ import './slideshow.css';
 import { useState } from 'react';
 import Image from 'next/image';
 
-const SlideShow = () => {
+interface Props {
+    images: string[];
+}
+
+const SlideShow = ( { images }: Props) => {
   // const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperObject>();
 
@@ -34,46 +38,18 @@ const SlideShow = () => {
         modules={[FreeMode, Thumbs, Autoplay]}
         className='mySwiper2'
       >
-        <SwiperSlide>
-          <Image
-            src='/img/products/mouse.png'
-            alt='alt1'
-            fill
-            className='rounded-lg'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10242.png'
-            alt='alt2'
-            fill
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10243.png'
-            alt='alt3'
-            fill
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10244.png'
-            alt='alt4'
-            fill
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10245.png'
-            alt='alt5'
-            fill
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
+        {
+          images.map( image => (
+            <SwiperSlide key={image}>
+              <Image
+                src={image}
+                alt='alt1'
+                fill
+                className='rounded-lg'
+              />
+            </SwiperSlide> 
+          ))
+        }
       </Swiper>
 
 
@@ -88,51 +64,19 @@ const SlideShow = () => {
         modules={[FreeMode, Thumbs, Navigation]}
         className='mySwiper'
       >
-        <SwiperSlide>
-          <Image
-            src='/img/products/mousev2.png'
-            alt='alt1'
-            width={100}
-            height={100}
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10242.png'
-            alt='alt2'
-            width={100}
-            height={100}
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10243.png'
-            alt='alt3'
-            width={100}
-            height={100}
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10244.png'
-            alt='alt4'
-            width={100}
-            height={100}
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src='/img/10245.png'
-            alt='alt5'
-            width={100}
-            height={100}
-            className='rounded-lg object-fill'
-          />
-        </SwiperSlide>
+        {
+          images.map( image => (
+            <SwiperSlide key={image}>
+              <Image
+                src={image}
+                alt='alt1'
+                width={100}
+                height={100}
+                className='rounded-lg object-fill'
+              />
+            </SwiperSlide>
+          ))
+        }
       </Swiper>
     </div>
   );

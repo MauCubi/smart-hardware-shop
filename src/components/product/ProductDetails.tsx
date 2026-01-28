@@ -13,12 +13,12 @@ interface Props {
 
 const ProductDetails = ({ prod }: Props) => {
   return (
-    <div className='flex flex-col xl:flex-row'>
+    <div className='flex flex-col xl:flex-row xl:min-h-120'>
       <div className='w-full xl:w-[50%]'>
-        <SlideShow />
+        <SlideShow images={prod?.image as string[]} />
       </div>
 
-      <div className='xl:h-50 w-full xl:w-[50%]'>
+      <div className='xl:h-fit w-full xl:w-[50%]'>
         <div className='text-gray-300 flex gap-1 mb-4 text-xs xl:text-base wrap-normal'>
           <Link
             className='hover:text-[#637a91] transform duration-300'
@@ -74,7 +74,7 @@ const ProductDetails = ({ prod }: Props) => {
           </div>
         </div>
 
-        <div className='flex flex-col justify-center items-center xl:items-start xl:flex-row xl:justify-between'>
+        <div className='flex flex-col justify-center items-center xl:items-start h-fit xl:flex-row xl:justify-between'>
           <div className='flex flex-row items-center titles p-3 mt-4'>
             <p className='font-bold mr-6'>Quantity:</p>
 

@@ -36,8 +36,8 @@ export default function CartPage() {
 
             <div className='flex flex-col xl:flex-row p-4 justify-between border-b border-b-[#0A84FF] gap-4 xl:gap-0'>
 
-              <div className='flex justify-center align-middle xl:w-auto w-[60%] self-center xl:self-start'>
-                <Image src={products[0].image} style={{ width: '100%', height: 'auto' }} width={120} height={120} alt={products[0].name}/>
+              <div className='flex justify-center align-middle  w-[100] h-[100] self-center xl:self-start p-1 bg-white'>
+                <Image src={products[0].image[0]} style={{ width: '100%', height: 'auto' }} width={120} height={120} className='object-contain' alt={products[0].name}/>
               </div>
 
               <div className='flex items-center justify-center align-middle xl:w-[25%]'>
@@ -66,8 +66,8 @@ export default function CartPage() {
 
             <div className='flex flex-col xl:flex-row p-4  justify-between border-b border-b-[#0A84FF] gap-4 xl:gap-0'>
 
-              <div className='flex justify-center align-middle xl:w-auto w-[60%] self-center xl:self-start'>
-                <Image src={products[1].image} style={{ width: '100%', height: 'auto' }} width={120} height={120} alt={products[0].name}/>
+              <div className='flex justify-center align-middle  w-[100] h-[100] self-center xl:self-start bg-white p-1'>
+                <Image src={products[1].image[0]} style={{ width: '100%', height: 'auto' }} width={120} height={120} className='object-contain' alt={products[0].name}/>
               </div>
 
               <div className='flex items-center justify-center align-middle xl:w-[25%]'>

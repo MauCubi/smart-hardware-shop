@@ -14,8 +14,8 @@ export const ProductsGridCard = ({ product }: Props) => {
     <div className='pt-2 bg-white rounded-t-lg justify-center align-middle items-center flex'>
       <Link href={`/product/${product.slug}`}>
         <Image
-          className='object-fit rounded-t-lg self-center place-self-center w-auto px-3 xl:w-full h-[180] xl:h-[250]'
-          src={product.image}
+          className='object-contain rounded-t-lg self-center place-self-center w-auto px-3 xl:w-full h-[180] xl:h-[250]'
+          src={product.image[0]}
           alt='product image'
           width={500}
           height={500}   

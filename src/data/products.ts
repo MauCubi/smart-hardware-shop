@@ -5,7 +5,7 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  image: string;
+  image: string[];
   stock: number;
   slug: string;
 }
@@ -17,7 +17,7 @@ export const products: Product[] = [
     description: 'Good graphic card',
     price: 1599,
     category: 'Graphic Card',
-    image: '/img/products/1024.png',
+    image: ['/img/products/1024.png', '/img/products/10242.png', '/img/products/10243.png', '/img/products/10244.png', '/img/products/10245.png'],
     stock: 12,
     slug: 'GeForce_RTX_3060_Ti_VENTUS_2X0',
   },
@@ -27,7 +27,7 @@ export const products: Product[] = [
     description: 'Good Monitoro',
     price: 999,
     category: 'Monitors',
-    image: '/img/products/monitor1.png',
+    image: ['/img/products/monitor1.png', '/img/products/monitor2.png', '/img/products/monitor3.png', '/img/products/monitor4.png'],
     stock: 20,
     slug: 'MEG_342C_QD-OLED',
   },
@@ -37,7 +37,7 @@ export const products: Product[] = [
     description: 'Monitor Full HD de 27 pulgadas',
     price: 329,
     category: 'Monitores',
-    image: '/img/products/monitor27.png',
+    image: ['/img/products/monitor27.png', '/img/products/monitor272.png', '/img/products/monitor273.png', '/img/products/monitor274.png'],
     stock: 0,
     slug: 'Monitor_27_144Hz',
   },
@@ -47,7 +47,7 @@ export const products: Product[] = [
     description: 'Monitor básico para oficina',
     price: 159,
     category: 'Monitores',
-    image: '/img/products/monitor75.png',
+    image: ['/img/products/monitor75.png'],
     stock: 25,
     slug: 'Monitor_Philips_221v877_215_Full_Hd_75_Hz',
   },
@@ -57,19 +57,19 @@ export const products: Product[] = [
     description: 'Teclado con switches Blue y RGB',
     price: 89,
     category: 'Periféricos',
-    image: '/img/products/tecladorgb1v2.png',
+    image: ['/img/products/tecladorgba.png', '/img/products/tecladorgbb.png', '/img/products/tecladorgbc.png', '/img/products/tecladorgbd.png'],
     stock: 4,
     slug: 'Teclado_Mecanico_RGB',
   },
   {
     id: 6,
-    name: 'Mouse Gamer Inalámbrico',
+    name: 'Mouse Gamer Inalámbrico Marvo M803 4800dpi Óptico 7 Botones LED',
     description: 'Mouse inalámbrico con DPI ajustable',
     price: 49,
     category: 'Periféricos',
-    image: '/img/products/mousev2.png',
+    image: ['/img/products/mousev2.png','/img/products/mousev3.png','/img/products/mousev4.png','/img/products/mousev5.png'],
     stock: 50,
-    slug: 'Mouse_Gamer_Inalambrico',
+    slug: 'Mouse_Gamer_Inalambrico_Marvo_M803_4800dpi_Optico_7_Botones_LED',
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ export const products: Product[] = [
     description: 'Auriculares con micrófono y sonido envolvente',
     price: 79,
     category: 'Periféricos',
-    image: '/img/products/auri.png',
+    image: ['/img/products/auri.png', '/img/products/auri2.png', '/img/products/auri3.png'],
     stock: 30,
     slug: 'Auriculares_Gamer_Luz_Led_Rgb_Usb_Headset_Microfono_Xtrike_Me_Gh516_Para_Pc_Negro_sonido_envolvente_71',
   },
@@ -87,7 +87,7 @@ export const products: Product[] = [
     description: 'Unidad SSD NVMe rápida',
     price: 129,
     category: 'Almacenamiento',
-    image: '/img/products/ssd.png',
+    image: ['/img/products/ssd.png', '/img/products/ssd2.png', '/img/products/ssd3.png'],
     stock: 40,
     slug: 'Disco_solido_Ssd_M2_1tb_Kingston_Nvme_Pcie_4.0_Nv3_color_azul_oscuro',
   },
