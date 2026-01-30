@@ -1,17 +1,60 @@
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa';
+'use client'
 import { FaArrowDown, FaCartShopping, FaCheck, FaMapLocation, FaShield, FaTruck, FaX } from 'react-icons/fa6';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import Link from 'next/link';
 import SlideShow from './SlideShow';
-import { Product } from '@/data/products';
+import { CartProducts, Product } from '@/data/products';
+import ProductQuantity from './ProductQuantity';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { onAddProductToCart, onClearError } from '@/store/cart/cartSlice';
+import toast from 'react-hot-toast';
 
 
 interface Props {
-  prod: Product | undefined;
+  prod: Product;
 }
 
 
+
+
 const ProductDetails = ({ prod }: Props) => {
+  
+  const { status } = useAppSelector( state => state.cart )
+  const [ quantity , setQuantity ] = useState(1)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+
+    switch(status){
+      case 'MAX_STOCK_REACHED': 
+        toast.error('La cantidad a agregar a carrito supera el stock disponible')
+        break
+      case 'SUCCESS':
+        toast.success('Producto agregado al carrito')
+        break
+    }
+
+    dispatch(onClearError())
+
+  }, [status, dispatch])
+  
+
+  const addProductToCart = () => {
+
+    const cartProduct: CartProducts = {
+      id: prod.id,
+      name: prod.name,
+      slug: prod.slug,
+      price: prod.price,
+      image: prod.image[0],
+      quantity: quantity,
+      max: prod.stock
+    }
+
+    dispatch(onAddProductToCart(cartProduct))
+  }
+
   return (
     <div className='flex flex-col xl:flex-row xl:min-h-120'>
       <div className='w-full xl:w-[50%]'>
@@ -75,31 +118,20 @@ const ProductDetails = ({ prod }: Props) => {
         </div>
 
         <div className='flex flex-col justify-center items-center xl:items-start h-fit xl:flex-row xl:justify-between'>
-          <div className='flex flex-row items-center titles p-3 mt-4'>
-            <p className='font-bold mr-6'>Quantity:</p>
-
-            <button className='cursor-pointer'>
-              <FaMinusCircle size={20} />
-            </button>
-
-            <div className='w-20 flex justify-center'>
-              <p> 10 Units </p>
-            </div>
-
-            <button className='cursor-pointer'>
-              <FaPlusCircle size={20} />
-            </button>
-          </div>
+          <ProductQuantity quantity={quantity} max={prod?.stock as number} setQuantity={ setQuantity }/>
 
           <div className='flex flex-col xl:flex-row items-center mt-4 gap-3 w-full xl:w-auto'>
-            <button className='cursor-pointer flex flex-row w-full xl:w-auto justify-center xl:justify-start items-center px-4 py-4 xl:py-2 gap-2 bg-[#0A84FF] rounded-lg text-[#F1F1F1] hover:bg-[#0a84ffad]'>
+            <button className={`flex flex-row w-full xl:w-auto justify-center xl:justify-start items-center px-4 py-4 xl:py-2 gap-2 rounded-lg 
+              ${ prod?.stock !== 0 ? 'cursor-pointer text-[#F1F1F1] bg-[#0A84FF] hover:bg-[#0a84ffad]' : 'text-[#F1F1F1] bg-[#545454]' }`}>
               <RiMoneyDollarCircleLine size={30} />{' '}
               <p className='font-bold'> Buy Now</p>
             </button>
 
-            <button className='
-              cursor-pointer flex flex-row w-full xl:w-auto items-center justify-center xl:justify-start px-4 py-4 xl:py-2 gap-2 border border-[#0A84FF] 
-              rounded-lg text-[#0A84FF] hover:border-[#0a84ffad] hover:text-[#0a84ffad]'>
+            <button className={`
+              flex flex-row w-full xl:w-auto items-center justify-center xl:justify-start px-4 py-4 xl:py-2 gap-2 border rounded-lg 
+              ${ prod?.stock !== 0 ? 'border-[#0A84FF] text-[#0A84FF] hover:border-[#0a84ffad] hover:text-[#0a84ffad] cursor-pointer' : 'border-[#545454] text-[#545454] disabled'  } `}
+              onClick={ addProductToCart }
+              >
               <FaCartShopping size={30} />{' '}
               <p className='font-bold'> Add to Cart</p>
             </button>

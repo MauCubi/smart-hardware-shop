@@ -23,6 +23,8 @@ export const NavBar = () => {
     dispatch(onToggleSearchMenu())
   }
 
+  const { productsInCart } = useAppSelector( state => state.cart )
+
   return (
     <nav className='flex bg-[#121212] xl:h-30 md:h-15 xl:justify-between px-2 xl:px-20 align-middle items-center z-10'>
 
@@ -65,7 +67,11 @@ export const NavBar = () => {
                 <IoCartOutline className='text-[30px] xl:text-[35px]' color='#0A84FF'/>
               </button>
             </Link>
-            <div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>2</div>
+            {
+              productsInCart > 0 
+              ?<div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>{ productsInCart }</div>
+              : ''
+            }
           </div>
           <Link href={'/auth'}>
             <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>

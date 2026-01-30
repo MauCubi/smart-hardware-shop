@@ -3,21 +3,19 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
   onComponentSelectToggle,
   onPlatformSelect,
-} from '@/store/ui/builderSlice';
+} from '@/store/builder/builderSlice';
 import { ComponentSections } from './ComponentSections';
 import { ComponentList } from './ComponentList';
-
 
 export const ComponentSelectionDesktop = () => {
   const dispatch = useAppDispatch();
 
   const { componentSelect } = useAppSelector((state) => state.builder);
 
-  const resetPlatform = () => {    
-      dispatch(onPlatformSelect(null));    
-      dispatch(onComponentSelectToggle(null))
+  const resetPlatform = () => {
+    dispatch(onPlatformSelect(null));
+    dispatch(onComponentSelectToggle(null));
   };
-  
 
   return (
     <div className='flex w-full'>
@@ -27,17 +25,22 @@ export const ComponentSelectionDesktop = () => {
             className='titles text-3xl p-4'
             onClick={() => resetPlatform()}
           >
-            &larr; <span className='titles text-2xl hover:cursor-pointer'>back</span>
+            &larr;{' '}
+            <span className='titles text-2xl hover:cursor-pointer'>back</span>
           </button>
-          <h1 className='titles text-2xl self-center'>Choose your { componentSelect ? <span className='font-bold text-gray-400'>{ componentSelect }</span> : 'PC Component' }</h1>
+          <h1 className='titles text-2xl self-center'>
+            Choose your{' '}
+            {componentSelect ? (
+              <span className='font-bold text-gray-400'>{componentSelect}</span>
+            ) : (
+              'PC Component'
+            )}
+          </h1>
         </div>
-
 
         <div className='hidden md:flex flex-row justify-between px-35 md:px-25'>
           <ComponentSections />
-          {
-            componentSelect ? <ComponentList /> : ''
-          }
+          {componentSelect ? <ComponentList /> : ''}
         </div>
       </div>
     </div>

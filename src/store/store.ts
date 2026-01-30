@@ -1,18 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { uiSlice } from './ui/uiSlice'
-import { builderSlice } from './ui/builderSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import { uiSlice } from './ui/uiSlice';
+import { builderSlice } from './builder/builderSlice';
+import { cartSlice } from './cart/cartSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       ui: uiSlice.reducer,
-      builder: builderSlice.reducer
+      builder: builderSlice.reducer,
+      cart: cartSlice.reducer,
     },
-  })
-}
+  });
+};
 
 // Infer the type of makeStore
-export type AppStore = ReturnType<typeof makeStore>
+export type AppStore = ReturnType<typeof makeStore>;
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<AppStore['getState']>
-export type AppDispatch = AppStore['dispatch']
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];

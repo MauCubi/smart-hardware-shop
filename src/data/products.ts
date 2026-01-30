@@ -10,6 +10,16 @@ export interface Product {
   slug: string;
 }
 
+export interface CartProducts {
+  id: number;
+  name: string;
+  slug: string;
+  price: number;
+  image: string;
+  quantity: number
+  max: number;
+}
+
 export const products: Product[] = [
   {
     id: 1,

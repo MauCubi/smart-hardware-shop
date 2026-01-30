@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
   onComponentSelectToggle,
   onPlatformSelect,
-} from '@/store/ui/builderSlice';
+} from '@/store/builder/builderSlice';
 import { ComponentSections } from './ComponentSections';
 import { ComponentList } from './ComponentList';
 
@@ -23,7 +23,6 @@ export const ComponentSelectionMobile = () => {
   return (
     <div className='flex w-full'>
       <div className='flex flex-col w-full justify-center'>
-
         <div className='flex flex-col justify-center'>
           <button
             className='titles text-2xl p-4'
@@ -37,7 +36,6 @@ export const ComponentSelectionMobile = () => {
         <div className='flex flex-col justify-center px-4 my-7'>
           {componentSelect ? <ComponentList /> : <ComponentSections />}
         </div>
-
       </div>
     </div>
   );
