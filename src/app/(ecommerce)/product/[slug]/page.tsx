@@ -1,6 +1,7 @@
 import ProductDetails from '@/components/product/ProductDetails';
 import ProductInformation from '@/components/product/ProductInformation';
 import { Product, products } from '@/data/products';
+import { notFound } from 'next/navigation';
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -10,6 +11,10 @@ export default async function ProductDetailPage( { params }: Props) {
 
   const { slug } = await params
   const prod : Product | undefined = products.find( e => e.slug === slug)  
+
+  if (!prod) {
+    notFound()
+  }
 
   return (
     <div className='flex xl:min-h-dvh justify-center items-center align-middle'>

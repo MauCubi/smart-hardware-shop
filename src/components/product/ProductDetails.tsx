@@ -9,20 +9,19 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onAddProductToCart, onClearError } from '@/store/cart/cartSlice';
 import toast from 'react-hot-toast';
+import { redirect, useRouter } from 'next/navigation';
 
 
 interface Props {
   prod: Product;
 }
 
-
-
-
 const ProductDetails = ({ prod }: Props) => {
   
-  const { status } = useAppSelector( state => state.cart )
+  const { status, products } = useAppSelector( state => state.cart )
   const [ quantity , setQuantity ] = useState(1)
   const dispatch = useAppDispatch()
+  const router = useRouter();
 
   useEffect(() => {
 
@@ -38,9 +37,14 @@ const ProductDetails = ({ prod }: Props) => {
     dispatch(onClearError())
 
   }, [status, dispatch])
+
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(products))
+  }, [products])  
   
 
-  const addProductToCart = () => {
+  const addProductToCart = ( buyNow: boolean) => {
 
     const cartProduct: CartProducts = {
       id: prod.id,
@@ -48,11 +52,14 @@ const ProductDetails = ({ prod }: Props) => {
       slug: prod.slug,
       price: prod.price,
       image: prod.image[0],
-      quantity: quantity,
+      quantity: buyNow? 1 : quantity,
       max: prod.stock
     }
+    dispatch(onAddProductToCart(cartProduct))    
 
-    dispatch(onAddProductToCart(cartProduct))
+    if (buyNow) {
+      router.push('/cart')      
+    }
   }
 
   return (
@@ -122,7 +129,9 @@ const ProductDetails = ({ prod }: Props) => {
 
           <div className='flex flex-col xl:flex-row items-center mt-4 gap-3 w-full xl:w-auto'>
             <button className={`flex flex-row w-full xl:w-auto justify-center xl:justify-start items-center px-4 py-4 xl:py-2 gap-2 rounded-lg 
-              ${ prod?.stock !== 0 ? 'cursor-pointer text-[#F1F1F1] bg-[#0A84FF] hover:bg-[#0a84ffad]' : 'text-[#F1F1F1] bg-[#545454]' }`}>
+              ${ prod?.stock !== 0 ? 'cursor-pointer text-[#F1F1F1] bg-[#0A84FF] hover:bg-[#0a84ffad]' : 'text-[#F1F1F1] bg-[#545454]' }`}
+              onClick={ () => addProductToCart(true) }
+              >
               <RiMoneyDollarCircleLine size={30} />{' '}
               <p className='font-bold'> Buy Now</p>
             </button>
@@ -130,7 +139,7 @@ const ProductDetails = ({ prod }: Props) => {
             <button className={`
               flex flex-row w-full xl:w-auto items-center justify-center xl:justify-start px-4 py-4 xl:py-2 gap-2 border rounded-lg 
               ${ prod?.stock !== 0 ? 'border-[#0A84FF] text-[#0A84FF] hover:border-[#0a84ffad] hover:text-[#0a84ffad] cursor-pointer' : 'border-[#545454] text-[#545454] disabled'  } `}
-              onClick={ addProductToCart }
+              onClick={ () => addProductToCart(false) }
               >
               <FaCartShopping size={30} />{' '}
               <p className='font-bold'> Add to Cart</p>

@@ -46,6 +46,8 @@ const SlideShow = ( { images }: Props) => {
                 alt='alt1'
                 fill
                 className='rounded-lg'
+                sizes='(max-width: 640px) 70vw, (max-width: 1024px) 60w, 20vw'
+                priority
               />
             </SwiperSlide> 
           ))
@@ -70,9 +72,11 @@ const SlideShow = ( { images }: Props) => {
               <Image
                 src={image}
                 alt='alt1'
-                width={100}
                 height={100}
-                className='rounded-lg object-fill'
+                width={100}
+                className='rounded-lg w-auto h-auto object-fill relative'
+                sizes='(max-width: 640px) 20vw, (max-width: 1024px) 25w, 5vw'
+                
               />
             </SwiperSlide>
           ))

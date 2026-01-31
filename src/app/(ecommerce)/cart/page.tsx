@@ -1,8 +1,10 @@
 'use client'
-import { onClearCart, onRemoveProductFromCart } from '@/store/cart/cartSlice';
+import { CartProducts, Product } from '@/data/products';
+import { onAddProductToCart, onClearCart, onRemoveProductFromCart } from '@/store/cart/cartSlice';
 // import { products } from '@/data/products';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import { BiTrash } from 'react-icons/bi';
 import { BsCartX } from 'react-icons/bs';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -18,6 +20,18 @@ export default function CartPage() {
 
   const clearCart = () => dispatch(onClearCart()) 
   const removeProductFromCart = (id: number) => dispatch(onRemoveProductFromCart(id))
+
+  const modifyQuantity = (prod: CartProducts, quantity: number) => {    
+    if (!(prod.quantity + quantity > prod.max) && !(prod.quantity + quantity < 1) ) {      
+      dispatch(onAddProductToCart({...prod, quantity: quantity}))       
+    }
+  }
+
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(products))
+  }, [products])
+  
 
   return (
     <div className='flex p-5'>      
@@ -63,9 +77,9 @@ export default function CartPage() {
 
                   <div className='flex flex-row align-middle items-center justify-center'>
                     <div className=' flex align-middle flex-row h-8'>
-                      <button className='px-3 h-full rounded-l titles bg-[#445566] cursor-pointer'>-</button>
-                      <span className='titles px-3 h-full flex items-center border-y border-y-[#445566] cursor-default'>{ product.quantity }</span>
-                      <button className='px-3 h-full rounded-r titles bg-[#445566] cursor-pointer'>+</button>
+                      <button className='px-3 h-full rounded-l titles bg-[#445566] cursor-pointer' onClick={ () => modifyQuantity(product, -1)}>-</button>
+                      <span className='titles px-3 h-full flex items-center border-y border-y-[#445566] cursor-default' >{ product.quantity }</span>
+                      <button className='px-3 h-full rounded-r titles bg-[#445566] cursor-pointer' onClick={ () => modifyQuantity(product, 1)}>+</button>
                     </div>
                   </div>
 

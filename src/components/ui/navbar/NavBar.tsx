@@ -1,7 +1,9 @@
 'use client'
+import { onLoadCart } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onToggleSearchMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { FaComputer, FaRegUser } from 'react-icons/fa6';
 import { IoCartOutline, IoMenu } from 'react-icons/io5';
@@ -24,6 +26,17 @@ export const NavBar = () => {
   }
 
   const { productsInCart } = useAppSelector( state => state.cart )
+
+  useEffect(() => {
+    const products = localStorage.getItem('cart')
+
+    if (products) {
+      const parsedProducts = JSON.parse(products)
+      dispatch(onLoadCart(parsedProducts))
+    }
+    
+  }, [dispatch])
+  
 
   return (
     <nav className='flex bg-[#121212] xl:h-30 md:h-15 xl:justify-between px-2 xl:px-20 align-middle items-center z-10'>

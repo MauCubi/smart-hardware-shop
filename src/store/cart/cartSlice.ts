@@ -22,6 +22,8 @@ export const cartSlice = createSlice({
   reducers: {
     onLoadCart: ( state, { payload } ) => {
       state.products = payload
+      state.productsInCart = state.products.reduce( ( acc, product ) => acc + product.quantity , 0 )
+      state.total = state.products.reduce( ( acc, product ) => acc + product.price * product.quantity, 0) 
     },
 
     onClearCart: ( state ) => {
@@ -50,8 +52,8 @@ export const cartSlice = createSlice({
 
     onRemoveProductFromCart: ( state, { payload } ) => {
       state.products = state.products.filter( product => product.id !== payload )      
-      state.productsInCart = state.products.reduce( (acc, product ) => acc + product.quantity , 0 )
-      state.total = state.products.reduce( (acc, product ) => acc + product.price * product.quantity, 0) 
+      state.productsInCart = state.products.reduce( ( acc, product ) => acc + product.quantity , 0 )
+      state.total = state.products.reduce( ( acc, product ) => acc + product.price * product.quantity, 0) 
     },
 
     onClearError: ( state ) => {
