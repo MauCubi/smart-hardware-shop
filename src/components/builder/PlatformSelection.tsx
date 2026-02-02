@@ -10,7 +10,7 @@ export const PlatformSelection = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center py-15 w-full'>
+    <div className='flex flex-col justify-center items-center pt-25 pb-40 w-full'>
       <h1 className='titles text-2xl md:text-4xl'>Choose your architecture</h1>
       <div className='flex flex-col md:flex-row justify-center mt-15 gap-20'>
         <button

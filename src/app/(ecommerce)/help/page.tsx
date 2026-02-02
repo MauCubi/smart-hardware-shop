@@ -174,7 +174,7 @@ const HelpPage = () => {
   }
 
   return (
-    <div className='flex justify-center py-25'>
+    <div className='flex justify-center py-35'>
       <div className='flex xl:flex-row flex-col w-full xl:w-auto border p-6 border-gray-400 xl:rounded-xl gap-2'>
 
         <div className='flex flex-col w-full xl:w-80 px-2 gap-1'>

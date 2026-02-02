@@ -18,7 +18,7 @@ export default function AuthPage() {
   }
 
   return (
-    <div className='py-15'>
+    <div className='pt-25 pb-40'>
 
       <div className='flex flex-col self-center justify-center place-self-center w-[358]'>
         <div className='flex flex-row mt-5 md:mt-15 xl:mt-5 w-full justify-center'>

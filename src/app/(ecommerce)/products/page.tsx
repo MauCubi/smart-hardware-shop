@@ -1,6 +1,7 @@
 import { DesktopFilter } from '@/components/filters/DesktopFilter';
 import { MobileFilter } from '@/components/filters/MobileFilter';
 import { ProductsGrid } from '@/components/products/ProductsGrid';
+import { products } from '@/data/products';
 import { IoFilterSharp } from 'react-icons/io5';
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -11,6 +12,8 @@ interface Props {
 
 export default async function SearchPage({ searchParams }: Props) {
   const filters = await searchParams;
+
+  const prods = products
 
   
 
@@ -43,7 +46,7 @@ export default async function SearchPage({ searchParams }: Props) {
             <MobileFilter />
           </div>
 
-          <ProductsGrid />
+          <ProductsGrid products={prods} />
         </div>
 
       </div>

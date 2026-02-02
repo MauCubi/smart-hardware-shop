@@ -17,7 +17,7 @@ export const ProductsGridCard = ({ product }: Props) => {
           className='object-contain rounded-t-lg self-center place-self-center w-auto px-3 xl:w-full h-[180] xl:h-[250]'
           src={product.image[0]}
           alt='product image'
-          width={500}
+          width={200}
           height={500}   
         />
       

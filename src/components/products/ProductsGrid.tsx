@@ -1,11 +1,13 @@
-import { products } from '@/data/products';
+import { Product } from '@/data/products';
 import { ProductsGridCard } from './ProductsGridCard';
-import { Pagination } from '../ui/pagination/Pagination';
 
 
+interface Props {
+  products: Product[]
+}
 
-export const ProductsGrid = () => {
-
+export const ProductsGrid = ({ products }: Props) => {
+  
 
   return (
     <div>
@@ -17,7 +19,7 @@ export const ProductsGrid = () => {
         ))}
       </div>
       
-      <Pagination />
+      
 
     </div>
   );

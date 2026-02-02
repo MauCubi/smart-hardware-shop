@@ -4,6 +4,7 @@ import { NavBar } from '@/components/ui/navbar/NavBar';
 import SearchBox from '@/components/ui/navbar/SearchBox';
 import { SubNavBar } from '@/components/ui/navbar/SubNavBar';
 import ScrollToTop from '@/components/ui/scroll/ScrollToTop';
+import ScrollToTopContainer from '@/components/ui/scroll/ScrollToTopContainer';
 import { Toaster } from 'react-hot-toast';
 
 
@@ -19,12 +20,13 @@ export default function ShopLayout({ children }: {children: React.ReactNode;}) {
         <SubNavBar />
       </div>
 
-      <ScrollToTop />
-      <div className='px-0 xl:pt-[185]'>        
+      {/* <ScrollToTop /> */}
+      <div id="scroll-container" className='flex flex-col grow px-0 xl:pt-[185px]'>    
+        {/* <ScrollToTopContainer />     */}
         {children}
+        <Footer />
       </div>
       
-      <Footer />
       <Toaster position="top-right" reverseOrder={false} />
     </StoreProvider>
 

@@ -67,16 +67,16 @@ export const SubNavBar = () => {
           </button>      
           
 
-          <Link href='/builder'>
-            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>Build your PC</button>
+          <Link href='/builder' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
+            Build your PC
           </Link>
           
-          <Link href='/contact'>
-            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>Contact us</button>
+          <Link href='/contact' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
+            Contact us
           </Link>
           
-          <Link href='/help'>
-            <button className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>F.A.Q</button>      
+          <Link href='/help' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
+            F.A.Q      
           </Link>     
           
         </div>
