@@ -1,4 +1,5 @@
 'use client'
+import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
 import { onLoadCart } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onToggleSearchMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
@@ -12,6 +13,8 @@ export const NavBar = () => {
   
   const dispatch = useAppDispatch()
   const { isSearchMenuOpen, isSideMenuOpen} = useAppSelector( state => state.ui )
+
+  const { authenticatedUser, authStatus } = useAppSelector( state => state.auth )
   
 
   const onToggleMenu = () => {
@@ -31,11 +34,30 @@ export const NavBar = () => {
     const products = localStorage.getItem('cart')
 
     if (products) {
-      const parsedProducts = JSON.parse(products)
+      const parsedProducts = JSON.parse(products)      
       dispatch(onLoadCart(parsedProducts))
     }
     
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(onSetAuthStatus('authenticating'))
+    const user = localStorage.getItem('auth-user')
+    if (user) {
+      const parsedUser = JSON.parse(user)  
+      console.log(user)    
+      dispatch(onSetLoggedUser(parsedUser))
+      dispatch(onSetAuthStatus('authenticated'))
+    } else {
+      dispatch(onSetAuthStatus('not-authenticated'))
+    }    
+  }, [dispatch])
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth-user')
+    dispatch(onSetLoggedUser(null))
+    dispatch(onSetAuthStatus('not-authenticated'))
+  }
   
 
   return (
@@ -86,12 +108,23 @@ export const NavBar = () => {
               : ''
             }
           </div>
-          <Link href={'/auth'}>
-            <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>
-              <FaRegUser className='text-[25px] xl:text-[35px]' color='#0A84FF' />
-              <span className='hidden xl:block'>Login</span>            
+          {
+            authStatus === 'authenticating'
+            ? 'Loading'
+            : authStatus === 'authenticated' 
+            ?
+            <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ handleLogout }>
+              {/* <FaRegUser className='text-[25px] xl:text-[35px]' color='#0A84FF' /> */}
+              <span className={`hidden xl:block text-sm`}>{ authenticatedUser?.email } ▼</span>            
             </button>
-          </Link>
+            : authStatus === 'not-authenticated' &&
+            <Link href={'/auth'}>
+              <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>
+                <FaRegUser className='text-[25px] xl:text-[35px]' color='#0A84FF' />
+                <span className='hidden xl:block'>Login</span>            
+              </button>
+            </Link>
+          }
         </div>
       </div>
 

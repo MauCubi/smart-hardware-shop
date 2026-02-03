@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onAddProductToCart, onClearError } from '@/store/cart/cartSlice';
 import toast from 'react-hot-toast';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 
 interface Props {
@@ -27,10 +27,10 @@ const ProductDetails = ({ prod }: Props) => {
 
     switch(status){
       case 'MAX_STOCK_REACHED': 
-        toast.error('La cantidad a agregar a carrito supera el stock disponible')
+        toast.error('Stock limit reached')
         break
       case 'SUCCESS':
-        toast.success('Producto agregado al carrito')
+        toast.success('Product added to cart')
         break
     }
 
@@ -44,7 +44,7 @@ const ProductDetails = ({ prod }: Props) => {
   }, [products])  
   
 
-  const addProductToCart = ( buyNow: boolean) => {
+  const addProductToCart = ( buyNow: boolean ) => {
 
     const cartProduct: CartProducts = {
       id: prod.id,

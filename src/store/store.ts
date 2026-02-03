@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { uiSlice } from './ui/uiSlice';
 import { builderSlice } from './builder/builderSlice';
 import { cartSlice } from './cart/cartSlice';
+import { authSlice } from './auth/authSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       ui: uiSlice.reducer,
       builder: builderSlice.reducer,
       cart: cartSlice.reducer,
+      auth: authSlice.reducer,
     },
   });
 };

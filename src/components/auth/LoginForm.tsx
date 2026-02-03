@@ -1,3 +1,6 @@
+import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
+import { useAppDispatch } from '@/store/hooks';
+import { User } from '@/types/user';
 import { useForm, SubmitHandler } from "react-hook-form"
 
 type LoginInput = {
@@ -7,14 +10,36 @@ type LoginInput = {
 
 export const LoginForm = () => {
 
+  const dispatch = useAppDispatch()
+
   const {
       register,
       handleSubmit,
       formState: { errors },
+      setError
   } = useForm<LoginInput>()
 
   const onSubmit: SubmitHandler<LoginInput> = (data) => {
-    console.log(data)
+
+    dispatch(onSetAuthStatus('authenticating'))
+    const userList = localStorage.getItem('users');
+
+    if (userList) {
+      const parsedUserList: User[] = JSON.parse(userList)
+      const user = parsedUserList.find( e => e.email === data.email )
+
+      if (user) {
+        dispatch(onSetLoggedUser(user))
+        dispatch(onSetAuthStatus('authenticated'))
+        localStorage.setItem('auth-user', JSON.stringify(user))
+        return              
+      } else {
+        setError('email', { message: 'Email no encontrado' })
+      }
+    }  
+    
+    dispatch(onSetAuthStatus('not-authenticated'))
+
   }
 
 

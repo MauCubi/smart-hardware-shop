@@ -1,4 +1,10 @@
+import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
+import { useAppDispatch } from '@/store/hooks';
+import { User } from '@/types/user';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
+import { v4 as uuidv4 } from 'uuid';
+
 
 type RegisterInput = {
   name: string,
@@ -9,15 +15,39 @@ type RegisterInput = {
 
 export const RegisterForm = () => {
 
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+
 
   const {
       register,
       handleSubmit,
       formState: { errors },
+      setError
   } = useForm<RegisterInput>()
 
   const onSubmit: SubmitHandler<RegisterInput> = (data) => {
-    console.log(data)
+
+    dispatch(onSetAuthStatus('authenticating'))
+
+    const registeredUsers = localStorage.getItem('users')
+
+    const userData = { id: uuidv4(), ...data }
+
+    if (!registeredUsers) {
+      localStorage.setItem('users', JSON.stringify([userData]))      
+    } else {
+      const parsedUsers: User[] = JSON.parse(registeredUsers)
+      if (parsedUsers.find(e => e.email === userData.email)) {
+        setError('email', { message:'An user with this email already exists'})
+        return
+      } else {
+        localStorage.setItem('users', JSON.stringify([...parsedUsers, userData]) )            
+      }      
+    }
+    dispatch(onSetLoggedUser(userData))
+    dispatch(onSetAuthStatus('authenticated'))
+    router.push('/')    
   }
 
   return (
