@@ -1,6 +1,7 @@
 import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
 import { User } from '@/types/user';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
 
 type LoginInput = {
@@ -11,6 +12,8 @@ type LoginInput = {
 export const LoginForm = () => {
 
   const dispatch = useAppDispatch()
+
+  const router = useRouter()
 
   const {
       register,
@@ -32,9 +35,10 @@ export const LoginForm = () => {
         dispatch(onSetLoggedUser(user))
         dispatch(onSetAuthStatus('authenticated'))
         localStorage.setItem('auth-user', JSON.stringify(user))
+        router.push('/')
         return              
       } else {
-        setError('email', { message: 'Email no encontrado' })
+        setError('email', { message: 'Email not found' })
       }
     }  
     

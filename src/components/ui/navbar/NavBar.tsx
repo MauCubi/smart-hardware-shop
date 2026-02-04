@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onToggleSearchMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { CiUser } from 'react-icons/ci';
 import { FaSearch } from 'react-icons/fa';
 import { FaComputer, FaRegUser } from 'react-icons/fa6';
 import { IoCartOutline, IoMenu } from 'react-icons/io5';
@@ -53,7 +54,7 @@ export const NavBar = () => {
     }    
   }, [dispatch])
 
-  const handleLogout = () => {
+  const handleLogout = ( ) => {
     localStorage.removeItem('auth-user')
     dispatch(onSetLoggedUser(null))
     dispatch(onSetAuthStatus('not-authenticated'))
@@ -61,7 +62,7 @@ export const NavBar = () => {
   
 
   return (
-    <nav className='flex bg-[#121212] xl:h-30 md:h-15 xl:justify-between px-2 xl:px-20 align-middle items-center z-10'>
+    <nav className='flex bg-[#121212] xl:h-30 md:h-15 xl:justify-between px-2 xl:px-10 align-middle items-center z-10'>
 
       <div className='xl:hidden mr-3'>
         <button className='flex items-center' onClick={ onToggleMenu }>
@@ -92,39 +93,45 @@ export const NavBar = () => {
       </div>
 
       <div className='flex justify-end xl:w-auto w-full align-middle'>
-        <div className='flex xl:gap-25'>
-          <button className='xl:hidden navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ onToggleSearch }>
-            <FaSearch className='text-[25px] xl:text-[35px]' color='#0A84FF' />                    
-          </button>
-          <div className='relative'>
-            <Link href={'/cart'}>
-              <button className='navbar-button navbar-text'>
-                <IoCartOutline className='text-[30px] xl:text-[35px]' color='#0A84FF'/>
-              </button>
-            </Link>
+        <div className='flex xl:gap-25'>  
+                  
+          <div className='flex flex-row'>
+            <button className='xl:hidden navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ onToggleSearch }>
+              <FaSearch className='text-[25px] xl:text-[35px]' color='#0A84FF' />                    
+            </button>
+            <div className='relative'>
+              <Link href={'/cart'}>
+                <button className='navbar-button navbar-text flex flex-row align-middle items-center'>
+                  <IoCartOutline className='text-[30px] xl:text-[30px]' color='#0A84FF'/>                  
+                </button>
+              </Link>
+              {
+                productsInCart > 0 
+                ?<div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>{ productsInCart }</div>
+                : ''
+              }
+            </div>
+          </div>
+
+          <div className='hidden xl:block xl:w-50'>
             {
-              productsInCart > 0 
-              ?<div className='flex absolute justify-center rounded-full top-1 right-1 h-auto w-5 text-sm bg-gray-300'>{ productsInCart }</div>
-              : ''
+              authStatus === 'authenticating'
+              ? 'Loading'
+              : authStatus === 'authenticated' 
+              ?
+              <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ handleLogout }>
+                <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
+                <span className={`hidden xl:block text-sm`}>{ authenticatedUser?.name } ▼</span>            
+              </button>
+              : authStatus === 'not-authenticated' &&
+              <Link href={'/auth'}>
+                <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>
+                  <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
+                  <span className='hidden xl:block'>Login</span>            
+                </button>
+              </Link>
             }
           </div>
-          {
-            authStatus === 'authenticating'
-            ? 'Loading'
-            : authStatus === 'authenticated' 
-            ?
-            <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ handleLogout }>
-              {/* <FaRegUser className='text-[25px] xl:text-[35px]' color='#0A84FF' /> */}
-              <span className={`hidden xl:block text-sm`}>{ authenticatedUser?.email } ▼</span>            
-            </button>
-            : authStatus === 'not-authenticated' &&
-            <Link href={'/auth'}>
-              <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>
-                <FaRegUser className='text-[25px] xl:text-[35px]' color='#0A84FF' />
-                <span className='hidden xl:block'>Login</span>            
-              </button>
-            </Link>
-          }
         </div>
       </div>
 

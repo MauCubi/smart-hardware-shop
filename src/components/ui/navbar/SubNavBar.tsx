@@ -9,12 +9,15 @@ import { MdOutlineSevereCold } from 'react-icons/md';
 import { BiWifi } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onToggleProductsMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
+import { CiUser } from 'react-icons/ci';
+import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
 
 
 export const SubNavBar = () => {
 
 
   const { isSideMenuOpen, isProductsMenuOpen } = useAppSelector( state => state.ui )
+  const { authenticatedUser, authStatus } = useAppSelector( state => state.auth )
 
   const dispatch = useAppDispatch()
   
@@ -32,6 +35,13 @@ export const SubNavBar = () => {
   const handleCategoryMenu = useCallback(() => {
     dispatch(onToggleProductsMenu(!isProductsMenuOpen))
   },[isProductsMenuOpen ,dispatch])
+
+    const handleLogout = () => {
+      localStorage.removeItem('auth-user')
+      dispatch(onSetLoggedUser(null))
+      dispatch(onSetAuthStatus('not-authenticated'))
+      handleSideMenu()
+    }
 
 
 
@@ -56,28 +66,70 @@ export const SubNavBar = () => {
     
       <div className={`z-11 xl:z-1 relative h-full xl:w-full ${ !isSideMenuOpen ? 'hidden' : 'block'} xl:block `}>    
         
-        <div className='flex xl:flex-row flex-col xl:h-16 xl:justify-center xl:py-0 p-3 xl:px-20 xl:align-middle xl:items-center xl:gap-8 bg-[#181818] xl:bg-[#1e1e1e]'>
+        <div className='flex xl:flex-row flex-col xl:h-16 xl:justify-center xl:py-0 xl:px-20 xl:align-middle xl:items-center xl:gap-8 bg-[#181818] xl:bg-[#1e1e1e] '>
 
-          <button 
-            ref={buttonRef}          
-            className={`subbar-button navbar-text flex flex-row align-middle items-center gap-2 ${isProductsMenuOpen?'text-[#0A84FF]': ''} `} 
-            onClick={ handleCategoryMenu }
-          >
-              Products
-          </button>      
-          
+          <div className='flex flex-col xl:flex-row xl:justify-center xl:py-0 xl:px-20 p-3 xl:align-middle xl:items-center xl:gap-8'>
+            <button 
+              ref={buttonRef}          
+              className={`subbar-button navbar-text flex flex-row align-middle items-center gap-2 ${isProductsMenuOpen?'text-[#0A84FF]': ''} `} 
+              onClick={ handleCategoryMenu }
+            >
+                Products
+            </button>      
+            
 
-          <Link href='/builder' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
-            Build your PC
-          </Link>
-          
-          <Link href='/contact' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
-            Contact us
-          </Link>
-          
-          <Link href='/help' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
-            F.A.Q      
-          </Link>     
+            <Link href='/builder' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
+              Build your PC
+            </Link>
+            
+            <Link href='/contact' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
+              Contact us
+            </Link>
+            
+            <Link href='/help' className='subbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu } scroll>
+              F.A.Q      
+            </Link>     
+          </div>
+
+
+
+
+          <hr className='text-[#0A84FF] xl:hidden'/>
+          <div className='xl:hidden'>
+            {
+              authStatus === 'authenticating'
+              ? <span className='text-white'>Loading</span>
+              : authStatus === 'authenticated' 
+              ?
+              <div className='flex flex-col'>
+                <div className='flex flex-row bg-gray-900 navbar-text p-3 rounded-b-2xl align-middle items-center gap-2'>
+                  <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
+                  <span className={`text-sm`}>{ authenticatedUser?.name }</span>  
+                </div>
+                <div className='flex flex-col p-1'>
+                  <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                    My purchases
+                  </button>
+                  <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                    My favorites
+                  </button>
+                  <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2'>
+                    My address
+                  </button>
+                  <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' onClick={ handleLogout }>
+                    Logout
+                  </button>
+                </div> 
+              </div>
+              : authStatus === 'not-authenticated' &&
+              <Link href={'/auth'}>
+                <button className='navbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>
+                  <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
+                  <span className='xl:block'>Login</span>            
+                </button>
+              </Link>
+            }
+          </div>
           
         </div>
 
