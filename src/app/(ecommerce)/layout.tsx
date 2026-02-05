@@ -15,7 +15,7 @@ export default function ShopLayout({ children }: {children: React.ReactNode;}) {
     <StoreProvider>
       
       <div className='flex flex-col fixed w-full top-0 z-10'>
-        <NavBar />
+        <NavBar />        
         <SearchBox />
         <SubNavBar />
       </div>

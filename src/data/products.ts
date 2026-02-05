@@ -23,7 +23,7 @@ export interface CartProducts {
 export const products: Product[] = [
   {
     id: 1,
-    name: 'GeForce RTX™ 3060 Ti VENTUS 2X0',
+    name: 'Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0',
     description: 'Good graphic card',
     price: 1599,
     category: 'Graphic Card',
@@ -39,7 +39,7 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: 'MEG 342C QD-OLED',
+    name: 'Monitor MEG 342C QD-OLED',
     description: 'Good Monitoro',
     price: 999,
     category: 'Monitors',
@@ -54,7 +54,7 @@ export const products: Product[] = [
   },
   {
     id: 3,
-    name: 'SAMSUNG 27” Odyssey G5 G53F QHD 144hz',
+    name: 'Monitor SAMSUNG 27” Odyssey G5 G53F QHD 144hz',
     description: 'Monitor Full HD de 27 pulgadas',
     price: 329,
     category: 'Monitores',
@@ -157,7 +157,7 @@ export const products: Product[] = [
   },
   {
     id: 11,
-    name: 'Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt',
+    name: 'Graphic Card Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt',
     description: '"Tarjeta gráfica NVIDIA RTX 4070',
     price: 2653000,
     category: 'Graphic Card',

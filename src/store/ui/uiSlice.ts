@@ -5,12 +5,14 @@ export interface SliceUi {
     isSideMenuOpen: boolean
     isSearchMenuOpen: boolean    
     isProductsMenuOpen: boolean    
+    isUserMenuOpen: boolean
 }
 
 const initialState: SliceUi = {
     isSideMenuOpen: false,
     isSearchMenuOpen: false, 
     isProductsMenuOpen: false, 
+    isUserMenuOpen: false
   }
 
 export const uiSlice = createSlice({
@@ -26,6 +28,9 @@ export const uiSlice = createSlice({
         },                
         onToggleProductsMenu: ( state, { payload } ) => {
             state.isProductsMenuOpen = payload                
+        },    
+        onToggleUserMenu: ( state, { payload } ) => {
+            state.isUserMenuOpen = payload                
         }
     }
 });
@@ -34,5 +39,6 @@ export const uiSlice = createSlice({
 export const { 
     onToggleSideMenu,  
     onToggleSearchMenu,
-    onToggleProductsMenu
+    onToggleProductsMenu,
+    onToggleUserMenu
  } = uiSlice.actions;
