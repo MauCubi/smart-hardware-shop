@@ -101,8 +101,9 @@ export const NavBar = () => {
         </Link>
       
 
-      <div className='xl:flex hidden'>
+      <div className='xl:flex hidden xl:w-[35%]'>
         <SearchBar />
+ 
       </div>
 
       <div className='flex justify-end xl:w-auto w-full align-middle'>

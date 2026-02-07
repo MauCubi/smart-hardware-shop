@@ -1,14 +1,12 @@
 'use client'
-import { Product, products } from '@/data/products';
 import { useAppSelector } from '@/store/hooks';
-import { useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
 import { SearchBar } from './SearchBar';
 
 
 
 const SearchBox = () => {
-
+  
+  
   const { isSearchMenuOpen } = useAppSelector( state => state.ui)
   
 
@@ -25,6 +23,7 @@ const SearchBox = () => {
       <button className='flex items-center cursor-pointer bg-[#0A84FF] h-8 p-1 px-2 rounded-r-md'>
         <FaSearch size={15} />
       </button> */}
+
     </div>
   );
 };
