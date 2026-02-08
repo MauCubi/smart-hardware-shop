@@ -68,7 +68,7 @@ export const SearchBar = () => {
           value={searchWord}
           onChange={(e) => onChangeSearchWord(e.currentTarget.value)}
         />
-        <button className='flex items-center cursor-pointer bg-[#0A84FF] h-8 p-1 rounded-r-md  xl:h-12 xl:p-4 '>
+        <button className='flex items-center cursor-pointer bg-[#0A84FF] h-8 p-1 rounded-r-md  xl:h-12 xl:p-4'>
           <FaSearch className='xl:text-[20px] text-[15px]'/>
         </button>
       </div>

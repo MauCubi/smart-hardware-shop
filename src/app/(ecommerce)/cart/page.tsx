@@ -5,6 +5,7 @@ import { onAddProductToCart, onClearCart, onRemoveProductFromCart } from '@/stor
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import Image from 'next/image';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { BiTrash } from 'react-icons/bi';
 import { BsCartX } from 'react-icons/bs';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -114,7 +115,7 @@ export default function CartPage() {
             </div>
 
             <div className='flex justify-center p-2 mt-2'>
-              <button className='titles p-3 bg-[#0A84FF] rounded cursor-pointer hover:bg-[#016edb]'>Continue to checkout</button>
+              <button className='titles p-3 bg-[#0A84FF] rounded cursor-pointer hover:bg-[#016edb]' onClick={ () => toast('On development!', { icon: '🛠️' }) }>Continue to checkout</button>
             </div>
           </div>
         </div>
