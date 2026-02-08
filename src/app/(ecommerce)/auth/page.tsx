@@ -44,6 +44,12 @@ export default function AuthPage() {
         }
 
       </div>
+      
+      <div className='flex flex-col items-center justify-center align-middle titles w-full text-center'>
+        <h1 className='font-boldt titles text-2xl'>NOTE (Demo mode)</h1>
+        <p>Passwords are not stored. In this version, all accounts use 123456 as the password.</p>
+        <p>Real authentication will be implemented in the back-end.</p>
+      </div>
 
     </div>
 

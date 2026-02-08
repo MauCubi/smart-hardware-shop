@@ -32,11 +32,15 @@ export const LoginForm = () => {
       const user = parsedUserList.find( e => e.email === data.email )
 
       if (user) {
-        dispatch(onSetLoggedUser(user))
-        dispatch(onSetAuthStatus('authenticated'))
-        localStorage.setItem('auth-user', JSON.stringify(user))
-        router.push('/')
-        return              
+        if (data.password === '123456' ) {
+          dispatch(onSetLoggedUser(user))
+          dispatch(onSetAuthStatus('authenticated'))
+          localStorage.setItem('auth-user', JSON.stringify(user))
+          router.push('/')
+          return              
+        } else {
+          setError('password', { message: 'Incorrect Password'})
+        }
       } else {
         setError('email', { message: 'Email not found' })
       }
