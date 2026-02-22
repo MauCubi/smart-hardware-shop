@@ -25,7 +25,7 @@ export const CategoryCard = ({ title, subCategories, Icon }: Props) => {
 
 
   return (
-    <div className='flex flex-col h-60 xl:min-h-60 min-w-40 xl:min-w-50 px-2 md:px-5 lg:px-2'>
+    <div className='flex flex-col min-h-60 min-w-40 xl:min-w-50 px-2 md:px-5 lg:px-2'>
       <Icon className='text-[40px] xl:text-[60px]' color='#0A84FF'/>
       
       <Link href={`../products/?category=${title}`} onClick={ handleSideMenu }>
