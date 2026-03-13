@@ -7,6 +7,13 @@ datasource db {
   provider = "postgresql"
 }
 
+enum AttributeType {
+  STRING
+  NUMBER
+  BOOLEAN
+  SELECT
+}
+
 model Category {
   id            String        @id @default(uuid())
   name          String        @unique
@@ -14,22 +21,44 @@ model Category {
 }
 
 model SubCategory {
-  id       String    @id @default(uuid())
-  name     String    @unique
-  products Product[]
-
-  category   Category @relation(fields: [categoryId], references: [id])
+  id         String                 @id @default(uuid())
+  name       String                 @unique
+  products   Product[]
+  category   Category               @relation(fields: [categoryId], references: [id])
   categoryId String
+  attributes SubCategoryAttribute[]
+}
+
+model Attribute {
+  id    String        @id @default(uuid())
+  name  String        @unique
+  type  AttributeType
+  group String
+  unit  String?
+
+  subCategories SubCategoryAttribute[]
+}
+
+model SubCategoryAttribute {
+  subCategoryId String
+  attributeId   String
+
+  subCategory SubCategory @relation(fields: [subCategoryId], references: [id])
+  attribute   Attribute   @relation(fields: [attributeId], references: [id])
+
+  @@id([subCategoryId, attributeId])
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  inStock     Int
-  price       Float    @default(0)
-  slug        String   @unique
-  images      String[] @default([])
+  id            String   @id @default(uuid())
+  name          String
+  description   String?
+  stock         Int
+  sku           String?
+  price         Float    @default(0)
+  discountPrice Float?
+  slug          String   @unique
+  images        String[] @default([])
 
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   subCategoryId String

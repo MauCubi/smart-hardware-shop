@@ -133,20 +133,14 @@ const ProductInformation = () => {
           </div>
 
           <div className='grid grid-cols-2 p-2 w-full'>
-            <p className='font-bold'>Vga</p>
-            <p className='place-self-end'>0</p>
+            <p className='font-bold'>Backplate</p>
+            <p className='place-self-end'>No</p>
 
-            <p className='font-bold'>Dvi digital</p>
-            <p className='place-self-end'>0</p>
+            <p className='font-bold'>Block vga water cooling</p>
+            <p className='place-self-end'>No</p>
 
-            <p className='font-bold'>Hdmi</p>
-            <p className='place-self-end'>1</p>
-
-            <p className='font-bold'>Displayports</p>
-            <p className='place-self-end'>2</p>
-
-            <p className='font-bold'>Usb type-c</p>
-            <p className='place-self-end'>3</p>
+            <p className='font-bold'>Coolers</p>
+            <p className='place-self-end'>2</p>            
           </div>
         </div>
 
@@ -156,20 +150,26 @@ const ProductInformation = () => {
           </div>
 
           <div className='grid grid-cols-2 p-2 w-full'>
-            <p className='font-bold'>Vga</p>
-            <p className='place-self-end'>0</p>
+            <p className='font-bold'>Core turbo speed</p>
+            <p className='place-self-end'>1740 mhz</p>
 
-            <p className='font-bold'>Dvi digital</p>
-            <p className='place-self-end'>0</p>
+            <p className='font-bold'>Memory type</p>
+            <p className='place-self-end'>GDDR6</p>
 
-            <p className='font-bold'>Hdmi</p>
-            <p className='place-self-end'>1</p>
+            <p className='font-bold'>Memory size</p>
+            <p className='place-self-end'>4 gb</p>
 
-            <p className='font-bold'>Displayports</p>
-            <p className='place-self-end'>2</p>
+            <p className='font-bold'>Memory speed</p>
+            <p className='place-self-end'>12000 mhz</p>
 
-            <p className='font-bold'>Usb type-c</p>
-            <p className='place-self-end'>3</p>
+            <p className='font-bold'>Memory interface</p>
+            <p className='place-self-end'>128 bits</p>
+
+            <p className='font-bold'>Process types</p>
+            <p className='place-self-end'>CUDA</p>
+
+            <p className='font-bold'>Process quantity</p>
+            <p className='place-self-end'>896</p>
           </div>
         </div>
       </div>

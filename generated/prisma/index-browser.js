@@ -131,12 +131,27 @@ exports.Prisma.SubCategoryScalarFieldEnum = {
   categoryId: 'categoryId'
 };
 
+exports.Prisma.AttributeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  group: 'group',
+  unit: 'unit'
+};
+
+exports.Prisma.SubCategoryAttributeScalarFieldEnum = {
+  subCategoryId: 'subCategoryId',
+  attributeId: 'attributeId'
+};
+
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  inStock: 'inStock',
+  stock: 'stock',
+  sku: 'sku',
   price: 'price',
+  discountPrice: 'discountPrice',
   slug: 'slug',
   images: 'images',
   subCategoryId: 'subCategoryId'
@@ -152,10 +167,22 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.AttributeType = exports.$Enums.AttributeType = {
+  STRING: 'STRING',
+  NUMBER: 'NUMBER',
+  BOOLEAN: 'BOOLEAN',
+  SELECT: 'SELECT'
+};
 
 exports.Prisma.ModelName = {
   Category: 'Category',
   SubCategory: 'SubCategory',
+  Attribute: 'Attribute',
+  SubCategoryAttribute: 'SubCategoryAttribute',
   Product: 'Product'
 };
 
