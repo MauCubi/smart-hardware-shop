@@ -22,19 +22,22 @@ interface Attribute {
   name:  string        
   type:  'STRING' | 'NUMBER' | 'BOOLEAN' | 'SELECT' 
   group: string
+  required?: boolean
   unit?: string
 }
 
-interface SubCategoryAttribute {
-  subCategory: string
-  attribute: string
-}
+// interface SubCategoryAttribute {
+//   subCategory: string
+//   attribute: string
+// }
+
 
 interface SeedData {
   categories: Category[],
   subCategories: SubCategory[],
   products: Product[]
   attributes: Record<string, Attribute[]>
+  attributeOptions: Record<string, string[]>
 }
 
 export const seedData: SeedData = {
@@ -110,40 +113,366 @@ export const seedData: SeedData = {
   ],
 
   attributes: {
-    gpu:
-    [
-      { name: 'Type', type: 'STRING', group: 'General' },
-      { name: 'Chipset gpu', type: 'STRING', group: 'General' },
+    gpu: [
+      { name: 'GPU type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Chipset gpu', type: 'STRING', group: 'General', required: true },
       { name: 'Video input', type: 'BOOLEAN', group: 'General' },
       { name: 'Double bridge', type: 'BOOLEAN', group: 'General' },
       { name: 'Special features', type: 'STRING', group: 'General' },
+
       { name: 'Vga', type: 'NUMBER', group: 'Connectivity'},
       { name: 'Dvi digital', type: 'NUMBER', group: 'Connectivity' },
       { name: 'Hdmi', type: 'NUMBER', group: 'Connectivity'},
       { name: 'Displayports', type: 'NUMBER', group: 'Connectivity' },
       { name: 'Usb type-c', type: 'NUMBER', group: 'Connectivity' },
+
       { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
-      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'slots' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
       { name: 'Length', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+
       { name: 'Approximate consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
       { name: 'Minimum recommended Watts', type: 'NUMBER', group: 'Energy', unit: 'w' },
+
       { name: 'Amount of 6 pins Pcie', type: 'NUMBER', group: 'Energy' },
       { name: 'Amount of 8 pins Pcie', type: 'NUMBER', group: 'Energy' },
       { name: 'Amount of 16 pins adapters', type: 'NUMBER', group: 'Energy'},
       { name: 'Amount of 16 pins Pcie', type: 'NUMBER', group: 'Energy' },
-      { name: '16 pins adapters connections', type: 'NUMBER', group: 'Energy'},
-      { name: 'High potency Pcie btf', type: 'NUMBER', group: 'Energy' },
+
       { name: 'Backplate', type: 'BOOLEAN', group: 'Coolers/Refrigeration' },
       { name: 'Block vga water cooling', type: 'BOOLEAN', group: 'Coolers/Refrigeration' },
       { name: 'Coolers', type: 'NUMBER', group: 'Coolers/Refrigeration' },
+
       { name: 'Core turbo speed', type: 'NUMBER', group: 'Extras', unit: 'mhz' },
-      { name: 'Memory type', type: 'STRING', group: 'Extras' },
-      { name: 'Memory size', type: 'NUMBER', group: 'Extras', unit: 'GB' },
+
+      { name: 'GPU memory type', type: 'SELECT', group: 'Extras', required: true },
+      { name: 'Memory size', type: 'NUMBER', group: 'Extras', unit: 'GB', required: true },
       { name: 'Memory speed', type: 'NUMBER', group: 'Extras', unit: 'mhz' },
       { name: 'Memory interface', type: 'NUMBER', group: 'Extras', unit: 'bits' },
+
       { name: 'Process types', type: 'STRING', group: 'Extras' },
-      { name: 'Process quantity', type: 'NUMBER', group: 'Extras' },    
-  ]},
+      { name: 'Process quantity', type: 'NUMBER', group: 'Extras' },
+    ],
+
+    keyboard: [
+      { name: 'Keyboard type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Switch type', type: 'SELECT', group: 'General' },
+      { name: 'Mechanical', type: 'BOOLEAN', group: 'General' },
+      { name: 'Layout', type: 'SELECT', group: 'General', required: true },
+
+      { name: 'Connection type', type: 'SELECT', group: 'Connectivity', required: true },
+      { name: 'USB passthrough', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'Cable length', type: 'NUMBER', group: 'Connectivity', unit: 'cm' },
+
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Anti ghosting', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Programmable keys', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+    ],
+
+    mouse: [
+      { name: 'Mouse type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Sensor type', type: 'SELECT', group: 'General' },
+      { name: 'Max dpi', type: 'NUMBER', group: 'General', unit: 'dpi', required: true },
+
+      { name: 'Connection type', type: 'SELECT', group: 'Connectivity', required: true },
+      { name: 'Wireless', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'Battery life', type: 'NUMBER', group: 'Connectivity', unit: 'hours' },
+
+      { name: 'Buttons', type: 'NUMBER', group: 'Features' },
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+    ],
+
+    headphones: [
+      { name: 'Headphone type', type: 'STRING', group: 'General', required: true },
+      { name: 'Surround sound', type: 'BOOLEAN', group: 'General' },
+      { name: 'Microphone', type: 'BOOLEAN', group: 'General', required: true },
+
+      { name: 'Connection type', type: 'STRING', group: 'Connectivity', required: true },
+      { name: 'USB', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'Jack 3.5mm', type: 'BOOLEAN', group: 'Connectivity' },
+
+      { name: 'Frequency response', type: 'STRING', group: 'Audio' },
+      { name: 'Impedance', type: 'NUMBER', group: 'Audio', unit: 'ohm' },
+
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+    ],
+
+    ssd: [
+      { name: 'Storage capacity', type: 'NUMBER', group: 'General', unit: 'gb', required: true },
+      { name: 'Form factor', type: 'STRING', group: 'General', required: true },
+      { name: 'Interface', type: 'STRING', group: 'General', required: true },
+
+      { name: 'Read speed', type: 'NUMBER', group: 'Performance', unit: 'mb/s' },
+      { name: 'Write speed', type: 'NUMBER', group: 'Performance', unit: 'mb/s' },
+
+      { name: 'NVMe support', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Length', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+
+      { name: 'Power consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
+    ],
+
+    hdd: [
+      { name: 'Storage capacity', type: 'NUMBER', group: 'General', unit: 'tb', required: true },
+      { name: 'Form factor', type: 'STRING', group: 'General', required: true },
+      { name: 'Interface', type: 'STRING', group: 'General', required: true },
+
+      { name: 'RPM', type: 'NUMBER', group: 'Performance', required: true },
+      { name: 'Cache size', type: 'NUMBER', group: 'Performance', unit: 'mb' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+
+      { name: 'Power consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
+    ],
+
+    ram: [
+      { name: 'Capacity', type: 'NUMBER', group: 'General', unit: 'gb', required: true },
+      { name: 'RAM memory type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Modules', type: 'NUMBER', group: 'General', required: true },
+
+      { name: 'Frequency', type: 'NUMBER', group: 'Performance', unit: 'mhz', required: true },
+      { name: 'CAS latency', type: 'NUMBER', group: 'Performance' },
+
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Voltage', type: 'NUMBER', group: 'Energy', unit: 'v' },
+    ],
+
+    motherboard: [
+      { name: 'Socket', type: 'STRING', group: 'General', required: true },
+      { name: 'Chipset', type: 'STRING', group: 'General', required: true },
+      { name: 'Form factor', type: 'STRING', group: 'General', required: true },
+
+      { name: 'Max memory', type: 'NUMBER', group: 'Memory', unit: 'gb' },
+      { name: 'Memory slots', type: 'NUMBER', group: 'Memory' },
+
+      { name: 'PCIe slots', type: 'NUMBER', group: 'Expansion' },
+      { name: 'M.2 slots', type: 'NUMBER', group: 'Expansion' },
+
+      { name: 'SATA ports', type: 'NUMBER', group: 'Storage' },
+
+      { name: 'USB ports', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Ethernet', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'WiFi', type: 'BOOLEAN', group: 'Connectivity' },
+    ],
+
+    psu: [
+      { name: 'Power', type: 'NUMBER', group: 'General', unit: 'w', required: true },
+      { name: 'Efficiency rating', type: 'STRING', group: 'General', required: true },
+      { name: 'Modular', type: 'STRING', group: 'General', required: true },
+
+      { name: 'PCIe connectors', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'SATA connectors', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'CPU connectors', type: 'NUMBER', group: 'Connectivity' },
+
+      { name: 'Fan size', type: 'NUMBER', group: 'Cooling', unit: 'mm' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Length', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+    ],
+
+    chair: [
+      { name: 'Chair type', type: 'STRING', group: 'General', required: true },
+      { name: 'Material', type: 'STRING', group: 'General', required: true },
+      { name: 'Ergonomic', type: 'BOOLEAN', group: 'General' },
+
+      { name: 'Reclining', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Adjustable height', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Lumbar support', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Max weight', type: 'NUMBER', group: 'Dimensions', unit: 'kg' },
+    ],
+
+    desk: [
+      { name: 'Desk type', type: 'STRING', group: 'General', required: true },
+      { name: 'Material', type: 'STRING', group: 'General', required: true },
+      { name: 'Shape', type: 'STRING', group: 'General' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'cm', required: true },
+      { name: 'Depth', type: 'NUMBER', group: 'Dimensions', unit: 'cm', required: true },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'cm', required: true },
+
+      { name: 'Max load', type: 'NUMBER', group: 'Dimensions', unit: 'kg' },
+    ],
+
+    wifi_adapter: [
+      { name: 'Max speed', type: 'NUMBER', group: 'General', unit: 'mbps', required: true },
+      { name: 'WiFi standard', type: 'STRING', group: 'General', required: true },
+      { name: 'Frequency bands', type: 'STRING', group: 'General' },
+
+      { name: 'Ethernet port', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'WPS button', type: 'BOOLEAN', group: 'Connectivity' },
+
+      { name: 'Antennas', type: 'NUMBER', group: 'Hardware' },
+    ],
+
+    monitor: [
+      { name: 'Screen size', type: 'NUMBER', group: 'General', unit: 'inch', required: true },
+      { name: 'Resolution', type: 'SELECT', group: 'General', required: true },
+      { name: 'Panel type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Aspect ratio', type: 'SELECT', group: 'General', required: true },
+      { name: 'Curved', type: 'BOOLEAN', group: 'General' },
+
+      { name: 'Refresh rate', type: 'NUMBER', group: 'Performance', unit: 'hz', required: true },
+      { name: 'Response time', type: 'NUMBER', group: 'Performance', unit: 'ms' },
+      { name: 'Brightness', type: 'NUMBER', group: 'Performance', unit: 'nits' },
+      { name: 'Contrast ratio', type: 'STRING', group: 'Performance' },
+
+      { name: 'Hdmi', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Displayports', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Usb ports', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Usb type-c', type: 'NUMBER', group: 'Connectivity' },
+
+      { name: 'Speakers', type: 'BOOLEAN', group: 'Features' },
+      { name: 'HDR support', type: 'BOOLEAN', group: 'Features' },
+      { name: 'G-Sync support', type: 'BOOLEAN', group: 'Features' },
+      { name: 'FreeSync support', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Vesa mount', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Depth', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+
+      { name: 'Power consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
+    ],
+  },
+
+  attributeOptions: {
+
+    "GPU type": [
+      "Dedicated",
+      "Integrated",
+      "External"
+    ],
+
+    "GPU memory type": [
+      "GDDR5",
+      "GDDR6",
+      "GDDR6X",
+      "HBM2",
+      "HBM3"
+    ],
+
+    "RAM memory type": [
+      "DDR3",
+      "DDR4",
+      "DDR5"
+    ],
+
+    "Keyboard type": [
+      "Full size",
+      "TKL",
+      "75%",
+      "65%",
+      "60%"
+    ],
+
+    "Switch type": [
+      "Cherry MX Red",
+      "Cherry MX Blue",
+      "Cherry MX Brown",
+      "Gateron Red",
+      "Gateron Brown",
+      "Optical"
+    ],
+
+    "Layout": [
+      "ANSI",
+      "ISO"
+    ],
+
+    "Connection type": [
+      "Wired",
+      "Wireless",
+      "Bluetooth",
+      "2.4GHz Wireless"
+    ],
+
+    "Mouse type": [
+      "Gaming",
+      "Office",
+      "Ergonomic",
+      "Vertical"
+    ],
+
+    "Sensor type": [
+      "Optical",
+      "Laser"
+    ],
+
+    "Headphone type": [
+      "Over ear",
+      "On ear",
+      "In ear"
+    ],
+
+    "Form factor": [
+      "ATX",
+      "Micro ATX",
+      "Mini ITX"
+    ],
+
+    "Interface": [
+      "SATA",
+      "NVMe",
+      "PCIe"
+    ],
+
+    "Efficiency rating": [
+      "80+ Bronze",
+      "80+ Silver",
+      "80+ Gold",
+      "80+ Platinum",
+      "80+ Titanium"
+    ],
+
+    "Modular": [
+      "Non modular",
+      "Semi modular",
+      "Fully modular"
+    ],
+
+    "Resolution": [
+      "1920x1080",
+      "2560x1440",
+      "3840x2160",
+      "3440x1440"
+    ],
+
+    "Panel type": [
+      "IPS",
+      "VA",
+      "TN",
+      "OLED"
+    ],
+
+    "Aspect ratio": [
+      "16:9",
+      "21:9",
+      "32:9"
+    ],
+
+    "WiFi standard": [
+      "WiFi 4",
+      "WiFi 5",
+      "WiFi 6",
+      "WiFi 6E",
+      "WiFi 7"
+    ]
+
+  },
 
   products: [
     {

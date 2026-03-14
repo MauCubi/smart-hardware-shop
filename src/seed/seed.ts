@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { Category, SubCategory, Product, PrismaClient, Attribute } from '../../generated/prisma';
+import { Category, SubCategory, Product, PrismaClient, Attribute, AttributeOption } from '../../generated/prisma';
 import { seedData } from './seed-products';
 import { PrismaPg } from '@prisma/adapter-pg'
 
@@ -12,10 +12,11 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({ adapter })
 
-const { categories, subCategories, products, attributes } = seedData
+const { categories, subCategories, products, attributes, attributeOptions } = seedData
 
 async function main() {  
 
+  await prisma.attributeOption.deleteMany()
   await prisma.product.deleteMany()
   await prisma.subCategoryAttribute.deleteMany()
   await prisma.subCategory.deleteMany()
@@ -28,6 +29,7 @@ async function main() {
   const createdSubCategories: Record<string, SubCategory> = {}
   const createdProducts: Record<string, Product> = {}
   const createdAttributes: Record<string, Attribute> = {}
+  const createdAttributeOptions: Record<string, AttributeOption> = {}
 
   for(const category of categories){
     const categoryDb = await prisma.category.create({
@@ -61,11 +63,20 @@ async function main() {
   for (const attributeGroup of Object.values(attributes)) {
     for (const attribute of attributeGroup) {
 
-      const attributeDb = await prisma.attribute.create({
-        data: attribute
+      const attName = await prisma.attribute.findUnique({
+        where: {
+          name: attribute.name
+        }
       })
 
-      createdAttributes[attributeDb.name] = attributeDb
+      if (!attName) {
+        const attributeDb = await prisma.attribute.create({
+          data: attribute
+        })        
+        createdAttributes[attributeDb.name] = attributeDb
+      }
+      // console.log(attName)
+
     }
   }
 
@@ -73,24 +84,156 @@ async function main() {
   const gpuSubCategories = ['AMD Radeon', 'NVIDIA Geforce']
 
   const gpuSubCategoryAttributes =
-    seedData.attributes.gpu.flatMap(attr =>
-      gpuSubCategories.map(sub => ({
+    seedData.attributes.gpu.flatMap( attr =>
+      gpuSubCategories.map( sub => ({
         subCategory: sub,
         attribute: attr.name
       }))
     )  
 
-  for( const { subCategory, attribute  } of gpuSubCategoryAttributes ) {
-    await prisma.subCategoryAttribute.create({
-      data: {
-        attributeId: createdAttributes[attribute].id,
-        subCategoryId: createdSubCategories[subCategory].id
-      },        
-    })
+  const ramSubCategories = ['DDR5', 'DDR4', 'DDR3']
+
+  const ramSubCategoryAttributes =
+    seedData.attributes.ram.flatMap( attr =>
+      ramSubCategories.map( sub => ({
+        subCategory: sub,
+        attribute: attr.name
+      }))
+    )  
+
+  const motherboardSubCategories = ['AMD Motherboards', 'Intel Motherboards']
+
+  const motherboardSubCategoryAttributes =
+    seedData.attributes.motherboard.flatMap( attr =>
+      motherboardSubCategories.map( sub => ({
+        subCategory: sub,
+        attribute: attr.name
+      }))
+    )  
+
+  const monitorsSubCategories = ['Up to 75 Hz', '100 - 144 Hz', '165 - 180 Hz', '200 - 240 Hz', '280 Hz']
+
+  const monitorsSubCategoryAttributes =
+    seedData.attributes.monitor.flatMap( attr =>
+      monitorsSubCategories.map( sub => ({
+        subCategory: sub,
+        attribute: attr.name
+      }))
+    )  
+
+  const keyboardSubCategoryAttributes =  
+    seedData.attributes.keyboard.flatMap( attr => ({ 
+        subCategory: 'Keyboards', 
+        attribute: attr.name 
+      })
+    )
+
+  const mouseSubCategoryAttributes =  
+    seedData.attributes.mouse.flatMap( attr => ({ 
+        subCategory: 'Mouse', 
+        attribute: attr.name 
+      })
+    )
+
+  const headphonesSubCategoryAttributes =  
+    seedData.attributes.headphones.flatMap( attr => ({ 
+        subCategory: 'Headphones', 
+        attribute: attr.name 
+      })
+    )
+
+  const ssdSubCategoryAttributes =  
+    seedData.attributes.ssd.flatMap( attr => ({ 
+        subCategory: 'SDD', 
+        attribute: attr.name 
+      })
+    )
+
+  const hddSubCategoryAttributes =  
+    seedData.attributes.hdd.flatMap( attr => ({ 
+        subCategory: 'HDD', 
+        attribute: attr.name 
+      })
+    )
+
+  const psuSubCategoryAttributes =  
+    seedData.attributes.psu.flatMap( attr => ({ 
+        subCategory: 'PSUs', 
+        attribute: attr.name 
+      })
+    )
+
+  const chairSubCategoryAttributes =  
+    seedData.attributes.chair.flatMap( attr => ({ 
+        subCategory: 'Gaming Chairs', 
+        attribute: attr.name 
+      })
+    )
+    
+  const deskSubCategoryAttributes =  
+    seedData.attributes.desk.flatMap( attr => ({ 
+        subCategory: 'Desktops', 
+        attribute: attr.name 
+      })
+    )
+
+  const wifiAdapterCategoryAttributes =  
+    seedData.attributes.wifi_adapter.flatMap( attr => ({ 
+        subCategory: 'WiFi Adapters', 
+        attribute: attr.name 
+      })
+    )
+
+  const attributesArray = [
+    gpuSubCategoryAttributes,
+    ramSubCategoryAttributes,
+    motherboardSubCategoryAttributes,
+    keyboardSubCategoryAttributes,
+    mouseSubCategoryAttributes,
+    headphonesSubCategoryAttributes,
+    ssdSubCategoryAttributes,
+    psuSubCategoryAttributes,
+    chairSubCategoryAttributes,
+    deskSubCategoryAttributes,
+    hddSubCategoryAttributes,
+    wifiAdapterCategoryAttributes,
+    monitorsSubCategoryAttributes
+  ]  
+
+  // console.log(createdSubCategories)
+
+
+  for (const array of attributesArray) {
+    for (const { subCategory, attribute } of array) {
+      await prisma.subCategoryAttribute.create({
+        data: {
+          attributeId: createdAttributes[attribute].id,
+          subCategoryId: createdSubCategories[subCategory].id
+        },
+      })
+    }
   }
 
+  for (const [key, values] of Object.entries(attributeOptions) ){
+    for (const value of values) {
+      const attributeOptionDb = await prisma.attributeOption.create({
+        data: {
+          value: value,
+          attributeId: createdAttributes[key].id
+        }
+      })
+      createdAttributeOptions[attributeOptionDb.value] = attributeOptionDb
+    }
+  }
   
-
+//   for( const { subCategory, attribute  } of gpuSubCategoryAttributes ) {
+//     await prisma.subCategoryAttribute.create({
+//       data: {
+//         attributeId: createdAttributes[attribute].id,
+//         subCategoryId: createdSubCategories[subCategory].id
+//       },        
+//     })
+// }
 
 
 }
