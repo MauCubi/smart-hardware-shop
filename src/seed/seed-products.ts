@@ -26,6 +26,14 @@ interface Attribute {
   unit?: string
 }
 
+interface ProductAttribute {
+  attribute: string
+  option?: string
+  valueString?: string
+  valueNumber?: number
+  valueBoolean?: boolean
+}
+
 // interface SubCategoryAttribute {
 //   subCategory: string
 //   attribute: string
@@ -38,6 +46,7 @@ interface SeedData {
   products: Product[]
   attributes: Record<string, Attribute[]>
   attributeOptions: Record<string, string[]>
+  productAttributes: Record<string, ProductAttribute[] >
 }
 
 export const seedData: SeedData = {
@@ -176,6 +185,7 @@ export const seedData: SeedData = {
       { name: 'Mouse type', type: 'SELECT', group: 'General', required: true },
       { name: 'Sensor type', type: 'SELECT', group: 'General' },
       { name: 'Max dpi', type: 'NUMBER', group: 'General', unit: 'dpi', required: true },
+
 
       { name: 'Connection type', type: 'SELECT', group: 'Connectivity', required: true },
       { name: 'Wireless', type: 'BOOLEAN', group: 'Connectivity' },
@@ -653,6 +663,49 @@ export const seedData: SeedData = {
     slug: 'TP_Link_TL_WA850RE_V7_Wireless_N_300Mbps_Wall_Mount_Range_Extender',
     stock: 50,
   }
-  ]
+  ],
+
+  productAttributes: {
+    "Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0": [
+      { attribute:'GPU type', option: 'Dedicated'  },
+      { attribute:'Chipset gpu', valueString: 'RTX 3060'  },
+      { attribute:'Video input', valueBoolean: false  },
+      { attribute:'Double bridge', valueBoolean: false  },
+      { attribute:'Special features', valueString: 'Ray Tracing + DLSS'  },
+
+      { attribute:'Vga', valueNumber: 0  },
+      { attribute:'Dvi digital', valueNumber: 0  },
+      { attribute:'Hdmi', valueNumber: 1  },
+      { attribute:'Displayports', valueNumber: 2  },
+      { attribute:'Usb type-c', valueNumber: 3  },
+
+      { attribute:'Width', valueNumber: 116  },
+      { attribute:'Height', valueNumber: 140  },
+      { attribute:'Length', valueNumber: 224  },
+
+      { attribute:'Approximate consumption', valueNumber: 170  },
+      { attribute:'Minimum recommended Watts', valueNumber: 600  },
+      { attribute:'Amount of 6 pins Pcie', valueNumber: 0  },
+      { attribute:'Amount of 8 pins Pcie', valueNumber: 1  },
+      { attribute:'Amount of 16 pins adapters', valueNumber: 0  },
+      { attribute:'Amount of 16 pins Pcie', valueNumber: 0  },
+
+      { attribute:'Backplate', valueBoolean: false  },
+      { attribute:'Block vga water cooling', valueBoolean: false  },
+      { attribute:'Coolers', valueNumber: 2  },
+
+      { attribute:'Core turbo speed', valueNumber: 1740  },
+      { attribute:'GPU memory type', option: 'GDDR6' },
+      { attribute:'Memory size', valueNumber: 4  },
+      { attribute:'Memory speed', valueNumber: 12000  },
+      { attribute:'Memory interface', valueNumber: 128  },
+      { attribute:'Process types', valueString: 'CUDA'  },
+      { attribute:'Process quantity', valueNumber: 896  },
+
+    ]
+  }
+    
+  
 }
+
 

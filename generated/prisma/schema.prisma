@@ -34,6 +34,8 @@ model AttributeOption {
   value       String
   attributeId String
   attribute   Attribute @relation(fields: [attributeId], references: [id])
+
+  productAttributes ProductAttribute[]
 }
 
 model Attribute {
@@ -71,6 +73,7 @@ model Product {
   discountPrice Float?
   slug          String   @unique
   images        String[] @default([])
+  brand         String?
 
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   subCategoryId String
@@ -79,11 +82,21 @@ model Product {
 }
 
 model ProductAttribute {
+  id          Int    @id @default(autoincrement())
   productId   String
   attributeId String
 
-  product   Product   @relation(fields: [productId], references: [id])
-  attribute Attribute @relation(fields: [attributeId], references: [id])
+  valueString  String?
+  valueNumber  Float?
+  valueBoolean Boolean?
 
-  @@id([productId, attributeId])
+  optionId String?
+
+  product   Product          @relation(fields: [productId], references: [id])
+  attribute Attribute        @relation(fields: [attributeId], references: [id])
+  option    AttributeOption? @relation(fields: [optionId], references: [id])
+
+  // @@id([productId, attributeId])
+
+  @@unique([productId, attributeId])
 }

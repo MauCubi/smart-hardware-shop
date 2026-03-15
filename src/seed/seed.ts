@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { Category, SubCategory, Product, PrismaClient, Attribute, AttributeOption } from '../../generated/prisma';
+import { Category, SubCategory, Product, PrismaClient, Attribute, AttributeOption, ProductAttribute } from '../../generated/prisma';
 import { seedData } from './seed-products';
 import { PrismaPg } from '@prisma/adapter-pg'
 
@@ -12,11 +12,12 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({ adapter })
 
-const { categories, subCategories, products, attributes, attributeOptions } = seedData
+const { categories, subCategories, products, attributes, attributeOptions, productAttributes } = seedData
 
 async function main() {  
 
   await prisma.attributeOption.deleteMany()
+  await prisma.productAttribute.deleteMany()
   await prisma.product.deleteMany()
   await prisma.subCategoryAttribute.deleteMany()
   await prisma.subCategory.deleteMany()
@@ -30,6 +31,7 @@ async function main() {
   const createdProducts: Record<string, Product> = {}
   const createdAttributes: Record<string, Attribute> = {}
   const createdAttributeOptions: Record<string, AttributeOption> = {}
+  // const createdProductAttributes: Record<string, ProductAttribute> = {}
 
   for(const category of categories){
     const categoryDb = await prisma.category.create({
@@ -225,6 +227,58 @@ async function main() {
       createdAttributeOptions[attributeOptionDb.value] = attributeOptionDb
     }
   }
+
+  for (const [key, values ] of Object.entries(productAttributes)){
+
+    for(const value of values) {
+
+      if (value.valueString) {
+        const attributeProductDb = await prisma.productAttribute.create({
+          data: {
+            valueString: value.valueString,
+            attributeId: createdAttributes[value.attribute].id,
+            productId: createdProducts[key].id,              
+          }
+        })
+        console.log(attributeProductDb)        
+      }
+
+      else if(value.valueNumber) {
+        const attributeProductDb = await prisma.productAttribute.create({
+          data: {
+            valueNumber: value.valueNumber,
+            attributeId: createdAttributes[value.attribute].id,
+            productId: createdProducts[key].id,              
+          }
+        })
+        console.log(attributeProductDb)      
+      }
+
+      else if(value.valueBoolean){
+        const attributeProductDb = await prisma.productAttribute.create({
+          data: {
+            valueBoolean: value.valueBoolean,
+            attributeId: createdAttributes[value.attribute].id,
+            productId: createdProducts[key].id,              
+          }
+        })
+        console.log(attributeProductDb)    
+      }
+
+      else if(value.option){
+        const attributeProductDb = await prisma.productAttribute.create({
+          data: {
+            optionId: createdAttributeOptions[value.option].id,
+            attributeId: createdAttributes[value.attribute].id,
+            productId: createdProducts[key].id,              
+          }
+        })
+        console.log(attributeProductDb)    
+      }
+      }
+    }
+  
+  
   
 //   for( const { subCategory, attribute  } of gpuSubCategoryAttributes ) {
 //     await prisma.subCategoryAttribute.create({

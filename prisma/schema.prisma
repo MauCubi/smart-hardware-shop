@@ -30,21 +30,23 @@ model SubCategory {
 }
 
 model AttributeOption {
-  id          String @id @default(cuid())
+  id          String    @id @default(cuid())
   value       String
   attributeId String
   attribute   Attribute @relation(fields: [attributeId], references: [id])
+
+  productAttributes ProductAttribute[]
 }
 
 model Attribute {
-  id    String        @id @default(uuid())
-  name  String        @unique
-  type  AttributeType
-  group String
-  unit  String?
-  required Boolean @default(false)
+  id       String        @id @default(uuid())
+  name     String        @unique
+  type     AttributeType
+  group    String
+  unit     String?
+  required Boolean       @default(false)
 
-  options  AttributeOption[]
+  options AttributeOption[]
 
   subCategories SubCategoryAttribute[]
 
@@ -61,7 +63,6 @@ model SubCategoryAttribute {
   @@id([subCategoryId, attributeId])
 }
 
-
 model Product {
   id            String   @id @default(uuid())
   name          String
@@ -72,6 +73,7 @@ model Product {
   discountPrice Float?
   slug          String   @unique
   images        String[] @default([])
+  brand         String?
 
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   subCategoryId String
@@ -80,11 +82,21 @@ model Product {
 }
 
 model ProductAttribute {
+  id          Int    @id @default(autoincrement())
   productId   String
   attributeId String
 
-  product   Product   @relation(fields: [productId], references: [id])
-  attribute Attribute @relation(fields: [attributeId], references: [id])
+  valueString  String?
+  valueNumber  Float?
+  valueBoolean Boolean?
 
-  @@id([productId, attributeId])
+  optionId String?
+
+  product   Product          @relation(fields: [productId], references: [id])
+  attribute Attribute        @relation(fields: [attributeId], references: [id])
+  option    AttributeOption? @relation(fields: [optionId], references: [id])
+
+  // @@id([productId, attributeId])
+
+  @@unique([productId, attributeId])
 }
