@@ -1,5 +1,5 @@
 // product.ts
-export interface Product {
+interface Product {
   id: number;
   name: string;
   description: string;
@@ -10,7 +10,7 @@ export interface Product {
   slug: string;
 }
 
-export interface CartProducts {
+interface CartProducts {
   id: number;
   name: string;
   slug: string;

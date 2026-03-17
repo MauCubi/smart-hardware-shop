@@ -14,6 +14,7 @@ interface Product {
   stock: number,
   price: number,
   slug: string,
+  discountPrice? : number,
   images: string[]
   subCategory: string
 }
@@ -488,7 +489,8 @@ export const seedData: SeedData = {
     {
     name: 'Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0',
     description: 'Good graphic card',
-    price: 1599,
+    price: 599,
+    discountPrice: 200,
     subCategory: 'NVIDIA Geforce',
     images: [
       '/img/products/1024.png',
@@ -504,6 +506,7 @@ export const seedData: SeedData = {
     name: 'Monitor MEG 342C QD-OLED',
     description: 'Good Monitoro',
     price: 999,
+    discountPrice: 800,
     subCategory: '200 - 240 Hz',
     images: [
       '/img/products/monitor1.png',
@@ -541,6 +544,7 @@ export const seedData: SeedData = {
     name: 'Mechanical Keyboard Gamer Redragon Mitra K551rgb Esp Rgb Sw Red Keyboard Color Black',
     description: 'Teclado con switches Blue y RGB',
     price: 89,
+    discountPrice: 50,
     subCategory: 'Keyboards',
     images: [
       '/img/products/tecladorgba.png',
@@ -555,6 +559,7 @@ export const seedData: SeedData = {
     name: 'Mouse Gamer Wireless Marvo M803 4800dpi Optic 7 Buttons LED',
     description: 'Mouse inalámbrico con DPI ajustable',
     price: 49,
+    discountPrice: 30,
     subCategory: 'Mouse',
     images: [
       '/img/products/mousev2.png',
@@ -582,6 +587,7 @@ export const seedData: SeedData = {
     name: 'Ssd M.2 1tb Kingston Nvme Pcie 4.0 Nv3 color azul oscuro',
     description: 'Unidad SSD NVMe rápida',
     price: 129,
+    discountPrice: 88,
     subCategory: 'SDD M.2',
     images: [
       '/img/products/ssd.png',
@@ -603,7 +609,8 @@ export const seedData: SeedData = {
   {
     name: 'Memory Ram Fury Beast Ddr4 16gb 1 Kingston Kf432c16bb1/16',
     description: 'RAM DDR4 16GB a 3200MHz',
-    price: 329988,
+    price: 329.50,
+    discountPrice: 250.99,
     subCategory: 'DDR4',
     images: ['/img/products/ram.png', '/img/products/ram2.png', '/img/products/ram3.png', '/img/products/ram4.png'],
     slug: 'Memory_Ram_Fury_Beast_Ddr4_16gb_1_Kingston_Kf432c16bb116',
@@ -612,7 +619,7 @@ export const seedData: SeedData = {
   {
     name: 'Graphic Card Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt',
     description: '"Tarjeta gráfica NVIDIA RTX 4070',
-    price: 2653000,
+    price: 465,
     subCategory: 'NVIDIA Geforce',
     images: ['/img/products/gforce.png', '/img/products/gforce2.png', '/img/products/gforce3.png', '/img/products/gforce4.png'],
     slug: 'Asus_Tuf_Rtx_4070_12gb_Gaming_Gddr6x_192_Bt',
@@ -621,7 +628,7 @@ export const seedData: SeedData = {
   {
     name: 'Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0',
     description: 'Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0',
-    price: 93585,
+    price: 435,
     subCategory: 'AMD Motherboards',
     images: ['/img/products/mother.png', '/img/products/mother2.png', '/img/products/mother3.png'],
     slug: 'Motherboard_ASRock_A520M-HDV_AMD_AM4_Ryzen_Micro_ATX_DDR4_HDMI_PCIe_30',
@@ -630,7 +637,8 @@ export const seedData: SeedData = {
   {
     name: 'Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency',
     description: 'Disco mecánico para almacenamiento masivo',
-    price: 62546,
+    price: 99,
+    discountPrice: 69,
     subCategory: 'PSUs',
     images: ['/img/products/pcu.png', '/img/products/pcu2.png', '/img/products/pcu3.png', '/img/products/pcu4.png'],
     slug: 'Power_Supply_Unit_PC_ATX_Segotep_U6_650W_2x_PCI-E_80_Efficency',
@@ -639,7 +647,7 @@ export const seedData: SeedData = {
   {
     name: 'Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material',
     description: 'Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material',
-    price: 399.999,
+    price: 399.99,
     subCategory: 'Gaming Chairs',
     images: ['/img/products/chair.png', '/img/products/chair2.png', '/img/products/chair3.png'],
     slug: 'Nictom_Ergonomic_Pro_PC_Gaming_Chair_Black_Reclining_Corduroy_Upholstery_Material',
@@ -648,7 +656,7 @@ export const seedData: SeedData = {
   {
     name: 'Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black',
     description: 'Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black',
-    price: 265999,
+    price: 265.99,
     subCategory: 'Desktops',
     images: ['/img/products/desk.png', '/img/products/desk2.png'],
     slug: 'Gadnic_L_Shaped_Gaming_Desk_for_PC_Wood_Carbon_Fiber_Black',
@@ -657,7 +665,7 @@ export const seedData: SeedData = {
   {
     name: 'TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extender',
     description: 'TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extendero',
-    price: 59,
+    price: 59.80,
     subCategory: 'WiFi Adapters',
     images: ['/img/products/wifi.png', '/img/products/wifi2.png', '/img/products/wifi3.png'],
     slug: 'TP_Link_TL_WA850RE_V7_Wireless_N_300Mbps_Wall_Mount_Range_Extender',
@@ -701,8 +709,291 @@ export const seedData: SeedData = {
       { attribute:'Memory interface', valueNumber: 128  },
       { attribute:'Process types', valueString: 'CUDA'  },
       { attribute:'Process quantity', valueNumber: 896  },
+    ],
 
-    ]
+    "Monitor MEG 342C QD-OLED": [
+    { attribute:'Screen size', valueNumber: 34 },
+    { attribute:'Resolution', option:'3440x1440' },
+    { attribute:'Panel type', option:'OLED' },
+    { attribute:'Aspect ratio', option:'21:9' },
+    { attribute:'Curved', valueBoolean: true },
+
+    { attribute:'Refresh rate', valueNumber: 175 },
+    { attribute:'Response time', valueNumber: 1 },
+    { attribute:'Brightness', valueNumber: 1000 },
+    { attribute:'Contrast ratio', valueString:'1500000:1' },
+
+    { attribute:'Hdmi', valueNumber: 2 },
+    { attribute:'Displayports', valueNumber: 1 },
+    { attribute:'Usb ports', valueNumber: 2 },
+    { attribute:'Usb type-c', valueNumber: 1 },
+
+    { attribute:'Speakers', valueBoolean: false },
+    { attribute:'HDR support', valueBoolean: true },
+    { attribute:'G-Sync support', valueBoolean: true },
+    { attribute:'FreeSync support', valueBoolean: true },
+    { attribute:'Vesa mount', valueBoolean: true },
+
+    { attribute:'Width', valueNumber: 814 },
+    { attribute:'Height', valueNumber: 361 },
+    { attribute:'Depth', valueNumber: 293 },
+    { attribute:'Weight', valueNumber: 8100 },
+
+    { attribute:'Power consumption', valueNumber: 90 },
+  ],
+
+  "Monitor SAMSUNG 27” Odyssey G5 G53F QHD 144hz": [
+    { attribute:'Screen size', valueNumber: 27 },
+    { attribute:'Resolution', option:'2560x1440' },
+    { attribute:'Panel type', option:'VA' },
+    { attribute:'Aspect ratio', option:'16:9' },
+    { attribute:'Curved', valueBoolean: true },
+
+    { attribute:'Refresh rate', valueNumber: 144 },
+    { attribute:'Response time', valueNumber: 1 },
+    { attribute:'Brightness', valueNumber: 300 },
+    { attribute:'Contrast ratio', valueString:'2500:1' },
+
+    { attribute:'Hdmi', valueNumber: 1 },
+    { attribute:'Displayports', valueNumber: 1 },
+    { attribute:'Usb ports', valueNumber: 0 },
+    { attribute:'Usb type-c', valueNumber: 0 },
+
+    { attribute:'Speakers', valueBoolean: false },
+    { attribute:'HDR support', valueBoolean: true },
+    { attribute:'G-Sync support', valueBoolean: false },
+    { attribute:'FreeSync support', valueBoolean: true },
+    { attribute:'Vesa mount', valueBoolean: true },
+
+    { attribute:'Width', valueNumber: 616 },
+    { attribute:'Height', valueNumber: 478 },
+    { attribute:'Depth', valueNumber: 272 },
+    { attribute:'Weight', valueNumber: 5200 },
+
+    { attribute:'Power consumption', valueNumber: 48 },
+  ],
+
+  "Monitor Philips 221v877 215” Full Hd 75 Hz": [
+    { attribute:'Screen size', valueNumber: 21.5 },
+    { attribute:'Resolution', option:'1920x1080' },
+    { attribute:'Panel type', option:'IPS' },
+    { attribute:'Aspect ratio', option:'16:9' },
+    { attribute:'Curved', valueBoolean: false },
+
+    { attribute:'Refresh rate', valueNumber: 75 },
+    { attribute:'Response time', valueNumber: 4 },
+    { attribute:'Brightness', valueNumber: 250 },
+    { attribute:'Contrast ratio', valueString:'1000:1' },
+
+    { attribute:'Hdmi', valueNumber: 1 },
+    { attribute:'Displayports', valueNumber: 0 },
+    { attribute:'Usb ports', valueNumber: 0 },
+    { attribute:'Usb type-c', valueNumber: 0 },
+
+    { attribute:'Speakers', valueBoolean: false },
+    { attribute:'HDR support', valueBoolean: false },
+    { attribute:'G-Sync support', valueBoolean: false },
+    { attribute:'FreeSync support', valueBoolean: false },
+    { attribute:'Vesa mount', valueBoolean: true },
+
+    { attribute:'Width', valueNumber: 490 },
+    { attribute:'Height', valueNumber: 380 },
+    { attribute:'Depth', valueNumber: 200 },
+    { attribute:'Weight', valueNumber: 2800 },
+
+    { attribute:'Power consumption', valueNumber: 18 },
+  ],
+
+  "Mechanical Keyboard Gamer Redragon Mitra K551rgb Esp Rgb Sw Red Keyboard Color Black": [
+    { attribute:'Keyboard type', option:'Full size' },
+    { attribute:'Switch type', option:'Gateron Red' },
+    { attribute:'Mechanical', valueBoolean:true },
+    { attribute:'Layout', option:'ISO' },
+
+    { attribute:'Connection type', option:'Wired' },
+    { attribute:'USB passthrough', valueBoolean:false },
+    { attribute:'Cable length', valueNumber:180 },
+
+    { attribute:'RGB lighting', valueBoolean:true },
+    { attribute:'Anti ghosting', valueBoolean:true },
+    { attribute:'Programmable keys', valueBoolean:false },
+
+    { attribute:'Width', valueNumber:435 },
+    { attribute:'Height', valueNumber:38 },
+    { attribute:'Weight', valueNumber:1250 },
+  ],
+
+  "Mouse Gamer Wireless Marvo M803 4800dpi Optic 7 Buttons LED": [
+    { attribute:'Mouse type', option:'Gaming' },
+    { attribute:'Sensor type', option:'Optical' },
+    { attribute:'Max dpi', valueNumber:4800 },
+
+    { attribute:'Connection type', option:'Wireless' },
+    { attribute:'Wireless', valueBoolean:true },
+    { attribute:'Battery life', valueNumber:30 },
+
+    { attribute:'Buttons', valueNumber:7 },
+    { attribute:'RGB lighting', valueBoolean:true },
+
+    { attribute:'Width', valueNumber:70 },
+    { attribute:'Height', valueNumber:40 },
+    { attribute:'Weight', valueNumber:120 },
+  ],
+
+  "Headphones Gamer Light Led Rgb Usb Headset Microphone Xtrike Me Gh516 Para Pc Black sonido envolvente 7.1": [
+    { attribute:'Headphone type', valueString:'Over ear' },
+    { attribute:'Surround sound', valueBoolean:true },
+    { attribute:'Microphone', valueBoolean:true },
+
+    { attribute:'Connection type', valueString:'USB' },
+    { attribute:'USB', valueBoolean:true },
+    { attribute:'Jack 3.5mm', valueBoolean:false },
+
+    { attribute:'Frequency response', valueString:'20Hz-20kHz' },
+    { attribute:'Impedance', valueNumber:32 },
+
+    { attribute:'RGB lighting', valueBoolean:true },
+
+    { attribute:'Weight', valueNumber:310 },
+  ],
+
+  "Ssd M.2 1tb Kingston Nvme Pcie 4.0 Nv3 color azul oscuro": [
+    { attribute:'Storage capacity', valueNumber:1000 },
+    { attribute:'Form factor', valueString:'M.2 2280' },
+    { attribute:'Interface', valueString:'NVMe' },
+
+    { attribute:'Read speed', valueNumber:3500 },
+    { attribute:'Write speed', valueNumber:2800 },
+
+    { attribute:'NVMe support', valueBoolean:true },
+
+    { attribute:'Width', valueNumber:22 },
+    { attribute:'Length', valueNumber:80 },
+
+    { attribute:'Power consumption', valueNumber:5 },
+  ],
+
+  "Hdd Western Digital 2tb 3.5 Red Plus": [
+    { attribute:'Storage capacity', valueNumber:2 },
+    { attribute:'Form factor', valueString:'3.5"' },
+    { attribute:'Interface', valueString:'SATA' },
+
+    { attribute:'RPM', valueNumber:5400 },
+    { attribute:'Cache size', valueNumber:256 },
+
+    { attribute:'Width', valueNumber:101 },
+    { attribute:'Height', valueNumber:26 },
+
+    { attribute:'Power consumption', valueNumber:6 },
+  ],
+
+  "Memory Ram Fury Beast Ddr4 16gb 1 Kingston Kf432c16bb1/16": [
+    { attribute:'Capacity', valueNumber:16 },
+    { attribute:'RAM memory type', option:'DDR4' },
+    { attribute:'Modules', valueNumber:1 },
+
+    { attribute:'Frequency', valueNumber:3200 },
+    { attribute:'CAS latency', valueNumber:16 },
+
+    { attribute:'RGB lighting', valueBoolean:false },
+
+    { attribute:'Voltage', valueNumber:1.35 },
+  ],
+
+  "Graphic Card Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt": [
+    { attribute:'GPU type', option:'Dedicated' },
+    { attribute:'Chipset gpu', valueString:'RTX 4070' },
+
+    { attribute:'Hdmi', valueNumber:1 },
+    { attribute:'Displayports', valueNumber:3 },
+
+    { attribute:'Width', valueNumber:150 },
+    { attribute:'Height', valueNumber:63 },
+    { attribute:'Length', valueNumber:301 },
+
+    { attribute:'Approximate consumption', valueNumber:200 },
+    { attribute:'Minimum recommended Watts', valueNumber:650 },
+
+    { attribute:'Coolers', valueNumber:3 },
+
+    { attribute:'Core turbo speed', valueNumber:2610 },
+
+    { attribute:'GPU memory type', option:'GDDR6X' },
+    { attribute:'Memory size', valueNumber:12 },
+    { attribute:'Memory speed', valueNumber:21000 },
+    { attribute:'Memory interface', valueNumber:192 },
+
+    { attribute:'Process types', valueString:'CUDA' },
+    { attribute:'Process quantity', valueNumber:5888 },
+  ],
+
+  "Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0": [
+    { attribute:'Socket', valueString:'AM4' },
+    { attribute:'Chipset', valueString:'A520' },
+    { attribute:'Form factor', valueString:'Micro ATX' },
+
+    { attribute:'Max memory', valueNumber:64 },
+    { attribute:'Memory slots', valueNumber:2 },
+
+    { attribute:'PCIe slots', valueNumber:2 },
+    { attribute:'M.2 slots', valueNumber:1 },
+
+    { attribute:'SATA ports', valueNumber:4 },
+
+    { attribute:'USB ports', valueNumber:6 },
+    { attribute:'Ethernet', valueBoolean:true },
+    { attribute:'WiFi', valueBoolean:false },
+  ],
+
+  "Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency": [
+    { attribute:'Power', valueNumber:650 },
+    { attribute:'Efficiency rating', valueString:'80+ Bronze' },
+    { attribute:'Modular', valueString:'Non modular' },
+
+    { attribute:'PCIe connectors', valueNumber:2 },
+    { attribute:'SATA connectors', valueNumber:6 },
+    { attribute:'CPU connectors', valueNumber:1 },
+
+    { attribute:'Fan size', valueNumber:120 },
+
+    { attribute:'Width', valueNumber:150 },
+    { attribute:'Length', valueNumber:140 },
+  ],
+
+  "Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material": [
+    { attribute:'Chair type', valueString:'Gaming' },
+    { attribute:'Material', valueString:'Corduroy' },
+    { attribute:'Ergonomic', valueBoolean:true },
+
+    { attribute:'Reclining', valueBoolean:true },
+    { attribute:'Adjustable height', valueBoolean:true },
+    { attribute:'Lumbar support', valueBoolean:true },
+
+    { attribute:'Max weight', valueNumber:150 },
+  ],
+
+  "Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black": [
+    { attribute:'Desk type', valueString:'Gaming desk' },
+    { attribute:'Material', valueString:'Wood + Carbon fiber' },
+    { attribute:'Shape', valueString:'L-Shaped' },
+
+    { attribute:'Width', valueNumber:150 },
+    { attribute:'Depth', valueNumber:120 },
+    { attribute:'Height', valueNumber:75 },
+
+    { attribute:'Max load', valueNumber:100 },
+  ],
+
+  "TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extender": [
+    { attribute:'Max speed', valueNumber:300 },
+    { attribute:'WiFi standard', option:'WiFi 4' },
+    { attribute:'Frequency bands', valueString:'2.4GHz' },
+
+    { attribute:'Ethernet port', valueBoolean:true },
+    { attribute:'WPS button', valueBoolean:true },
+
+    { attribute:'Antennas', valueNumber:2 },
+  ],
   }
     
   

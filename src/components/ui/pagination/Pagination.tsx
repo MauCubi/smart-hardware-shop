@@ -16,6 +16,7 @@ export const Pagination = ({ totalPages, prodList }: Props) => {
 
   const pathname = usePathname()
   const searchParams  = useSearchParams()
+  
   const page = searchParams.get('page') ?? 1
   const currentPage = isNaN(+page) ? 1 : +page
   

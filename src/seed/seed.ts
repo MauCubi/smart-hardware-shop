@@ -1,16 +1,8 @@
 import 'dotenv/config'
-import { Category, SubCategory, Product, PrismaClient, Attribute, AttributeOption, ProductAttribute } from '../../generated/prisma';
+import { Category, SubCategory, Product, Attribute, AttributeOption } from '../../generated/prisma';
 import { seedData } from './seed-products';
-import { PrismaPg } from '@prisma/adapter-pg'
+import { prisma } from '@/lib/prisma';
 
-
-
-// Creamos el adapter con la URL de conexión
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
-})
-
-const prisma = new PrismaClient({ adapter })
 
 const { categories, subCategories, products, attributes, attributeOptions, productAttributes } = seedData
 
@@ -240,7 +232,7 @@ async function main() {
             productId: createdProducts[key].id,              
           }
         })
-        console.log(attributeProductDb)        
+        // console.log(attributeProductDb)        
       }
 
       else if(value.valueNumber) {
@@ -251,7 +243,7 @@ async function main() {
             productId: createdProducts[key].id,              
           }
         })
-        console.log(attributeProductDb)      
+        // console.log(attributeProductDb)      
       }
 
       else if(value.valueBoolean){
@@ -262,7 +254,7 @@ async function main() {
             productId: createdProducts[key].id,              
           }
         })
-        console.log(attributeProductDb)    
+        // console.log(attributeProductDb)    
       }
 
       else if(value.option){
@@ -273,7 +265,7 @@ async function main() {
             productId: createdProducts[key].id,              
           }
         })
-        console.log(attributeProductDb)    
+        // console.log(attributeProductDb)    
       }
       }
     }

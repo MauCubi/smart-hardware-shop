@@ -1,0 +1,39 @@
+export interface Product {
+    name: string;
+    id: string;
+    description: string | null;
+    stock: number;
+    sku: string | null;
+    price: number;
+    discountPrice: number | null;
+    slug: string;
+    images: string[];
+    brand: string | null;
+    subCategoryId: string;
+}
+
+export interface CartProducts {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  image: string;
+  quantity: number;
+  max: number;
+}
+
+interface Attribute {  
+  name:  string        
+  type:  'STRING' | 'NUMBER' | 'BOOLEAN' | 'SELECT' 
+  group: string
+  required?: boolean
+  unit?: string
+}
+
+export interface ProductAttribute {
+    group: string;
+    name: string;
+    unit: string | null;
+    value: string | number | boolean | null;
+}
+
