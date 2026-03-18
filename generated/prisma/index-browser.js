@@ -24,12 +24,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 7.4.1
- * Query Engine version: 55ae170b1ced7fc6ed07a15f110549408c501bb3
+ * Prisma Client JS version: 7.5.0
+ * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
  */
 Prisma.prismaVersion = {
-  client: "7.4.1",
-  engine: "55ae170b1ced7fc6ed07a15f110549408c501bb3"
+  client: "7.5.0",
+  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -175,6 +175,16 @@ exports.Prisma.ProductAttributeScalarFieldEnum = {
   optionId: 'optionId'
 };
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  lastName: 'lastName',
+  email: 'email',
+  emailVerify: 'emailVerify',
+  password: 'password',
+  rol: 'rol'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -196,6 +206,11 @@ exports.AttributeType = exports.$Enums.AttributeType = {
   SELECT: 'SELECT'
 };
 
+exports.Rol = exports.$Enums.Rol = {
+  admin: 'admin',
+  user: 'user'
+};
+
 exports.Prisma.ModelName = {
   Category: 'Category',
   SubCategory: 'SubCategory',
@@ -203,7 +218,8 @@ exports.Prisma.ModelName = {
   Attribute: 'Attribute',
   SubCategoryAttribute: 'SubCategoryAttribute',
   Product: 'Product',
-  ProductAttribute: 'ProductAttribute'
+  ProductAttribute: 'ProductAttribute',
+  User: 'User'
 };
 
 /**
