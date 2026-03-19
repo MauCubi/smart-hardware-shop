@@ -1,3 +1,4 @@
+import { getPaginatedProducts } from '@/actions/product/get-paginated-products';
 import { DesktopFilter } from '@/components/filters/DesktopFilter';
 import { MobileFilter } from '@/components/filters/MobileFilter';
 import { ProductsGrid } from '@/components/products/ProductsGrid';
@@ -13,7 +14,10 @@ interface Props {
 export default async function SearchPage({ searchParams }: Props) {
   const filters = await searchParams;
 
-  const prods = products
+  
+  const page = 1
+
+  const { products, maxPages }  = await getPaginatedProducts({page})
 
   
 
@@ -46,7 +50,7 @@ export default async function SearchPage({ searchParams }: Props) {
             <MobileFilter />
           </div>
 
-          <ProductsGrid products={prods} />
+          <ProductsGrid products={products} />
         </div>
 
       </div>
