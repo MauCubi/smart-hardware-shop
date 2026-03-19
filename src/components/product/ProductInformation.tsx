@@ -7,7 +7,7 @@ interface Props {
 
 const ProductInformation = ({ attributes }: Props) => {
 
-  console.log(attributes)
+  // console.log(attributes)
 
   return (
     <div className='flex flex-col items-center align-middle'>

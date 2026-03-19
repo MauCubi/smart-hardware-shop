@@ -4,6 +4,8 @@ import { User } from '@/types/user';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { signIn } from "next-auth/react"
+import { useActionState, useEffect } from 'react';
+import { authenticate } from '@/actions/auth/login';
 
 type LoginInput = {
   email: string,
@@ -12,7 +14,9 @@ type LoginInput = {
 
 export const LoginForm = () => {
 
-  const dispatch = useAppDispatch()
+  const [errorMessage, formAction, isPending] = useActionState( authenticate, undefined );
+
+  // const dispatch = useAppDispatch()
 
   const router = useRouter()
 
@@ -23,32 +27,45 @@ export const LoginForm = () => {
       setError
   } = useForm<LoginInput>()
 
-  const onSubmit: SubmitHandler<LoginInput> = (data) => {
+  useEffect(() => {
+    if (errorMessage === 'Success') {      
+      window.location.replace('/');
+    }
+    console.log(errorMessage)
+  }, [errorMessage]);
 
-    dispatch(onSetAuthStatus('authenticating'))
-    const userList = localStorage.getItem('users');
+  const onSubmit: SubmitHandler<LoginInput> = async (data) => {
 
-    if (userList) {
-      const parsedUserList: User[] = JSON.parse(userList)
-      const user = parsedUserList.find( e => e.email === data.email )
+    const { email, password } = data
 
-      if (user) {
-        if (data.password === '123456' ) {
-          dispatch(onSetLoggedUser(user))
-          dispatch(onSetAuthStatus('authenticated'))
-          localStorage.setItem('auth-user', JSON.stringify(user))
-          router.push('/')
-          return              
-        } else {
-          setError('password', { message: 'Incorrect Password'})
-        }
-      } else {
-        setError('email', { message: 'Email not found' })
-      }
-    }  
-    
-    dispatch(onSetAuthStatus('not-authenticated'))
 
+    const response = await signIn('credentials', { email, password, redirect:false });
+    console.log(response)
+    router.push('/')
+  
+
+    // dispatch(onSetAuthStatus('authenticating'))
+    // const userList = localStorage.getItem('users');
+
+    // if (userList) {
+    //   const parsedUserList: User[] = JSON.parse(userList)
+    //   const user = parsedUserList.find( e => e.email === data.email )
+
+    //   if (user) {
+    //     if (data.password === '123456' ) {
+    //       dispatch(onSetLoggedUser(user))
+    //       dispatch(onSetAuthStatus('authenticated'))
+    //       localStorage.setItem('auth-user', JSON.stringify(user))
+    //       router.push('/')
+    //       return              
+    //     } else {
+    //       setError('password', { message: 'Incorrect Password'})
+    //     }
+    //   } else {
+    //     setError('email', { message: 'Email not found' })
+    //   }
+    // }      
+    // dispatch(onSetAuthStatus('not-authenticated'))
   }
 
 
@@ -56,6 +73,7 @@ export const LoginForm = () => {
     <>
     
       <form className='w-full my-5' onSubmit={handleSubmit(onSubmit)}> 
+      {/* <form action={formAction} className='w-full my-5'>  */}
 
         <div className='mb-5'>
           <label

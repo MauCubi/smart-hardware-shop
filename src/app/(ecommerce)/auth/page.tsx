@@ -2,7 +2,9 @@
 
 import { LoginForm } from '@/components/auth/LoginForm';
 import { RegisterForm } from '@/components/auth/RegisterForm';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 
 
@@ -11,11 +13,22 @@ export default function AuthPage() {
 
   const [selectedTab, setSelectedTab] = useState<'login' | 'register'>('login')
 
+  const session = useSession()
+  const router = useRouter()
+
   const handleTabSelection = ( tab: 'login' | 'register') => {
 
     setSelectedTab(tab)
 
   }
+
+
+  useEffect(() => {
+    if (session) {
+      router.push('/')
+    }    
+  },)
+  
 
   return (
     <div className='pt-25 pb-40'>
