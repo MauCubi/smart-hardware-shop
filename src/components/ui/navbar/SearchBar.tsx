@@ -1,4 +1,4 @@
-import { Product, products } from '@/data/products';
+import { ProductLegacy, products } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -7,8 +7,11 @@ import { useEffect, useState } from 'react';
 
 export const SearchBar = () => {
 
+
+  // CAMBIAAAAAAAAAA EL PRODUCT SEARCH!!!!
+
   const [searchWord, setSearchWord] = useState<string>('')
-  const [results, setResults] = useState<Product[]>([])
+  const [results, setResults] = useState<ProductLegacy[]>([])
   const [isFocused, setIsFocused] = useState(false);
 
   const onChangeSearchWord = (e: string) => {

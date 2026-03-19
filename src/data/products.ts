@@ -1,5 +1,5 @@
 // product.ts
-interface Product {
+export interface ProductLegacy {
   id: number;
   name: string;
   description: string;
