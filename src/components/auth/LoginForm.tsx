@@ -1,11 +1,8 @@
-import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
-import { useAppDispatch } from '@/store/hooks';
-import { User } from '@/types/user';
+
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { signIn } from "next-auth/react"
-import { useActionState, useEffect } from 'react';
-import { authenticate } from '@/actions/auth/login';
+
 
 type LoginInput = {
   email: string,
@@ -13,8 +10,7 @@ type LoginInput = {
 }
 
 export const LoginForm = () => {
-
-  const [errorMessage, formAction, isPending] = useActionState( authenticate, undefined );
+  
 
   // const dispatch = useAppDispatch()
 
@@ -27,12 +23,6 @@ export const LoginForm = () => {
       setError
   } = useForm<LoginInput>()
 
-  useEffect(() => {
-    if (errorMessage === 'Success') {      
-      window.location.replace('/');
-    }
-    console.log(errorMessage)
-  }, [errorMessage]);
 
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
 

@@ -1,23 +1,20 @@
-import { products } from '@/data/products';
 import { ComponentListCard } from './ComponentListCard';
 import { useAppSelector } from '@/store/hooks';
+import { getPaginatedProducts } from '@/actions/product/get-paginated-products';
+import { useEffect } from 'react';
+import { ComponentListGrid } from './ComponentListGrid';
 
 
 
-export const ComponentList = () => {
+export const ComponentList =  () => { 
+  
 
   const { componentSelect } = useAppSelector( state => state.builder)
 
   return (
     <div>
       <h1 className='md:hidden titles text-2xl place-self-center'>{ componentSelect }</h1>
-      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-2-2 mx-auto gap-10 my-6 content-center px-8'>
-        {products.map((product) => (
-          <div className='flex justify-center rounded-md' key={product.id}>
-            <ComponentListCard product={product} />
-          </div>
-        ))}
-      </div>
+      <ComponentListGrid component={componentSelect}/>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Product } from '@/data/products';
+import { Product } from '@/types/product';
 import Image from 'next/image';
 import { FaPlus } from 'react-icons/fa6';
 
@@ -14,7 +14,7 @@ export const ComponentListCard = ({ product }: Props) => {
       <div className='pt-2 bg-white rounded-t-lg justify-center align-middle items-center flex'>
         <Image
           className='object-contain rounded-t-lg self-center place-self-center w-auto xl:w-full h-[100] xl:h-[250]'
-          src={product.image[0]}
+          src={product.images[0]}
           alt='product image'
           width={500}
           height={500}
