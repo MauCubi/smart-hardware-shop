@@ -20,7 +20,7 @@ interface CartProducts {
   max: number;
 }
 
-export const products: Product[] = [
+export const products: ProductLegacy[] = [
   {
     id: 1,
     name: 'Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0',
