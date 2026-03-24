@@ -17,6 +17,7 @@ interface Product {
   discountPrice? : number,
   images: string[]
   subCategory: string
+  brand: string
 }
 
 interface Attribute {  
@@ -35,6 +36,10 @@ interface ProductAttribute {
   valueBoolean?: boolean
 }
 
+interface Brands {
+  name: string
+}
+
 // interface SubCategoryAttribute {
 //   subCategory: string
 //   attribute: string
@@ -48,6 +53,7 @@ interface SeedData {
   attributes: Record<string, Attribute[]>
   attributeOptions: Record<string, string[]>
   productAttributes: Record<string, ProductAttribute[] >
+  brands: Brands[]
 }
 
 export const seedData: SeedData = {
@@ -501,6 +507,7 @@ export const seedData: SeedData = {
     ],
     stock: 12,
     slug: 'GeForce_RTX_3060_Ti_VENTUS_2X0',
+    brand: 'MSI'
   },
   {
     name: 'Monitor MEG 342C QD-OLED',
@@ -516,6 +523,7 @@ export const seedData: SeedData = {
     ],
     stock: 20,
     slug: 'MEG_342C_QD-OLED',
+    brand: 'MSI'
   },
   {
     name: 'Monitor SAMSUNG 27” Odyssey G5 G53F QHD 144hz',
@@ -530,6 +538,7 @@ export const seedData: SeedData = {
     ],
     stock: 0,
     slug: 'Monitor_27_144Hz',
+    brand: 'Samsung'
   },
   {
     name: 'Monitor Philips 221v877 215” Full Hd 75 Hz',
@@ -539,6 +548,7 @@ export const seedData: SeedData = {
     images: ['/img/products/monitor75.png'],
     stock: 25,
     slug: 'Monitor_Philips_221v877_215_Full_Hd_75_Hz',
+    brand: 'Philips'
   },
   {
     name: 'Mechanical Keyboard Gamer Redragon Mitra K551rgb Esp Rgb Sw Red Keyboard Color Black',
@@ -554,6 +564,7 @@ export const seedData: SeedData = {
     ],
     stock: 4,
     slug: 'Mechanical_Keyboard_Gamer_Redragon_Mitra_K551rgb_Esp_Rgb_Sw_Red_Keyboard_Color_Black',
+    brand: 'Redragon'
   },
   {
     name: 'Mouse Gamer Wireless Marvo M803 4800dpi Optic 7 Buttons LED',
@@ -569,6 +580,7 @@ export const seedData: SeedData = {
     ],
     stock: 50,
     slug: 'Mouse_Gamer_Wireless_Marvo_M803_4800dpi_Optic_7_Buttons_LED',
+    brand: 'Marvo'
   },
   {
     name: 'Headphones Gamer Light Led Rgb Usb Headset Microphone Xtrike Me Gh516 Para Pc Black sonido envolvente 7.1',
@@ -582,6 +594,7 @@ export const seedData: SeedData = {
     ],
     stock: 30,
     slug: 'Headphones_Gamer_Light_Led_Rgb_Usb_Headset_Microphone_Xtrike_Me_Gh516_Para_Pc_Black_sonido_envolvente_71',
+    brand: 'Xtrike Me'
   },
   {
     name: 'Ssd M.2 1tb Kingston Nvme Pcie 4.0 Nv3 color azul oscuro',
@@ -596,6 +609,7 @@ export const seedData: SeedData = {
     ],
     stock: 40,
     slug: 'Ssd_M2_1tb_Kingston_Nvme_Pcie_4.0_Nv3_color_azul_oscuro',
+    brand: 'Kingston'
   },
   {
     name: 'Hdd Western Digital 2tb 3.5 Red Plus',
@@ -605,6 +619,7 @@ export const seedData: SeedData = {
     images: ['/img/products/hdd.png', '/img/products/hdd2.png', '/img/products/hdd3.png'],
     slug: 'Hdd_Western_Digital_2tb_35_Red_Plus',
     stock: 50,
+    brand: 'Western Digital'
   },
   {
     name: 'Memory Ram Fury Beast Ddr4 16gb 1 Kingston Kf432c16bb1/16',
@@ -615,6 +630,7 @@ export const seedData: SeedData = {
     images: ['/img/products/ram.png', '/img/products/ram2.png', '/img/products/ram3.png', '/img/products/ram4.png'],
     slug: 'Memory_Ram_Fury_Beast_Ddr4_16gb_1_Kingston_Kf432c16bb116',
     stock: 50,
+    brand: 'Kingston'
   },
   {
     name: 'Graphic Card Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt',
@@ -624,6 +640,7 @@ export const seedData: SeedData = {
     images: ['/img/products/gforce.png', '/img/products/gforce2.png', '/img/products/gforce3.png', '/img/products/gforce4.png'],
     slug: 'Asus_Tuf_Rtx_4070_12gb_Gaming_Gddr6x_192_Bt',
     stock: 50,
+    brand: 'ASUS'
   },
   {
     name: 'Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0',
@@ -633,6 +650,7 @@ export const seedData: SeedData = {
     images: ['/img/products/mother.png', '/img/products/mother2.png', '/img/products/mother3.png'],
     slug: 'Motherboard_ASRock_A520M-HDV_AMD_AM4_Ryzen_Micro_ATX_DDR4_HDMI_PCIe_30',
     stock: 50,
+    brand:'ASRock'
   },
   {
     name: 'Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency',
@@ -643,6 +661,7 @@ export const seedData: SeedData = {
     images: ['/img/products/pcu.png', '/img/products/pcu2.png', '/img/products/pcu3.png', '/img/products/pcu4.png'],
     slug: 'Power_Supply_Unit_PC_ATX_Segotep_U6_650W_2x_PCI-E_80_Efficency',
     stock: 50,
+    brand:'Segotep'
   },
   {
     name: 'Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material',
@@ -652,6 +671,7 @@ export const seedData: SeedData = {
     images: ['/img/products/chair.png', '/img/products/chair2.png', '/img/products/chair3.png'],
     slug: 'Nictom_Ergonomic_Pro_PC_Gaming_Chair_Black_Reclining_Corduroy_Upholstery_Material',
     stock: 8,
+    brand:'Nictom'
   },
   {
     name: 'Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black',
@@ -661,6 +681,7 @@ export const seedData: SeedData = {
     images: ['/img/products/desk.png', '/img/products/desk2.png'],
     slug: 'Gadnic_L_Shaped_Gaming_Desk_for_PC_Wood_Carbon_Fiber_Black',
     stock: 22,
+    brand:'Gadnic'
   },
   {
     name: 'TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extender',
@@ -670,8 +691,26 @@ export const seedData: SeedData = {
     images: ['/img/products/wifi.png', '/img/products/wifi2.png', '/img/products/wifi3.png'],
     slug: 'TP_Link_TL_WA850RE_V7_Wireless_N_300Mbps_Wall_Mount_Range_Extender',
     stock: 50,
+    brand: 'TP-Link'
   }
   ],
+
+  brands: [
+  { name: 'MSI' },
+  { name: 'Samsung' },
+  { name: 'Philips' },
+  { name: 'Redragon' },
+  { name: 'Marvo' },
+  { name: 'Xtrike Me' },
+  { name: 'Kingston' },
+  { name: 'Western Digital' },
+  { name: 'ASUS' },
+  { name: 'ASRock' },
+  { name: 'Segotep' },
+  { name: 'Nictom' },
+  { name: 'Gadnic' },
+  { name: 'TP-Link' },
+],
 
   productAttributes: {
     "Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0": [
@@ -995,6 +1034,8 @@ export const seedData: SeedData = {
     { attribute:'Antennas', valueNumber:2 },
   ],
   }
+
+  
     
   
 }

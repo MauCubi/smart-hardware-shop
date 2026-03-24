@@ -11,7 +11,7 @@ interface Props {
 
 export const ProductsGridCard = ({ product }: Props) => {
   return (
-    <div className='w-full xl:min-h-115 max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-0 pb-5'>
+    <div className='w-full xl:min-h-118 max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-0 pb-5'>
       <Link href={`/product/${product.slug}`}>
     <div className='pt-2 bg-white rounded-t-lg justify-center align-middle items-center flex'>
       

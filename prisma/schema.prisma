@@ -78,12 +78,20 @@ model Product {
   discountPrice Float?
   slug          String   @unique
   images        String[] @default([])
-  brand         String?
 
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   subCategoryId String
 
+  brands  Brand?  @relation(fields: [brandId], references: [id])
+  brandId String
+
   productAttributes ProductAttribute[]
+}
+
+model Brand {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
 }
 
 model ProductAttribute {

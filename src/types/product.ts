@@ -8,8 +8,8 @@ export interface Product {
     discountPrice: number | null;
     slug: string;
     images: string[];
-    brand: string | null;
     subCategoryId: string;
+    brandId: string
 }
 
 export interface CartProducts {

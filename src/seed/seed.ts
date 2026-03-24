@@ -1,13 +1,14 @@
 import 'dotenv/config'
-import { Category, SubCategory, Product, Attribute, AttributeOption } from '../../generated/prisma';
+import { Category, SubCategory, Product, Attribute, AttributeOption, Brand } from '../../generated/prisma';
 import { seedData } from './seed-products';
 import { prisma } from '@/lib/prisma';
 
 
-const { categories, subCategories, products, attributes, attributeOptions, productAttributes } = seedData
+const { categories, subCategories, products, attributes, attributeOptions, productAttributes, brands } = seedData
 
 async function main() {  
 
+  await prisma.brand.deleteMany()
   await prisma.attributeOption.deleteMany()
   await prisma.productAttribute.deleteMany()
   await prisma.product.deleteMany()
@@ -17,7 +18,7 @@ async function main() {
   await prisma.attribute.deleteMany()
 
   
-
+  const createdBrands: Record<string, Brand> = {}
   const createdCategories: Record<string, Category> = {}
   const createdSubCategories: Record<string, SubCategory> = {}
   const createdProducts: Record<string, Product> = {}
@@ -31,6 +32,15 @@ async function main() {
     })
     createdCategories[categoryDb.name] = categoryDb
   }
+
+  for(const brand of brands){
+    const brandDb = await prisma.brand.create({
+      data: brand
+    })
+    createdBrands[brandDb.name] = brandDb
+  }  
+
+  
   
 
   for( const { category, ...rest  } of subCategories ) {
@@ -44,11 +54,12 @@ async function main() {
   }
 
 
-  for( const { subCategory, ...rest  } of products ) {
+  for( const { subCategory, brand, ...rest  } of products ) {
     const productDb = await prisma.product.create({
       data: {
         ...rest,
-        subCategoryId: createdSubCategories[subCategory].id
+        subCategoryId: createdSubCategories[subCategory].id,        
+        brandId: createdBrands[brand].id
       },        
     })
     createdProducts[productDb.name] = productDb

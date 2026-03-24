@@ -161,8 +161,13 @@ exports.Prisma.ProductScalarFieldEnum = {
   discountPrice: 'discountPrice',
   slug: 'slug',
   images: 'images',
-  brand: 'brand',
-  subCategoryId: 'subCategoryId'
+  subCategoryId: 'subCategoryId',
+  brandId: 'brandId'
+};
+
+exports.Prisma.BrandScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
 };
 
 exports.Prisma.ProductAttributeScalarFieldEnum = {
@@ -218,6 +223,7 @@ exports.Prisma.ModelName = {
   Attribute: 'Attribute',
   SubCategoryAttribute: 'SubCategoryAttribute',
   Product: 'Product',
+  Brand: 'Brand',
   ProductAttribute: 'ProductAttribute',
   User: 'User'
 };
