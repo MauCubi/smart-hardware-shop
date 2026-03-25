@@ -82,7 +82,7 @@ model Product {
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   subCategoryId String
 
-  brands  Brand  @relation(fields: [brandId], references: [id])
+  brands  Brand? @relation(fields: [brandId], references: [id])
   brandId String
 
   productAttributes ProductAttribute[]

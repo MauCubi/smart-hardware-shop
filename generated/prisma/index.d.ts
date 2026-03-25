@@ -7462,7 +7462,7 @@ export namespace Prisma {
     subCategoryId?: boolean
     brandId?: boolean
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
-    brands?: boolean | BrandDefaultArgs<ExtArgs>
+    brands?: boolean | Product$brandsArgs<ExtArgs>
     productAttributes?: boolean | Product$productAttributesArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -7480,7 +7480,7 @@ export namespace Prisma {
     subCategoryId?: boolean
     brandId?: boolean
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
-    brands?: boolean | BrandDefaultArgs<ExtArgs>
+    brands?: boolean | Product$brandsArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7496,7 +7496,7 @@ export namespace Prisma {
     subCategoryId?: boolean
     brandId?: boolean
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
-    brands?: boolean | BrandDefaultArgs<ExtArgs>
+    brands?: boolean | Product$brandsArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
@@ -7516,24 +7516,24 @@ export namespace Prisma {
   export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "stock" | "sku" | "price" | "discountPrice" | "slug" | "images" | "subCategoryId" | "brandId", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
-    brands?: boolean | BrandDefaultArgs<ExtArgs>
+    brands?: boolean | Product$brandsArgs<ExtArgs>
     productAttributes?: boolean | Product$productAttributesArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
-    brands?: boolean | BrandDefaultArgs<ExtArgs>
+    brands?: boolean | Product$brandsArgs<ExtArgs>
   }
   export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
-    brands?: boolean | BrandDefaultArgs<ExtArgs>
+    brands?: boolean | Product$brandsArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
       subCategory: Prisma.$SubCategoryPayload<ExtArgs>
-      brands: Prisma.$BrandPayload<ExtArgs>
+      brands: Prisma.$BrandPayload<ExtArgs> | null
       productAttributes: Prisma.$ProductAttributePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7943,7 +7943,7 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     subCategory<T extends SubCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubCategoryDefaultArgs<ExtArgs>>): Prisma__SubCategoryClient<$Result.GetResult<Prisma.$SubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    brands<T extends BrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandDefaultArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    brands<T extends Product$brandsArgs<ExtArgs> = {}>(args?: Subset<T, Product$brandsArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     productAttributes<T extends Product$productAttributesArgs<ExtArgs> = {}>(args?: Subset<T, Product$productAttributesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAttributePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8383,6 +8383,25 @@ export namespace Prisma {
      * Limit how many Products to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Product.brands
+   */
+  export type Product$brandsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Brand
+     */
+    select?: BrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Brand
+     */
+    omit?: BrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandInclude<ExtArgs> | null
+    where?: BrandWhereInput
   }
 
   /**
@@ -12151,7 +12170,7 @@ export namespace Prisma {
     subCategoryId?: StringFilter<"Product"> | string
     brandId?: StringFilter<"Product"> | string
     subCategory?: XOR<SubCategoryScalarRelationFilter, SubCategoryWhereInput>
-    brands?: XOR<BrandScalarRelationFilter, BrandWhereInput>
+    brands?: XOR<BrandNullableScalarRelationFilter, BrandWhereInput> | null
     productAttributes?: ProductAttributeListRelationFilter
   }
 
@@ -12188,7 +12207,7 @@ export namespace Prisma {
     subCategoryId?: StringFilter<"Product"> | string
     brandId?: StringFilter<"Product"> | string
     subCategory?: XOR<SubCategoryScalarRelationFilter, SubCategoryWhereInput>
-    brands?: XOR<BrandScalarRelationFilter, BrandWhereInput>
+    brands?: XOR<BrandNullableScalarRelationFilter, BrandWhereInput> | null
     productAttributes?: ProductAttributeListRelationFilter
   }, "id" | "slug">
 
@@ -12657,7 +12676,7 @@ export namespace Prisma {
     slug: string
     images?: ProductCreateimagesInput | string[]
     subCategory: SubCategoryCreateNestedOneWithoutProductsInput
-    brands: BrandCreateNestedOneWithoutProductsInput
+    brands?: BrandCreateNestedOneWithoutProductsInput
     productAttributes?: ProductAttributeCreateNestedManyWithoutProductInput
   }
 
@@ -12687,7 +12706,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
     subCategory?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
-    brands?: BrandUpdateOneRequiredWithoutProductsNestedInput
+    brands?: BrandUpdateOneWithoutProductsNestedInput
     productAttributes?: ProductAttributeUpdateManyWithoutProductNestedInput
   }
 
@@ -13224,9 +13243,9 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type BrandScalarRelationFilter = {
-    is?: BrandWhereInput
-    isNot?: BrandWhereInput
+  export type BrandNullableScalarRelationFilter = {
+    is?: BrandWhereInput | null
+    isNot?: BrandWhereInput | null
   }
 
   export type ProductCountOrderByAggregateInput = {
@@ -13917,10 +13936,12 @@ export namespace Prisma {
     update?: XOR<XOR<SubCategoryUpdateToOneWithWhereWithoutProductsInput, SubCategoryUpdateWithoutProductsInput>, SubCategoryUncheckedUpdateWithoutProductsInput>
   }
 
-  export type BrandUpdateOneRequiredWithoutProductsNestedInput = {
+  export type BrandUpdateOneWithoutProductsNestedInput = {
     create?: XOR<BrandCreateWithoutProductsInput, BrandUncheckedCreateWithoutProductsInput>
     connectOrCreate?: BrandCreateOrConnectWithoutProductsInput
     upsert?: BrandUpsertWithoutProductsInput
+    disconnect?: BrandWhereInput | boolean
+    delete?: BrandWhereInput | boolean
     connect?: BrandWhereUniqueInput
     update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutProductsInput, BrandUpdateWithoutProductsInput>, BrandUncheckedUpdateWithoutProductsInput>
   }
@@ -14349,7 +14370,7 @@ export namespace Prisma {
     discountPrice?: number | null
     slug: string
     images?: ProductCreateimagesInput | string[]
-    brands: BrandCreateNestedOneWithoutProductsInput
+    brands?: BrandCreateNestedOneWithoutProductsInput
     productAttributes?: ProductAttributeCreateNestedManyWithoutProductInput
   }
 
@@ -15020,7 +15041,7 @@ export namespace Prisma {
     slug: string
     images?: ProductCreateimagesInput | string[]
     subCategory: SubCategoryCreateNestedOneWithoutProductsInput
-    brands: BrandCreateNestedOneWithoutProductsInput
+    brands?: BrandCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutProductAttributesInput = {
@@ -15108,7 +15129,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
     subCategory?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
-    brands?: BrandUpdateOneRequiredWithoutProductsNestedInput
+    brands?: BrandUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutProductAttributesInput = {
@@ -15232,7 +15253,7 @@ export namespace Prisma {
     discountPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
-    brands?: BrandUpdateOneRequiredWithoutProductsNestedInput
+    brands?: BrandUpdateOneWithoutProductsNestedInput
     productAttributes?: ProductAttributeUpdateManyWithoutProductNestedInput
   }
 
