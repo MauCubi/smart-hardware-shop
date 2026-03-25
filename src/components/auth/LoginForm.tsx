@@ -12,8 +12,6 @@ type LoginInput = {
 export const LoginForm = () => {
   
 
-  // const dispatch = useAppDispatch()
-
   const router = useRouter()
 
   const {
@@ -28,34 +26,9 @@ export const LoginForm = () => {
 
     const { email, password } = data
 
-
     const response = await signIn('credentials', { email, password, redirect:false });
     console.log(response)
-    router.push('/')
-  
-
-    // dispatch(onSetAuthStatus('authenticating'))
-    // const userList = localStorage.getItem('users');
-
-    // if (userList) {
-    //   const parsedUserList: User[] = JSON.parse(userList)
-    //   const user = parsedUserList.find( e => e.email === data.email )
-
-    //   if (user) {
-    //     if (data.password === '123456' ) {
-    //       dispatch(onSetLoggedUser(user))
-    //       dispatch(onSetAuthStatus('authenticated'))
-    //       localStorage.setItem('auth-user', JSON.stringify(user))
-    //       router.push('/')
-    //       return              
-    //     } else {
-    //       setError('password', { message: 'Incorrect Password'})
-    //     }
-    //   } else {
-    //     setError('email', { message: 'Email not found' })
-    //   }
-    // }      
-    // dispatch(onSetAuthStatus('not-authenticated'))
+    router.push('/') 
   }
 
 
@@ -107,9 +80,9 @@ export const LoginForm = () => {
         </button>
       </form>
 
-      <button onClick={() => signIn("google")}>
+      {/* <button onClick={() => signIn("google")}>
         Login con Google
-      </button>
+      </button> */}
     </>
   );
 };

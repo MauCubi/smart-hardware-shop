@@ -1,6 +1,6 @@
 import { registerUser } from '@/actions/auth/register';
-import { onSetAuthStatus } from '@/store/auth/authSlice';
-import { useAppDispatch } from '@/store/hooks';
+
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
 
@@ -12,11 +12,9 @@ type RegisterInput = {
   password: string
 }
 
-export const RegisterForm = () => {
-
-  const dispatch = useAppDispatch()
+export const RegisterForm =  () => {
+ 
   const router = useRouter()
-
 
   const {
       register,
@@ -25,9 +23,7 @@ export const RegisterForm = () => {
       setError
   } = useForm<RegisterInput>()
 
-  const onSubmit: SubmitHandler<RegisterInput> = async (data) => {
-
-    dispatch(onSetAuthStatus('authenticating'))    
+  const onSubmit: SubmitHandler<RegisterInput> = async (data) => {  
 
     const { name, lastName, password, email} = data
 
@@ -35,8 +31,7 @@ export const RegisterForm = () => {
     const user = await registerUser( name, lastName, password, email )
 
     if (!user.ok) {       
-      setError(user.type as keyof RegisterInput, { message: user.message })      
-      dispatch(onSetAuthStatus('not-authenticated'))  
+      setError(user.type as keyof RegisterInput, { message: user.message })
       return
     }
 
@@ -44,7 +39,7 @@ export const RegisterForm = () => {
       console.log("usuario creado!", console.log(user))
     }
 
-    dispatch(onSetAuthStatus('authenticated'))
+    await signIn('credentials', { email, password, redirect:false });
     router.push('/')    
   }
 

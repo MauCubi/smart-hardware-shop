@@ -10,7 +10,6 @@ import { CiUser } from 'react-icons/ci';
 import { FaSearch } from 'react-icons/fa';
 import { FaComputer } from 'react-icons/fa6';
 import { IoCartOutline, IoMenu } from 'react-icons/io5';
-import SearchBox from './SearchBox';
 import { SearchBar } from './SearchBar';
 import { signOut, useSession } from 'next-auth/react';
 
@@ -21,6 +20,7 @@ export const NavBar = () => {
   const { isSearchMenuOpen, isSideMenuOpen, isUserMenuOpen} = useAppSelector( state => state.ui )
   const { productsInCart } = useAppSelector( state => state.cart )
   const { authenticatedUser, authStatus } = useAppSelector( state => state.auth )
+ 
 
   const { data: session, status } = useSession();
   const isAuthenticated = !!session?.user;
@@ -134,18 +134,18 @@ export const NavBar = () => {
 
           <div className='hidden xl:block xl:w-50'>
             {
-              authStatus === 'authenticating'
+              status === 'loading'
               ? 
               <div className='navbar-text flex flex-col py-4 pl-3'>                
                   <div className="h-4 w-28 rounded bg-gray-700 animate-pulse" />                
               </div>
-              : isAuthenticated
+              : status ==='authenticated'
               ?
               <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2' onClick={ handleUserMenu }>
                 <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
                 <span className={`hidden xl:block text-sm`}>{ session.user?.name } ▼</span>            
               </button>
-              : !isAuthenticated &&
+              : status === 'unauthenticated' &&
               <Link href={'/auth'}>
                 <button className='navbar-button navbar-text flex flex-row align-middle items-center xl:gap-2'>
                   <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
