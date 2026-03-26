@@ -1,23 +1,20 @@
-import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
-import { useAppDispatch } from '@/store/hooks';
-import { User } from '@/types/user';
+import { registerUser } from '@/actions/auth/register';
+
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
-import { v4 as uuidv4 } from 'uuid';
 
 
 type RegisterInput = {
   name: string,
-  lastname: string,
+  lastName: string,
   email: string,
   password: string
 }
 
-export const RegisterForm = () => {
-
-  const dispatch = useAppDispatch()
+export const RegisterForm =  () => {
+ 
   const router = useRouter()
-
 
   const {
       register,
@@ -26,27 +23,23 @@ export const RegisterForm = () => {
       setError
   } = useForm<RegisterInput>()
 
-  const onSubmit: SubmitHandler<RegisterInput> = (data) => {
+  const onSubmit: SubmitHandler<RegisterInput> = async (data) => {  
 
-    dispatch(onSetAuthStatus('authenticating'))
+    const { name, lastName, password, email} = data
 
-    const registeredUsers = localStorage.getItem('users')
+    
+    const user = await registerUser( name, lastName, password, email )
 
-    const userData = { id: uuidv4(), ...data }
-
-    if (!registeredUsers) {
-      localStorage.setItem('users', JSON.stringify([userData]))      
-    } else {
-      const parsedUsers: User[] = JSON.parse(registeredUsers)
-      if (parsedUsers.find(e => e.email === userData.email)) {
-        setError('email', { message:'An user with this email already exists'})
-        return
-      } else {
-        localStorage.setItem('users', JSON.stringify([...parsedUsers, userData]) )            
-      }      
+    if (!user.ok) {       
+      setError(user.type as keyof RegisterInput, { message: user.message })
+      return
     }
-    dispatch(onSetLoggedUser(userData))
-    dispatch(onSetAuthStatus('authenticated'))
+
+    if (user.ok) {
+      console.log("usuario creado!", console.log(user))
+    }
+
+    await signIn('credentials', { email, password, redirect:false });
     router.push('/')    
   }
 
@@ -83,9 +76,9 @@ export const RegisterForm = () => {
             id='lastname'
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base min-w-full focus:outline-[#0A84FF] block w-full px-3 py-2.5 placeholder:text-body'
             placeholder='Enter your last name'       
-            { ...register('lastname',  { required: 'Last name required', minLength: { value: 2, message: 'Last Name has to be at least 2 characters long' } }) }     
+            { ...register('lastName',  { required: 'Last name required', minLength: { value: 2, message: 'Last Name has to be at least 2 characters long' } }) }     
           />
-          { errors.lastname && <span className={`text-red-800 w-full ${errors.lastname.type === 'minLength' ? 'text-sm' : ''}`}>{errors.lastname.message}</span> }
+          { errors.lastName && <span className={`text-red-800 w-full ${errors.lastName.type === 'minLength' ? 'text-sm' : ''}`}>{errors.lastName.message}</span> }
         </div>
       </div>
 

@@ -141,17 +141,17 @@ export const SubNavBar = () => {
 
               <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 justify-around xl:justify-start xl:gap-7 flex-wrap'>
 
-                <CategoryCard title='Motherboard' subCategories={['AMD Motherboards', 'Intel Motherboards']} Icon={BsMotherboard} />
+                <CategoryCard title='Motherboards' subCategories={['AMD Motherboards', 'Intel Motherboards']} Icon={BsMotherboard} />
 
-                <CategoryCard title='CPUs' subCategories={['AMD Processors', 'Intel Processors']} Icon={PiCpuDuotone} />
+                <CategoryCard title='Processors' subCategories={['AMD Processors', 'Intel Processors']} Icon={PiCpuDuotone} />
 
                 <CategoryCard title='Storage' subCategories={['HDD', 'SDD', 'SDD M.2', 'External Disks', 'Pendrives']} Icon={BsDeviceSsd} />
 
                 <CategoryCard title='Graphic Cards' subCategories={['AMD Radeon', 'NVIDIA Geforce']} Icon={PiGraphicsCardDuotone} />
 
-                <CategoryCard title='Memory RAM' subCategories={['DDR5', 'DDR4', 'DDR3']} Icon={PiMemoryDuotone} />
+                <CategoryCard title='Memory Ram' subCategories={['DDR5', 'DDR4', 'DDR3']} Icon={PiMemoryDuotone} />
 
-                <CategoryCard title='PSUs' subCategories={['Power source units', 'PSUs accesories']} Icon={ImPower} />
+                <CategoryCard title='Power Supply Units' subCategories={['Power source units', 'PSUs accesories']} Icon={ImPower} />
 
                 <CategoryCard title='Periferics' subCategories={['Keyboards', 'Mouse', 'Mouse Pad', 'WebCam', 'Gamepads', 'Bundles']} Icon={BsKeyboard} />
 

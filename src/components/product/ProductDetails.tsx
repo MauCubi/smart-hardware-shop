@@ -3,13 +3,14 @@ import { FaArrowDown, FaCartShopping, FaCheck, FaMapLocation, FaShield, FaTruck,
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import Link from 'next/link';
 import SlideShow from './SlideShow';
-import { CartProducts, Product } from '@/data/products';
+import { Product, CartProducts } from '@/types/product';
 import ProductQuantity from './ProductQuantity';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onAddProductToCart, onClearError } from '@/store/cart/cartSlice';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { formatPriceUSD } from '@/utils/formatPrice';
 
 
 interface Props {
@@ -50,8 +51,8 @@ const ProductDetails = ({ prod }: Props) => {
       id: prod.id,
       name: prod.name,
       slug: prod.slug,
-      price: prod.price,
-      image: prod.image[0],
+      price: prod.discountPrice ?? prod.price,
+      image: prod.images[0],
       quantity: buyNow? 1 : quantity,
       max: prod.stock
     }
@@ -65,7 +66,7 @@ const ProductDetails = ({ prod }: Props) => {
   return (
     <div className='flex flex-col xl:flex-row xl:min-h-120'>
       <div className='w-full xl:w-[50%]'>
-        <SlideShow images={prod?.image as string[]} />
+        <SlideShow images={prod?.images as string[]} />
       </div>
 
       <div className='xl:h-fit w-full xl:w-[50%]'>
@@ -106,8 +107,23 @@ const ProductDetails = ({ prod }: Props) => {
           </div>
         )}
 
-        <div className='flex my-8 justify-center'>
-          <p className='titles text-3xl xl:text-5xl'>${prod?.price.toFixed(2)}</p>
+        <div className='flex my-8 justify-center gap-2'>
+          <p className='titles text-3xl xl:text-5xl'> { prod.discountPrice ? formatPriceUSD(prod.discountPrice) : formatPriceUSD(prod.price) }  </p>
+          {
+            prod.discountPrice 
+            &&
+            <div className='flex flex-col'>
+              <span className='text-sm text-[#adacac] line-through'>
+                { formatPriceUSD(prod.price) }          
+              </span>            
+              <div className='flex bg-green-600 rounded px-2'>
+                <span className='text-lg text-[#ffffff] font-bold '>
+                  %10 OFF          
+                </span>
+              </div>
+            </div>
+            
+          }
         </div>
 
         <div className='flex flex-col'>

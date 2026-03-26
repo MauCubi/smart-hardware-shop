@@ -2,7 +2,9 @@
 
 import { LoginForm } from '@/components/auth/LoginForm';
 import { RegisterForm } from '@/components/auth/RegisterForm';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 
 
@@ -11,11 +13,22 @@ export default function AuthPage() {
 
   const [selectedTab, setSelectedTab] = useState<'login' | 'register'>('login')
 
+  const session = useSession()
+  const router = useRouter()
+
   const handleTabSelection = ( tab: 'login' | 'register') => {
 
     setSelectedTab(tab)
 
   }
+
+
+  useEffect(() => {
+    if (session.status === 'authenticated') {
+      router.push('/')
+    }    
+  },)
+  
 
   return (
     <div className='pt-25 pb-40'>
@@ -44,12 +57,14 @@ export default function AuthPage() {
         }
 
       </div>
+
+
       
-      <div className='flex flex-col items-center justify-center align-middle titles w-full text-center'>
+      {/* <div className='flex flex-col items-center justify-center align-middle titles w-full text-center'>
         <h1 className='font-boldt titles text-2xl'>NOTE (Demo mode)</h1>
         <p>Passwords are not stored. In this version, all accounts use 123456 as the password.</p>
         <p>Real authentication will be implemented in the back-end.</p>
-      </div>
+      </div> */}
 
     </div>
 

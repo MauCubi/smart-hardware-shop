@@ -1,5 +1,6 @@
-import { CartProducts } from '@/data/products';
 import { createSlice } from '@reduxjs/toolkit';
+import { CartProducts } from '../../types/product';
+ 
 
 export interface SliceCart {
   products: CartProducts[];
@@ -47,7 +48,7 @@ export const cartSlice = createSlice({
       }
       state.productsInCart += payload.quantity
       state.total = state.products.reduce( (acc, product ) => acc + product.price * product.quantity, 0 )
-      state.status = 'SUCCESS'      
+      state.status = product ? 'SUCCESS_SUM' : 'SUCCESS'      
     },
 
     onRemoveProductFromCart: ( state, { payload } ) => {

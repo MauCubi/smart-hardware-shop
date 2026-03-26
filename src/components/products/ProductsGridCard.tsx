@@ -1,21 +1,23 @@
-import { Product } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 // import { IoCartOutline } from 'react-icons/io5';
+import { Product } from '../../types/product';
+import { formatPriceUSD } from '@/utils/formatPrice';
 
 interface Props {
   product: Product;
 }
 
+
 export const ProductsGridCard = ({ product }: Props) => {
   return (
-    <div className='w-full max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-0 pb-5'>
+    <div className='w-full xl:min-h-118 max-w-sm bg-gray-900 border border-[#0A84FF] hover:-translate-y-0.5 duration-300 hover:shadow-2xl hover:shadow-gray-600 ease-in-out rounded-lg shadow-sm px-0 pb-5'>
       <Link href={`/product/${product.slug}`}>
     <div className='pt-2 bg-white rounded-t-lg justify-center align-middle items-center flex'>
       
         <Image
           className='object-contain rounded-t-lg self-center place-self-center w-auto px-3 xl:w-full h-[180] xl:h-[250]'
-          src={product.image[0]}
+          src={product.images[0]}
           alt='product image'
           width={200}
           height={500}   
@@ -31,9 +33,16 @@ export const ProductsGridCard = ({ product }: Props) => {
         
       </div>
 
-      <div className='flex flex-col justify-end items-center h-fit px-6 md:px-3 xl:px-6 mt-6 xl:mt-15 gap-3'>
-        <span className='text-2xl xl:text-3xl font-bold text-[#F1F1F1]'>
-          $ {product.price.toFixed(2)}
+      <div className='flex flex-col justify-end items-center h-fit px-6 md:px-3 xl:px-6 mt-6 xl:mt-15'>
+        {
+          product.discountPrice 
+          &&
+        <span className='text-sm text-[#adacac] line-through'>
+          { formatPriceUSD(product.price) }          
+        </span>
+        }
+        <span className='text-2xl xl:text2xl font-bold text-[#F1F1F1]'>
+          { product.discountPrice ? formatPriceUSD(product.discountPrice) : formatPriceUSD(product.price) }          
         </span>
         {/* <Link
           href='#'

@@ -14,27 +14,46 @@ interface Product {
   stock: number,
   price: number,
   slug: string,
+  discountPrice? : number,
   images: string[]
   subCategory: string
+  brand: string
 }
 
 interface Attribute {  
   name:  string        
   type:  'STRING' | 'NUMBER' | 'BOOLEAN' | 'SELECT' 
   group: string
+  required?: boolean
   unit?: string
 }
 
-interface SubCategoryAttribute {
-  subCategory: string
+interface ProductAttribute {
   attribute: string
+  option?: string
+  valueString?: string
+  valueNumber?: number
+  valueBoolean?: boolean
 }
+
+interface Brands {
+  name: string
+}
+
+// interface SubCategoryAttribute {
+//   subCategory: string
+//   attribute: string
+// }
+
 
 interface SeedData {
   categories: Category[],
   subCategories: SubCategory[],
   products: Product[]
   attributes: Record<string, Attribute[]>
+  attributeOptions: Record<string, string[]>
+  productAttributes: Record<string, ProductAttribute[] >
+  brands: Brands[]
 }
 
 export const seedData: SeedData = {
@@ -110,46 +129,374 @@ export const seedData: SeedData = {
   ],
 
   attributes: {
-    gpu:
-    [
-      { name: 'Type', type: 'STRING', group: 'General' },
-      { name: 'Chipset gpu', type: 'STRING', group: 'General' },
+    gpu: [
+      { name: 'GPU type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Chipset gpu', type: 'STRING', group: 'General', required: true },
       { name: 'Video input', type: 'BOOLEAN', group: 'General' },
       { name: 'Double bridge', type: 'BOOLEAN', group: 'General' },
       { name: 'Special features', type: 'STRING', group: 'General' },
+
       { name: 'Vga', type: 'NUMBER', group: 'Connectivity'},
       { name: 'Dvi digital', type: 'NUMBER', group: 'Connectivity' },
       { name: 'Hdmi', type: 'NUMBER', group: 'Connectivity'},
       { name: 'Displayports', type: 'NUMBER', group: 'Connectivity' },
       { name: 'Usb type-c', type: 'NUMBER', group: 'Connectivity' },
+
       { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
-      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'slots' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
       { name: 'Length', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+
       { name: 'Approximate consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
       { name: 'Minimum recommended Watts', type: 'NUMBER', group: 'Energy', unit: 'w' },
+
       { name: 'Amount of 6 pins Pcie', type: 'NUMBER', group: 'Energy' },
       { name: 'Amount of 8 pins Pcie', type: 'NUMBER', group: 'Energy' },
       { name: 'Amount of 16 pins adapters', type: 'NUMBER', group: 'Energy'},
       { name: 'Amount of 16 pins Pcie', type: 'NUMBER', group: 'Energy' },
-      { name: '16 pins adapters connections', type: 'NUMBER', group: 'Energy'},
-      { name: 'High potency Pcie btf', type: 'NUMBER', group: 'Energy' },
+
       { name: 'Backplate', type: 'BOOLEAN', group: 'Coolers/Refrigeration' },
       { name: 'Block vga water cooling', type: 'BOOLEAN', group: 'Coolers/Refrigeration' },
       { name: 'Coolers', type: 'NUMBER', group: 'Coolers/Refrigeration' },
+
       { name: 'Core turbo speed', type: 'NUMBER', group: 'Extras', unit: 'mhz' },
-      { name: 'Memory type', type: 'STRING', group: 'Extras' },
-      { name: 'Memory size', type: 'NUMBER', group: 'Extras', unit: 'GB' },
+
+      { name: 'GPU memory type', type: 'SELECT', group: 'Extras', required: true },
+      { name: 'Memory size', type: 'NUMBER', group: 'Extras', unit: 'GB', required: true },
       { name: 'Memory speed', type: 'NUMBER', group: 'Extras', unit: 'mhz' },
       { name: 'Memory interface', type: 'NUMBER', group: 'Extras', unit: 'bits' },
+
       { name: 'Process types', type: 'STRING', group: 'Extras' },
-      { name: 'Process quantity', type: 'NUMBER', group: 'Extras' },    
-  ]},
+      { name: 'Process quantity', type: 'NUMBER', group: 'Extras' },
+    ],
+
+    keyboard: [
+      { name: 'Keyboard type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Switch type', type: 'SELECT', group: 'General' },
+      { name: 'Mechanical', type: 'BOOLEAN', group: 'General' },
+      { name: 'Layout', type: 'SELECT', group: 'General', required: true },
+
+      { name: 'Connection type', type: 'SELECT', group: 'Connectivity', required: true },
+      { name: 'USB passthrough', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'Cable length', type: 'NUMBER', group: 'Connectivity', unit: 'cm' },
+
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Anti ghosting', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Programmable keys', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+    ],
+
+    mouse: [
+      { name: 'Mouse type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Sensor type', type: 'SELECT', group: 'General' },
+      { name: 'Max dpi', type: 'NUMBER', group: 'General', unit: 'dpi', required: true },
+
+
+      { name: 'Connection type', type: 'SELECT', group: 'Connectivity', required: true },
+      { name: 'Wireless', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'Battery life', type: 'NUMBER', group: 'Connectivity', unit: 'hours' },
+
+      { name: 'Buttons', type: 'NUMBER', group: 'Features' },
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+    ],
+
+    headphones: [
+      { name: 'Headphone type', type: 'STRING', group: 'General', required: true },
+      { name: 'Surround sound', type: 'BOOLEAN', group: 'General' },
+      { name: 'Microphone', type: 'BOOLEAN', group: 'General', required: true },
+
+      { name: 'Connection type', type: 'STRING', group: 'Connectivity', required: true },
+      { name: 'USB', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'Jack 3.5mm', type: 'BOOLEAN', group: 'Connectivity' },
+
+      { name: 'Frequency response', type: 'STRING', group: 'Audio' },
+      { name: 'Impedance', type: 'NUMBER', group: 'Audio', unit: 'ohm' },
+
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+    ],
+
+    ssd: [
+      { name: 'Storage capacity', type: 'NUMBER', group: 'General', unit: 'gb', required: true },
+      { name: 'Form factor', type: 'STRING', group: 'General', required: true },
+      { name: 'Interface', type: 'STRING', group: 'General', required: true },
+
+      { name: 'Read speed', type: 'NUMBER', group: 'Performance', unit: 'mb/s' },
+      { name: 'Write speed', type: 'NUMBER', group: 'Performance', unit: 'mb/s' },
+
+      { name: 'NVMe support', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Length', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+
+      { name: 'Power consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
+    ],
+
+    hdd: [
+      { name: 'Storage capacity', type: 'NUMBER', group: 'General', unit: 'tb', required: true },
+      { name: 'Form factor', type: 'STRING', group: 'General', required: true },
+      { name: 'Interface', type: 'STRING', group: 'General', required: true },
+
+      { name: 'RPM', type: 'NUMBER', group: 'Performance', required: true },
+      { name: 'Cache size', type: 'NUMBER', group: 'Performance', unit: 'mb' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+
+      { name: 'Power consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
+    ],
+
+    ram: [
+      { name: 'Capacity', type: 'NUMBER', group: 'General', unit: 'gb', required: true },
+      { name: 'RAM memory type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Modules', type: 'NUMBER', group: 'General', required: true },
+
+      { name: 'Frequency', type: 'NUMBER', group: 'Performance', unit: 'mhz', required: true },
+      { name: 'CAS latency', type: 'NUMBER', group: 'Performance' },
+
+      { name: 'RGB lighting', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Voltage', type: 'NUMBER', group: 'Energy', unit: 'v' },
+    ],
+
+    motherboard: [
+      { name: 'Socket', type: 'STRING', group: 'General', required: true },
+      { name: 'Chipset', type: 'STRING', group: 'General', required: true },
+      { name: 'Form factor', type: 'STRING', group: 'General', required: true },
+
+      { name: 'Max memory', type: 'NUMBER', group: 'Memory', unit: 'gb' },
+      { name: 'Memory slots', type: 'NUMBER', group: 'Memory' },
+
+      { name: 'PCIe slots', type: 'NUMBER', group: 'Expansion' },
+      { name: 'M.2 slots', type: 'NUMBER', group: 'Expansion' },
+
+      { name: 'SATA ports', type: 'NUMBER', group: 'Storage' },
+
+      { name: 'USB ports', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Ethernet', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'WiFi', type: 'BOOLEAN', group: 'Connectivity' },
+    ],
+
+    psu: [
+      { name: 'Power', type: 'NUMBER', group: 'General', unit: 'w', required: true },
+      { name: 'Efficiency rating', type: 'STRING', group: 'General', required: true },
+      { name: 'Modular', type: 'STRING', group: 'General', required: true },
+
+      { name: 'PCIe connectors', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'SATA connectors', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'CPU connectors', type: 'NUMBER', group: 'Connectivity' },
+
+      { name: 'Fan size', type: 'NUMBER', group: 'Cooling', unit: 'mm' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Length', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+    ],
+
+    chair: [
+      { name: 'Chair type', type: 'STRING', group: 'General', required: true },
+      { name: 'Material', type: 'STRING', group: 'General', required: true },
+      { name: 'Ergonomic', type: 'BOOLEAN', group: 'General' },
+
+      { name: 'Reclining', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Adjustable height', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Lumbar support', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Max weight', type: 'NUMBER', group: 'Dimensions', unit: 'kg' },
+    ],
+
+    desk: [
+      { name: 'Desk type', type: 'STRING', group: 'General', required: true },
+      { name: 'Material', type: 'STRING', group: 'General', required: true },
+      { name: 'Shape', type: 'STRING', group: 'General' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'cm', required: true },
+      { name: 'Depth', type: 'NUMBER', group: 'Dimensions', unit: 'cm', required: true },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'cm', required: true },
+
+      { name: 'Max load', type: 'NUMBER', group: 'Dimensions', unit: 'kg' },
+    ],
+
+    wifi_adapter: [
+      { name: 'Max speed', type: 'NUMBER', group: 'General', unit: 'mbps', required: true },
+      { name: 'WiFi standard', type: 'STRING', group: 'General', required: true },
+      { name: 'Frequency bands', type: 'STRING', group: 'General' },
+
+      { name: 'Ethernet port', type: 'BOOLEAN', group: 'Connectivity' },
+      { name: 'WPS button', type: 'BOOLEAN', group: 'Connectivity' },
+
+      { name: 'Antennas', type: 'NUMBER', group: 'Hardware' },
+    ],
+
+    monitor: [
+      { name: 'Screen size', type: 'NUMBER', group: 'General', unit: 'inch', required: true },
+      { name: 'Resolution', type: 'SELECT', group: 'General', required: true },
+      { name: 'Panel type', type: 'SELECT', group: 'General', required: true },
+      { name: 'Aspect ratio', type: 'SELECT', group: 'General', required: true },
+      { name: 'Curved', type: 'BOOLEAN', group: 'General' },
+
+      { name: 'Refresh rate', type: 'NUMBER', group: 'Performance', unit: 'hz', required: true },
+      { name: 'Response time', type: 'NUMBER', group: 'Performance', unit: 'ms' },
+      { name: 'Brightness', type: 'NUMBER', group: 'Performance', unit: 'nits' },
+      { name: 'Contrast ratio', type: 'STRING', group: 'Performance' },
+
+      { name: 'Hdmi', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Displayports', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Usb ports', type: 'NUMBER', group: 'Connectivity' },
+      { name: 'Usb type-c', type: 'NUMBER', group: 'Connectivity' },
+
+      { name: 'Speakers', type: 'BOOLEAN', group: 'Features' },
+      { name: 'HDR support', type: 'BOOLEAN', group: 'Features' },
+      { name: 'G-Sync support', type: 'BOOLEAN', group: 'Features' },
+      { name: 'FreeSync support', type: 'BOOLEAN', group: 'Features' },
+      { name: 'Vesa mount', type: 'BOOLEAN', group: 'Features' },
+
+      { name: 'Width', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Height', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Depth', type: 'NUMBER', group: 'Dimensions', unit: 'mm' },
+      { name: 'Weight', type: 'NUMBER', group: 'Dimensions', unit: 'g' },
+
+      { name: 'Power consumption', type: 'NUMBER', group: 'Energy', unit: 'w' },
+    ],
+  },
+
+  attributeOptions: {
+
+    "GPU type": [
+      "Dedicated",
+      "Integrated",
+      "External"
+    ],
+
+    "GPU memory type": [
+      "GDDR5",
+      "GDDR6",
+      "GDDR6X",
+      "HBM2",
+      "HBM3"
+    ],
+
+    "RAM memory type": [
+      "DDR3",
+      "DDR4",
+      "DDR5"
+    ],
+
+    "Keyboard type": [
+      "Full size",
+      "TKL",
+      "75%",
+      "65%",
+      "60%"
+    ],
+
+    "Switch type": [
+      "Cherry MX Red",
+      "Cherry MX Blue",
+      "Cherry MX Brown",
+      "Gateron Red",
+      "Gateron Brown",
+      "Optical"
+    ],
+
+    "Layout": [
+      "ANSI",
+      "ISO"
+    ],
+
+    "Connection type": [
+      "Wired",
+      "Wireless",
+      "Bluetooth",
+      "2.4GHz Wireless"
+    ],
+
+    "Mouse type": [
+      "Gaming",
+      "Office",
+      "Ergonomic",
+      "Vertical"
+    ],
+
+    "Sensor type": [
+      "Optical",
+      "Laser"
+    ],
+
+    "Headphone type": [
+      "Over ear",
+      "On ear",
+      "In ear"
+    ],
+
+    "Form factor": [
+      "ATX",
+      "Micro ATX",
+      "Mini ITX"
+    ],
+
+    "Interface": [
+      "SATA",
+      "NVMe",
+      "PCIe"
+    ],
+
+    "Efficiency rating": [
+      "80+ Bronze",
+      "80+ Silver",
+      "80+ Gold",
+      "80+ Platinum",
+      "80+ Titanium"
+    ],
+
+    "Modular": [
+      "Non modular",
+      "Semi modular",
+      "Fully modular"
+    ],
+
+    "Resolution": [
+      "1920x1080",
+      "2560x1440",
+      "3840x2160",
+      "3440x1440"
+    ],
+
+    "Panel type": [
+      "IPS",
+      "VA",
+      "TN",
+      "OLED"
+    ],
+
+    "Aspect ratio": [
+      "16:9",
+      "21:9",
+      "32:9"
+    ],
+
+    "WiFi standard": [
+      "WiFi 4",
+      "WiFi 5",
+      "WiFi 6",
+      "WiFi 6E",
+      "WiFi 7"
+    ]
+
+  },
 
   products: [
     {
     name: 'Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0',
     description: 'Good graphic card',
-    price: 1599,
+    price: 599,
+    discountPrice: 200,
     subCategory: 'NVIDIA Geforce',
     images: [
       '/img/products/1024.png',
@@ -160,11 +507,13 @@ export const seedData: SeedData = {
     ],
     stock: 12,
     slug: 'GeForce_RTX_3060_Ti_VENTUS_2X0',
+    brand: 'MSI'
   },
   {
     name: 'Monitor MEG 342C QD-OLED',
     description: 'Good Monitoro',
     price: 999,
+    discountPrice: 800,
     subCategory: '200 - 240 Hz',
     images: [
       '/img/products/monitor1.png',
@@ -174,6 +523,7 @@ export const seedData: SeedData = {
     ],
     stock: 20,
     slug: 'MEG_342C_QD-OLED',
+    brand: 'MSI'
   },
   {
     name: 'Monitor SAMSUNG 27” Odyssey G5 G53F QHD 144hz',
@@ -188,6 +538,7 @@ export const seedData: SeedData = {
     ],
     stock: 0,
     slug: 'Monitor_27_144Hz',
+    brand: 'Samsung'
   },
   {
     name: 'Monitor Philips 221v877 215” Full Hd 75 Hz',
@@ -197,11 +548,13 @@ export const seedData: SeedData = {
     images: ['/img/products/monitor75.png'],
     stock: 25,
     slug: 'Monitor_Philips_221v877_215_Full_Hd_75_Hz',
+    brand: 'Philips'
   },
   {
     name: 'Mechanical Keyboard Gamer Redragon Mitra K551rgb Esp Rgb Sw Red Keyboard Color Black',
     description: 'Teclado con switches Blue y RGB',
     price: 89,
+    discountPrice: 50,
     subCategory: 'Keyboards',
     images: [
       '/img/products/tecladorgba.png',
@@ -211,11 +564,13 @@ export const seedData: SeedData = {
     ],
     stock: 4,
     slug: 'Mechanical_Keyboard_Gamer_Redragon_Mitra_K551rgb_Esp_Rgb_Sw_Red_Keyboard_Color_Black',
+    brand: 'Redragon'
   },
   {
     name: 'Mouse Gamer Wireless Marvo M803 4800dpi Optic 7 Buttons LED',
     description: 'Mouse inalámbrico con DPI ajustable',
     price: 49,
+    discountPrice: 30,
     subCategory: 'Mouse',
     images: [
       '/img/products/mousev2.png',
@@ -225,6 +580,7 @@ export const seedData: SeedData = {
     ],
     stock: 50,
     slug: 'Mouse_Gamer_Wireless_Marvo_M803_4800dpi_Optic_7_Buttons_LED',
+    brand: 'Marvo'
   },
   {
     name: 'Headphones Gamer Light Led Rgb Usb Headset Microphone Xtrike Me Gh516 Para Pc Black sonido envolvente 7.1',
@@ -238,11 +594,13 @@ export const seedData: SeedData = {
     ],
     stock: 30,
     slug: 'Headphones_Gamer_Light_Led_Rgb_Usb_Headset_Microphone_Xtrike_Me_Gh516_Para_Pc_Black_sonido_envolvente_71',
+    brand: 'Xtrike Me'
   },
   {
     name: 'Ssd M.2 1tb Kingston Nvme Pcie 4.0 Nv3 color azul oscuro',
     description: 'Unidad SSD NVMe rápida',
     price: 129,
+    discountPrice: 88,
     subCategory: 'SDD M.2',
     images: [
       '/img/products/ssd.png',
@@ -251,6 +609,7 @@ export const seedData: SeedData = {
     ],
     stock: 40,
     slug: 'Ssd_M2_1tb_Kingston_Nvme_Pcie_4.0_Nv3_color_azul_oscuro',
+    brand: 'Kingston'
   },
   {
     name: 'Hdd Western Digital 2tb 3.5 Red Plus',
@@ -260,70 +619,425 @@ export const seedData: SeedData = {
     images: ['/img/products/hdd.png', '/img/products/hdd2.png', '/img/products/hdd3.png'],
     slug: 'Hdd_Western_Digital_2tb_35_Red_Plus',
     stock: 50,
+    brand: 'Western Digital'
   },
   {
     name: 'Memory Ram Fury Beast Ddr4 16gb 1 Kingston Kf432c16bb1/16',
     description: 'RAM DDR4 16GB a 3200MHz',
-    price: 329988,
+    price: 329.50,
+    discountPrice: 250.99,
     subCategory: 'DDR4',
     images: ['/img/products/ram.png', '/img/products/ram2.png', '/img/products/ram3.png', '/img/products/ram4.png'],
     slug: 'Memory_Ram_Fury_Beast_Ddr4_16gb_1_Kingston_Kf432c16bb116',
     stock: 50,
+    brand: 'Kingston'
   },
   {
     name: 'Graphic Card Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt',
     description: '"Tarjeta gráfica NVIDIA RTX 4070',
-    price: 2653000,
+    price: 465,
     subCategory: 'NVIDIA Geforce',
     images: ['/img/products/gforce.png', '/img/products/gforce2.png', '/img/products/gforce3.png', '/img/products/gforce4.png'],
     slug: 'Asus_Tuf_Rtx_4070_12gb_Gaming_Gddr6x_192_Bt',
     stock: 50,
+    brand: 'ASUS'
   },
   {
     name: 'Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0',
     description: 'Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0',
-    price: 93585,
+    price: 435,
     subCategory: 'AMD Motherboards',
     images: ['/img/products/mother.png', '/img/products/mother2.png', '/img/products/mother3.png'],
     slug: 'Motherboard_ASRock_A520M-HDV_AMD_AM4_Ryzen_Micro_ATX_DDR4_HDMI_PCIe_30',
     stock: 50,
+    brand:'ASRock'
   },
   {
     name: 'Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency',
     description: 'Disco mecánico para almacenamiento masivo',
-    price: 62546,
+    price: 99,
+    discountPrice: 69,
     subCategory: 'PSUs',
     images: ['/img/products/pcu.png', '/img/products/pcu2.png', '/img/products/pcu3.png', '/img/products/pcu4.png'],
     slug: 'Power_Supply_Unit_PC_ATX_Segotep_U6_650W_2x_PCI-E_80_Efficency',
     stock: 50,
+    brand:'Segotep'
   },
   {
     name: 'Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material',
     description: 'Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material',
-    price: 399.999,
+    price: 399.99,
     subCategory: 'Gaming Chairs',
     images: ['/img/products/chair.png', '/img/products/chair2.png', '/img/products/chair3.png'],
     slug: 'Nictom_Ergonomic_Pro_PC_Gaming_Chair_Black_Reclining_Corduroy_Upholstery_Material',
     stock: 8,
+    brand:'Nictom'
   },
   {
     name: 'Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black',
     description: 'Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black',
-    price: 265999,
+    price: 265.99,
     subCategory: 'Desktops',
     images: ['/img/products/desk.png', '/img/products/desk2.png'],
     slug: 'Gadnic_L_Shaped_Gaming_Desk_for_PC_Wood_Carbon_Fiber_Black',
     stock: 22,
+    brand:'Gadnic'
   },
   {
     name: 'TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extender',
     description: 'TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extendero',
-    price: 59,
+    price: 59.80,
     subCategory: 'WiFi Adapters',
     images: ['/img/products/wifi.png', '/img/products/wifi2.png', '/img/products/wifi3.png'],
     slug: 'TP_Link_TL_WA850RE_V7_Wireless_N_300Mbps_Wall_Mount_Range_Extender',
     stock: 50,
+    brand: 'TP-Link'
   }
-  ]
+  ],
+
+  brands: [
+  { name: 'MSI' },
+  { name: 'Samsung' },
+  { name: 'Philips' },
+  { name: 'Redragon' },
+  { name: 'Marvo' },
+  { name: 'Xtrike Me' },
+  { name: 'Kingston' },
+  { name: 'Western Digital' },
+  { name: 'ASUS' },
+  { name: 'ASRock' },
+  { name: 'Segotep' },
+  { name: 'Nictom' },
+  { name: 'Gadnic' },
+  { name: 'TP-Link' },
+],
+
+  productAttributes: {
+    "Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0": [
+      { attribute:'GPU type', option: 'Dedicated'  },
+      { attribute:'Chipset gpu', valueString: 'RTX 3060'  },
+      { attribute:'Video input', valueBoolean: false  },
+      { attribute:'Double bridge', valueBoolean: false  },
+      { attribute:'Special features', valueString: 'Ray Tracing + DLSS'  },
+
+      { attribute:'Vga', valueNumber: 0  },
+      { attribute:'Dvi digital', valueNumber: 0  },
+      { attribute:'Hdmi', valueNumber: 1  },
+      { attribute:'Displayports', valueNumber: 2  },
+      { attribute:'Usb type-c', valueNumber: 3  },
+
+      { attribute:'Width', valueNumber: 116  },
+      { attribute:'Height', valueNumber: 140  },
+      { attribute:'Length', valueNumber: 224  },
+
+      { attribute:'Approximate consumption', valueNumber: 170  },
+      { attribute:'Minimum recommended Watts', valueNumber: 600  },
+      { attribute:'Amount of 6 pins Pcie', valueNumber: 0  },
+      { attribute:'Amount of 8 pins Pcie', valueNumber: 1  },
+      { attribute:'Amount of 16 pins adapters', valueNumber: 0  },
+      { attribute:'Amount of 16 pins Pcie', valueNumber: 0  },
+
+      { attribute:'Backplate', valueBoolean: false  },
+      { attribute:'Block vga water cooling', valueBoolean: false  },
+      { attribute:'Coolers', valueNumber: 2  },
+
+      { attribute:'Core turbo speed', valueNumber: 1740  },
+      { attribute:'GPU memory type', option: 'GDDR6' },
+      { attribute:'Memory size', valueNumber: 4  },
+      { attribute:'Memory speed', valueNumber: 12000  },
+      { attribute:'Memory interface', valueNumber: 128  },
+      { attribute:'Process types', valueString: 'CUDA'  },
+      { attribute:'Process quantity', valueNumber: 896  },
+    ],
+
+    "Monitor MEG 342C QD-OLED": [
+    { attribute:'Screen size', valueNumber: 34 },
+    { attribute:'Resolution', option:'3440x1440' },
+    { attribute:'Panel type', option:'OLED' },
+    { attribute:'Aspect ratio', option:'21:9' },
+    { attribute:'Curved', valueBoolean: true },
+
+    { attribute:'Refresh rate', valueNumber: 175 },
+    { attribute:'Response time', valueNumber: 1 },
+    { attribute:'Brightness', valueNumber: 1000 },
+    { attribute:'Contrast ratio', valueString:'1500000:1' },
+
+    { attribute:'Hdmi', valueNumber: 2 },
+    { attribute:'Displayports', valueNumber: 1 },
+    { attribute:'Usb ports', valueNumber: 2 },
+    { attribute:'Usb type-c', valueNumber: 1 },
+
+    { attribute:'Speakers', valueBoolean: false },
+    { attribute:'HDR support', valueBoolean: true },
+    { attribute:'G-Sync support', valueBoolean: true },
+    { attribute:'FreeSync support', valueBoolean: true },
+    { attribute:'Vesa mount', valueBoolean: true },
+
+    { attribute:'Width', valueNumber: 814 },
+    { attribute:'Height', valueNumber: 361 },
+    { attribute:'Depth', valueNumber: 293 },
+    { attribute:'Weight', valueNumber: 8100 },
+
+    { attribute:'Power consumption', valueNumber: 90 },
+  ],
+
+  "Monitor SAMSUNG 27” Odyssey G5 G53F QHD 144hz": [
+    { attribute:'Screen size', valueNumber: 27 },
+    { attribute:'Resolution', option:'2560x1440' },
+    { attribute:'Panel type', option:'VA' },
+    { attribute:'Aspect ratio', option:'16:9' },
+    { attribute:'Curved', valueBoolean: true },
+
+    { attribute:'Refresh rate', valueNumber: 144 },
+    { attribute:'Response time', valueNumber: 1 },
+    { attribute:'Brightness', valueNumber: 300 },
+    { attribute:'Contrast ratio', valueString:'2500:1' },
+
+    { attribute:'Hdmi', valueNumber: 1 },
+    { attribute:'Displayports', valueNumber: 1 },
+    { attribute:'Usb ports', valueNumber: 0 },
+    { attribute:'Usb type-c', valueNumber: 0 },
+
+    { attribute:'Speakers', valueBoolean: false },
+    { attribute:'HDR support', valueBoolean: true },
+    { attribute:'G-Sync support', valueBoolean: false },
+    { attribute:'FreeSync support', valueBoolean: true },
+    { attribute:'Vesa mount', valueBoolean: true },
+
+    { attribute:'Width', valueNumber: 616 },
+    { attribute:'Height', valueNumber: 478 },
+    { attribute:'Depth', valueNumber: 272 },
+    { attribute:'Weight', valueNumber: 5200 },
+
+    { attribute:'Power consumption', valueNumber: 48 },
+  ],
+
+  "Monitor Philips 221v877 215” Full Hd 75 Hz": [
+    { attribute:'Screen size', valueNumber: 21.5 },
+    { attribute:'Resolution', option:'1920x1080' },
+    { attribute:'Panel type', option:'IPS' },
+    { attribute:'Aspect ratio', option:'16:9' },
+    { attribute:'Curved', valueBoolean: false },
+
+    { attribute:'Refresh rate', valueNumber: 75 },
+    { attribute:'Response time', valueNumber: 4 },
+    { attribute:'Brightness', valueNumber: 250 },
+    { attribute:'Contrast ratio', valueString:'1000:1' },
+
+    { attribute:'Hdmi', valueNumber: 1 },
+    { attribute:'Displayports', valueNumber: 0 },
+    { attribute:'Usb ports', valueNumber: 0 },
+    { attribute:'Usb type-c', valueNumber: 0 },
+
+    { attribute:'Speakers', valueBoolean: false },
+    { attribute:'HDR support', valueBoolean: false },
+    { attribute:'G-Sync support', valueBoolean: false },
+    { attribute:'FreeSync support', valueBoolean: false },
+    { attribute:'Vesa mount', valueBoolean: true },
+
+    { attribute:'Width', valueNumber: 490 },
+    { attribute:'Height', valueNumber: 380 },
+    { attribute:'Depth', valueNumber: 200 },
+    { attribute:'Weight', valueNumber: 2800 },
+
+    { attribute:'Power consumption', valueNumber: 18 },
+  ],
+
+  "Mechanical Keyboard Gamer Redragon Mitra K551rgb Esp Rgb Sw Red Keyboard Color Black": [
+    { attribute:'Keyboard type', option:'Full size' },
+    { attribute:'Switch type', option:'Gateron Red' },
+    { attribute:'Mechanical', valueBoolean:true },
+    { attribute:'Layout', option:'ISO' },
+
+    { attribute:'Connection type', option:'Wired' },
+    { attribute:'USB passthrough', valueBoolean:false },
+    { attribute:'Cable length', valueNumber:180 },
+
+    { attribute:'RGB lighting', valueBoolean:true },
+    { attribute:'Anti ghosting', valueBoolean:true },
+    { attribute:'Programmable keys', valueBoolean:false },
+
+    { attribute:'Width', valueNumber:435 },
+    { attribute:'Height', valueNumber:38 },
+    { attribute:'Weight', valueNumber:1250 },
+  ],
+
+  "Mouse Gamer Wireless Marvo M803 4800dpi Optic 7 Buttons LED": [
+    { attribute:'Mouse type', option:'Gaming' },
+    { attribute:'Sensor type', option:'Optical' },
+    { attribute:'Max dpi', valueNumber:4800 },
+
+    { attribute:'Connection type', option:'Wireless' },
+    { attribute:'Wireless', valueBoolean:true },
+    { attribute:'Battery life', valueNumber:30 },
+
+    { attribute:'Buttons', valueNumber:7 },
+    { attribute:'RGB lighting', valueBoolean:true },
+
+    { attribute:'Width', valueNumber:70 },
+    { attribute:'Height', valueNumber:40 },
+    { attribute:'Weight', valueNumber:120 },
+  ],
+
+  "Headphones Gamer Light Led Rgb Usb Headset Microphone Xtrike Me Gh516 Para Pc Black sonido envolvente 7.1": [
+    { attribute:'Headphone type', valueString:'Over ear' },
+    { attribute:'Surround sound', valueBoolean:true },
+    { attribute:'Microphone', valueBoolean:true },
+
+    { attribute:'Connection type', valueString:'USB' },
+    { attribute:'USB', valueBoolean:true },
+    { attribute:'Jack 3.5mm', valueBoolean:false },
+
+    { attribute:'Frequency response', valueString:'20Hz-20kHz' },
+    { attribute:'Impedance', valueNumber:32 },
+
+    { attribute:'RGB lighting', valueBoolean:true },
+
+    { attribute:'Weight', valueNumber:310 },
+  ],
+
+  "Ssd M.2 1tb Kingston Nvme Pcie 4.0 Nv3 color azul oscuro": [
+    { attribute:'Storage capacity', valueNumber:1000 },
+    { attribute:'Form factor', valueString:'M.2 2280' },
+    { attribute:'Interface', valueString:'NVMe' },
+
+    { attribute:'Read speed', valueNumber:3500 },
+    { attribute:'Write speed', valueNumber:2800 },
+
+    { attribute:'NVMe support', valueBoolean:true },
+
+    { attribute:'Width', valueNumber:22 },
+    { attribute:'Length', valueNumber:80 },
+
+    { attribute:'Power consumption', valueNumber:5 },
+  ],
+
+  "Hdd Western Digital 2tb 3.5 Red Plus": [
+    { attribute:'Storage capacity', valueNumber:2 },
+    { attribute:'Form factor', valueString:'3.5"' },
+    { attribute:'Interface', valueString:'SATA' },
+
+    { attribute:'RPM', valueNumber:5400 },
+    { attribute:'Cache size', valueNumber:256 },
+
+    { attribute:'Width', valueNumber:101 },
+    { attribute:'Height', valueNumber:26 },
+
+    { attribute:'Power consumption', valueNumber:6 },
+  ],
+
+  "Memory Ram Fury Beast Ddr4 16gb 1 Kingston Kf432c16bb1/16": [
+    { attribute:'Capacity', valueNumber:16 },
+    { attribute:'RAM memory type', option:'DDR4' },
+    { attribute:'Modules', valueNumber:1 },
+
+    { attribute:'Frequency', valueNumber:3200 },
+    { attribute:'CAS latency', valueNumber:16 },
+
+    { attribute:'RGB lighting', valueBoolean:false },
+
+    { attribute:'Voltage', valueNumber:1.35 },
+  ],
+
+  "Graphic Card Asus Tuf Rtx 4070 12gb Gaming Gddr6x 192 Bt": [
+    { attribute:'GPU type', option:'Dedicated' },
+    { attribute:'Chipset gpu', valueString:'RTX 4070' },
+
+    { attribute:'Hdmi', valueNumber:1 },
+    { attribute:'Displayports', valueNumber:3 },
+
+    { attribute:'Width', valueNumber:150 },
+    { attribute:'Height', valueNumber:63 },
+    { attribute:'Length', valueNumber:301 },
+
+    { attribute:'Approximate consumption', valueNumber:200 },
+    { attribute:'Minimum recommended Watts', valueNumber:650 },
+
+    { attribute:'Coolers', valueNumber:3 },
+
+    { attribute:'Core turbo speed', valueNumber:2610 },
+
+    { attribute:'GPU memory type', option:'GDDR6X' },
+    { attribute:'Memory size', valueNumber:12 },
+    { attribute:'Memory speed', valueNumber:21000 },
+    { attribute:'Memory interface', valueNumber:192 },
+
+    { attribute:'Process types', valueString:'CUDA' },
+    { attribute:'Process quantity', valueNumber:5888 },
+  ],
+
+  "Motherboard ASRock A520M-HDV AMD AM4 Ryzen Micro ATX DDR4 HDMI PCIe 3.0": [
+    { attribute:'Socket', valueString:'AM4' },
+    { attribute:'Chipset', valueString:'A520' },
+    { attribute:'Form factor', valueString:'Micro ATX' },
+
+    { attribute:'Max memory', valueNumber:64 },
+    { attribute:'Memory slots', valueNumber:2 },
+
+    { attribute:'PCIe slots', valueNumber:2 },
+    { attribute:'M.2 slots', valueNumber:1 },
+
+    { attribute:'SATA ports', valueNumber:4 },
+
+    { attribute:'USB ports', valueNumber:6 },
+    { attribute:'Ethernet', valueBoolean:true },
+    { attribute:'WiFi', valueBoolean:false },
+  ],
+
+  "Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency": [
+    { attribute:'Power', valueNumber:650 },
+    { attribute:'Efficiency rating', valueString:'80+ Bronze' },
+    { attribute:'Modular', valueString:'Non modular' },
+
+    { attribute:'PCIe connectors', valueNumber:2 },
+    { attribute:'SATA connectors', valueNumber:6 },
+    { attribute:'CPU connectors', valueNumber:1 },
+
+    { attribute:'Fan size', valueNumber:120 },
+
+    { attribute:'Width', valueNumber:150 },
+    { attribute:'Length', valueNumber:140 },
+  ],
+
+  "Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material": [
+    { attribute:'Chair type', valueString:'Gaming' },
+    { attribute:'Material', valueString:'Corduroy' },
+    { attribute:'Ergonomic', valueBoolean:true },
+
+    { attribute:'Reclining', valueBoolean:true },
+    { attribute:'Adjustable height', valueBoolean:true },
+    { attribute:'Lumbar support', valueBoolean:true },
+
+    { attribute:'Max weight', valueNumber:150 },
+  ],
+
+  "Gadnic L-Shaped Gaming Desk for PC, Wood, Carbon Fiber, Black": [
+    { attribute:'Desk type', valueString:'Gaming desk' },
+    { attribute:'Material', valueString:'Wood + Carbon fiber' },
+    { attribute:'Shape', valueString:'L-Shaped' },
+
+    { attribute:'Width', valueNumber:150 },
+    { attribute:'Depth', valueNumber:120 },
+    { attribute:'Height', valueNumber:75 },
+
+    { attribute:'Max load', valueNumber:100 },
+  ],
+
+  "TP-Link TL-WA850RE V7 Wireless N 300Mbps Wall Mount Range Extender": [
+    { attribute:'Max speed', valueNumber:300 },
+    { attribute:'WiFi standard', option:'WiFi 4' },
+    { attribute:'Frequency bands', valueString:'2.4GHz' },
+
+    { attribute:'Ethernet port', valueBoolean:true },
+    { attribute:'WPS button', valueBoolean:true },
+
+    { attribute:'Antennas', valueNumber:2 },
+  ],
+  }
+
+  
+    
+  
 }
+
 

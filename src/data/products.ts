@@ -1,5 +1,5 @@
 // product.ts
-export interface Product {
+export interface ProductLegacy {
   id: number;
   name: string;
   description: string;
@@ -10,7 +10,7 @@ export interface Product {
   slug: string;
 }
 
-export interface CartProducts {
+interface CartProducts {
   id: number;
   name: string;
   slug: string;
@@ -20,7 +20,7 @@ export interface CartProducts {
   max: number;
 }
 
-export const products: Product[] = [
+export const products: ProductLegacy[] = [
   {
     id: 1,
     name: 'Graphic Card GeForce RTX™ 3060 Ti VENTUS 2X0',

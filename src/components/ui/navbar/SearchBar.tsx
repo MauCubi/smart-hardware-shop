@@ -1,11 +1,13 @@
-import { Product, products } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import { Product } from '../../../types/product';
+import { getSearchProducts } from '@/actions/product/get-products-search-results';
 
-export const SearchBar = () => {
+export const SearchBar = () => {  
+
 
   const [searchWord, setSearchWord] = useState<string>('')
   const [results, setResults] = useState<Product[]>([])
@@ -34,24 +36,30 @@ export const SearchBar = () => {
 
   useEffect(() => {
 
-    const timeoutId = setTimeout(() => {
+    const searchProduct = async() => {
 
-      if (searchWord.length < 3) {        
-        setResults([]);
-        return
-      }
+      const timeoutId = setTimeout( async() => {
+  
+        if (searchWord.length < 3) {        
+          setResults([]);
+          return
+        }
 
-      const filtered = products.filter(item =>
-        item.name.toLowerCase().includes(searchWord.toLowerCase())
-      );
-      
-      setResults(filtered);     
-       
-    }, 1500);
+        const filtered = await getSearchProducts(searchWord.toLocaleLowerCase())  
 
-    return () => {
-      clearTimeout(timeoutId);
+        if (filtered) {
+          setResults(filtered);           
+        }
+         
+        }, 1500);
+    
+        return () => {
+          clearTimeout(timeoutId);
+        }
     }
+
+    searchProduct()
+
   }, [searchWord])
 
 
@@ -79,7 +87,7 @@ export const SearchBar = () => {
               <Link key={result.id} href={`/product/${result.slug}`} onMouseDown={e => e.preventDefault()} onClick={ () => setIsFocused(false)}>
                 <div  className='flex flex-row align-middle items-center px-7 py-2 gap-5 cursor-pointer hover:bg-gray-600'>
                   <div className='flex justify-center align-middle  w-[20%] h-[100] self-center xl:self-start p-1 bg-white'>
-                    <Image src={result.image[0]} style={{ width: '100%', height: 'auto' }} width={120} height={120} className='object-contain' alt={result.name}/>
+                    <Image src={result.images[0]} style={{ width: '100%', height: 'auto' }} width={120} height={120} className='object-contain' alt={result.name}/>
                   </div>
                   <div className='mx-auto text-wrap w-[80%]'>
                     <h1 className='titles text-black font-bold'>{ result.name }</h1>

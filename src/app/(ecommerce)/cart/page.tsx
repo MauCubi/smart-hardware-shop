@@ -1,5 +1,4 @@
 'use client'
-import { CartProducts, Product } from '@/data/products';
 import { onAddProductToCart, onClearCart, onRemoveProductFromCart } from '@/store/cart/cartSlice';
 // import { products } from '@/data/products';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -9,8 +8,7 @@ import toast from 'react-hot-toast';
 import { BiTrash } from 'react-icons/bi';
 import { BsCartX } from 'react-icons/bs';
 import { TiDeleteOutline } from 'react-icons/ti';
-
-
+import { CartProducts } from '../../../types/product';
 
 
 export default function CartPage() {
@@ -20,7 +18,7 @@ export default function CartPage() {
   const dispatch = useAppDispatch()
 
   const clearCart = () => dispatch(onClearCart()) 
-  const removeProductFromCart = (id: number) => dispatch(onRemoveProductFromCart(id))
+  const removeProductFromCart = (id: string) => dispatch(onRemoveProductFromCart(id))
 
   const modifyQuantity = (prod: CartProducts, quantity: number) => {    
     if (!(prod.quantity + quantity > prod.max) && !(prod.quantity + quantity < 1) ) {      

@@ -34,7 +34,7 @@ export const CategoryCard = ({ title, subCategories, Icon }: Props) => {
 
       {
         subCategories.slice(0,4).map( subCategory => (
-          <Link key={subCategory} href={`../products/?subcategory=${subCategory}`} onClick={ handleSideMenu }>
+          <Link key={subCategory} href={`../products/?category=${title}&subcategory=${subCategory}`} onClick={ handleSideMenu }>
             <p className='titles xl:text-md text-sm tracking-normal'>{subCategory}</p>
           </Link>
         ))        
