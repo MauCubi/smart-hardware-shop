@@ -25,13 +25,19 @@ export const getProductBySlug = async ( { slug }: Props ) => {
                 group: true,
                 unit: true                
               }
-            },
+            },            
             option: {
               select: {
                 value: true
               }
-            }            
+            },                        
           },                    
+        },
+        subCategory: {
+          select: {
+            name: true,
+            category: true
+          }
         }   
         
       }      

@@ -70,22 +70,22 @@ const ProductDetails = ({ prod }: Props) => {
       </div>
 
       <div className='xl:h-fit w-full xl:w-[50%]'>
-        <div className='text-gray-300 flex gap-1 mb-4 text-xs xl:text-base wrap-normal'>
+        <div className='text-gray-300 gap-1 mb-4 text-xs xl:text-base wrap-normal'>
           <Link
             className='hover:text-[#637a91] transform duration-300'
-            href='#'
+            href={`../products/?category=${prod.subCategory?.category?.name}`}
           >
-            Category
+            { prod.subCategory?.category?.name }
           </Link>
-          <span className='text-gray-500'>&gt;</span>
+          <span className='text-gray-500'>  &gt;  </span>
           <Link
             className='hover:text-[#637a91] transform duration-300'
-            href='#'
+            href={`../products/?category=${prod.subCategory?.category?.name}&subcategory=${prod.subCategory?.name}`}
           >
-            SubCategory
+            { prod.subCategory?.name }
           </Link>
-          <span className='text-gray-500'>&gt;</span>
-          <span className='flex wrap-'>{prod?.name}</span>
+          <span className='text-gray-500'>  &gt;  </span>
+          <span>{prod?.name}</span>
         </div>
 
         <h1 className='titles mt-6 xl:mt-0 text-3xl xl:text-4xl'>{prod?.name}</h1>

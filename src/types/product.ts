@@ -9,7 +9,16 @@ export interface Product {
     slug: string;
     images: string[];
     subCategoryId: string;
+    subCategory?: SubCategory; 
     brandId: string
+}
+
+export interface Category {
+  name: string,  
+}
+export interface SubCategory {
+  name: string, 
+  category?: Category 
 }
 
 export interface CartProducts {
