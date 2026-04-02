@@ -56,9 +56,9 @@ export default async function SearchPage({ searchParams }: Props) {
   // const value = (filters['category'] ? String(filters['category']): String(filters['subcategory']))
   // const field = filters['category'] ? 'category' : 'subCategory'
   
-  const {products, brandFilter} = await getByCategory(where, category as string)   
+  const {products, brandFilter, subCategoryFilter} = await getByCategory(where, category as string)   
 
-  console.log(products.length, brandFilter)
+  console.log(products.length, brandFilter, subCategoryFilter)
 
   return (
     <div className='min-h-200 py-20 md:pt-14 xl:py-0'>
@@ -66,7 +66,7 @@ export default async function SearchPage({ searchParams }: Props) {
       <div className='flex flex-row'>
 
         <div className='hidden md:flex bg-[#181818]'>
-          <DesktopFilter brandFilters={brandFilter}/>          
+          <DesktopFilter brandFilters={brandFilter} subCategoryFilter={subCategoryFilter}/>          
         </div>
 
         <div className='flex flex-col w-full md:pt-8 xl:pt-6'>

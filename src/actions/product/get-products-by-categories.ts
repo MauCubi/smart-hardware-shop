@@ -72,6 +72,24 @@ export const getByCategory = async( where: Prisma.ProductWhereInput, category: s
       }
     });
 
+    const subCategoriesCounts = await prisma.product.groupBy({
+      by: ['subCategoryId'],
+      where: {
+        subCategory: {
+          category: { name: category }
+        }
+      },
+      _count: true
+    });
+
+    const subCategories = await prisma.subCategory.findMany({
+      where: {
+        id: {
+          in: subCategoriesCounts.map(b => b.subCategoryId)
+        }
+      }
+    });
+
     const brandsWithCount = brands.map((brand) => {
     const found = brandCounts.find(b => b.brandId === brand.id);
 
@@ -80,10 +98,20 @@ export const getByCategory = async( where: Prisma.ProductWhereInput, category: s
       count: found?._count || 0
     };
   });
+
+    const subCategoriesWithCount = subCategories.map((subCategory) => {
+    const found = subCategoriesCounts.find(b => b.subCategoryId === subCategory.id);
+
+    return {
+      ...subCategory,
+      count: found?._count || 0
+    };
+  });
       
     return {
       products: products,
-      brandFilter: brandsWithCount
+      brandFilter: brandsWithCount,
+      subCategoryFilter: subCategoriesWithCount
     }
       
   } catch (error) {
