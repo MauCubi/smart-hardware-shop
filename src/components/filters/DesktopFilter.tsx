@@ -22,6 +22,8 @@ export const DesktopFilter = ({ brandFilters, subCategoryFilter }: Props) => {
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams.toString())
   const router = useRouter()
+
+  
   
   const changeFilter = (filter: string, value: string) => {
     
@@ -33,6 +35,13 @@ export const DesktopFilter = ({ brandFilters, subCategoryFilter }: Props) => {
     
   }
 
+  const removeFilter = (filter: string) => {
+
+    params.delete(filter)
+
+    router.push(pathname + '?' + params)
+  }
+
 
 
   return (
@@ -40,6 +49,17 @@ export const DesktopFilter = ({ brandFilters, subCategoryFilter }: Props) => {
       <h1 className='titles text-3xl p-8 font-bold'>Filters</h1>
 
       <div className='flex flex-col px-8 mb-4'>
+        <div className='flex mb-4 gap-2'>                   
+          {
+            Array.from(searchParams.entries()).map( ([filter, value]) => (
+              filter !== 'category' && 
+              <div key={filter} className='flex flex-row w-fit bg-white py-1 px-2 rounded-lg gap-2'>
+                <p>{ value }</p>
+                <button className='font-bold cursor-pointer' onClick={ () => removeFilter(filter) } >x</button>
+              </div>
+            ) )
+          }
+        </div>
         
 
         <h1 className='titles text-2xl font-bold text-[#7eb7ef]'>
