@@ -7246,6 +7246,8 @@ export namespace Prisma {
     slug: string | null
     subCategoryId: string | null
     brandId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -7259,6 +7261,8 @@ export namespace Prisma {
     slug: string | null
     subCategoryId: string | null
     brandId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -7273,6 +7277,8 @@ export namespace Prisma {
     images: number
     subCategoryId: number
     brandId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -7300,6 +7306,8 @@ export namespace Prisma {
     slug?: true
     subCategoryId?: true
     brandId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -7313,6 +7321,8 @@ export namespace Prisma {
     slug?: true
     subCategoryId?: true
     brandId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -7327,6 +7337,8 @@ export namespace Prisma {
     images?: true
     subCategoryId?: true
     brandId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7428,6 +7440,8 @@ export namespace Prisma {
     images: string[]
     subCategoryId: string
     brandId: string
+    createdAt: Date
+    updatedAt: Date
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -7461,6 +7475,8 @@ export namespace Prisma {
     images?: boolean
     subCategoryId?: boolean
     brandId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
     brands?: boolean | Product$brandsArgs<ExtArgs>
     productAttributes?: boolean | Product$productAttributesArgs<ExtArgs>
@@ -7479,6 +7495,8 @@ export namespace Prisma {
     images?: boolean
     subCategoryId?: boolean
     brandId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
     brands?: boolean | Product$brandsArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -7495,6 +7513,8 @@ export namespace Prisma {
     images?: boolean
     subCategoryId?: boolean
     brandId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
     brands?: boolean | Product$brandsArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -7511,9 +7531,11 @@ export namespace Prisma {
     images?: boolean
     subCategoryId?: boolean
     brandId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "stock" | "sku" | "price" | "discountPrice" | "slug" | "images" | "subCategoryId" | "brandId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "stock" | "sku" | "price" | "discountPrice" | "slug" | "images" | "subCategoryId" | "brandId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subCategory?: boolean | SubCategoryDefaultArgs<ExtArgs>
     brands?: boolean | Product$brandsArgs<ExtArgs>
@@ -7548,6 +7570,8 @@ export namespace Prisma {
       images: string[]
       subCategoryId: string
       brandId: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -7985,6 +8009,8 @@ export namespace Prisma {
     readonly images: FieldRef<"Product", 'String[]'>
     readonly subCategoryId: FieldRef<"Product", 'String'>
     readonly brandId: FieldRef<"Product", 'String'>
+    readonly createdAt: FieldRef<"Product", 'DateTime'>
+    readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
     
 
@@ -11742,7 +11768,9 @@ export namespace Prisma {
     slug: 'slug',
     images: 'images',
     subCategoryId: 'subCategoryId',
-    brandId: 'brandId'
+    brandId: 'brandId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -12169,6 +12197,8 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Product">
     subCategoryId?: StringFilter<"Product"> | string
     brandId?: StringFilter<"Product"> | string
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
     subCategory?: XOR<SubCategoryScalarRelationFilter, SubCategoryWhereInput>
     brands?: XOR<BrandNullableScalarRelationFilter, BrandWhereInput> | null
     productAttributes?: ProductAttributeListRelationFilter
@@ -12186,6 +12216,8 @@ export namespace Prisma {
     images?: SortOrder
     subCategoryId?: SortOrder
     brandId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     subCategory?: SubCategoryOrderByWithRelationInput
     brands?: BrandOrderByWithRelationInput
     productAttributes?: ProductAttributeOrderByRelationAggregateInput
@@ -12206,6 +12238,8 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Product">
     subCategoryId?: StringFilter<"Product"> | string
     brandId?: StringFilter<"Product"> | string
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
     subCategory?: XOR<SubCategoryScalarRelationFilter, SubCategoryWhereInput>
     brands?: XOR<BrandNullableScalarRelationFilter, BrandWhereInput> | null
     productAttributes?: ProductAttributeListRelationFilter
@@ -12223,6 +12257,8 @@ export namespace Prisma {
     images?: SortOrder
     subCategoryId?: SortOrder
     brandId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -12245,6 +12281,8 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Product">
     subCategoryId?: StringWithAggregatesFilter<"Product"> | string
     brandId?: StringWithAggregatesFilter<"Product"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
 
   export type BrandWhereInput = {
@@ -12675,6 +12713,8 @@ export namespace Prisma {
     discountPrice?: number | null
     slug: string
     images?: ProductCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     subCategory: SubCategoryCreateNestedOneWithoutProductsInput
     brands?: BrandCreateNestedOneWithoutProductsInput
     productAttributes?: ProductAttributeCreateNestedManyWithoutProductInput
@@ -12692,6 +12732,8 @@ export namespace Prisma {
     images?: ProductCreateimagesInput | string[]
     subCategoryId: string
     brandId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     productAttributes?: ProductAttributeUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -12705,6 +12747,8 @@ export namespace Prisma {
     discountPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subCategory?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
     brands?: BrandUpdateOneWithoutProductsNestedInput
     productAttributes?: ProductAttributeUpdateManyWithoutProductNestedInput
@@ -12722,6 +12766,8 @@ export namespace Prisma {
     images?: ProductUpdateimagesInput | string[]
     subCategoryId?: StringFieldUpdateOperationsInput | string
     brandId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productAttributes?: ProductAttributeUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -12737,6 +12783,8 @@ export namespace Prisma {
     images?: ProductCreateimagesInput | string[]
     subCategoryId: string
     brandId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -12749,6 +12797,8 @@ export namespace Prisma {
     discountPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductUncheckedUpdateManyInput = {
@@ -12763,6 +12813,8 @@ export namespace Prisma {
     images?: ProductUpdateimagesInput | string[]
     subCategoryId?: StringFieldUpdateOperationsInput | string
     brandId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BrandCreateInput = {
@@ -13243,6 +13295,17 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type BrandNullableScalarRelationFilter = {
     is?: BrandWhereInput | null
     isNot?: BrandWhereInput | null
@@ -13260,6 +13323,8 @@ export namespace Prisma {
     images?: SortOrder
     subCategoryId?: SortOrder
     brandId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -13279,6 +13344,8 @@ export namespace Prisma {
     slug?: SortOrder
     subCategoryId?: SortOrder
     brandId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -13292,6 +13359,8 @@ export namespace Prisma {
     slug?: SortOrder
     subCategoryId?: SortOrder
     brandId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -13346,6 +13415,20 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type BrandCountOrderByAggregateInput = {
@@ -13928,6 +14011,10 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type SubCategoryUpdateOneRequiredWithoutProductsNestedInput = {
     create?: XOR<SubCategoryCreateWithoutProductsInput, SubCategoryUncheckedCreateWithoutProductsInput>
     connectOrCreate?: SubCategoryCreateOrConnectWithoutProductsInput
@@ -14208,6 +14295,17 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -14254,6 +14352,20 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedBoolNullableFilter<$PrismaModel = never> = {
@@ -14370,6 +14482,8 @@ export namespace Prisma {
     discountPrice?: number | null
     slug: string
     images?: ProductCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     brands?: BrandCreateNestedOneWithoutProductsInput
     productAttributes?: ProductAttributeCreateNestedManyWithoutProductInput
   }
@@ -14385,6 +14499,8 @@ export namespace Prisma {
     slug: string
     images?: ProductCreateimagesInput | string[]
     brandId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     productAttributes?: ProductAttributeUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -14462,6 +14578,8 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Product">
     subCategoryId?: StringFilter<"Product"> | string
     brandId?: StringFilter<"Product"> | string
+    createdAt?: DateTimeFilter<"Product"> | Date | string
+    updatedAt?: DateTimeFilter<"Product"> | Date | string
   }
 
   export type CategoryUpsertWithoutSubCategoriesInput = {
@@ -14986,6 +15104,8 @@ export namespace Prisma {
     discountPrice?: number | null
     slug: string
     images?: ProductCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     subCategory: SubCategoryCreateNestedOneWithoutProductsInput
     productAttributes?: ProductAttributeCreateNestedManyWithoutProductInput
   }
@@ -15001,6 +15121,8 @@ export namespace Prisma {
     slug: string
     images?: ProductCreateimagesInput | string[]
     subCategoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     productAttributes?: ProductAttributeUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -15040,6 +15162,8 @@ export namespace Prisma {
     discountPrice?: number | null
     slug: string
     images?: ProductCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     subCategory: SubCategoryCreateNestedOneWithoutProductsInput
     brands?: BrandCreateNestedOneWithoutProductsInput
   }
@@ -15056,6 +15180,8 @@ export namespace Prisma {
     images?: ProductCreateimagesInput | string[]
     subCategoryId: string
     brandId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductCreateOrConnectWithoutProductAttributesInput = {
@@ -15128,6 +15254,8 @@ export namespace Prisma {
     discountPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subCategory?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
     brands?: BrandUpdateOneWithoutProductsNestedInput
   }
@@ -15144,6 +15272,8 @@ export namespace Prisma {
     images?: ProductUpdateimagesInput | string[]
     subCategoryId?: StringFieldUpdateOperationsInput | string
     brandId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttributeUpsertWithoutProductAttributesInput = {
@@ -15237,6 +15367,8 @@ export namespace Prisma {
     slug: string
     images?: ProductCreateimagesInput | string[]
     brandId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SubCategoryAttributeCreateManySubCategoryInput = {
@@ -15253,6 +15385,8 @@ export namespace Prisma {
     discountPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     brands?: BrandUpdateOneWithoutProductsNestedInput
     productAttributes?: ProductAttributeUpdateManyWithoutProductNestedInput
   }
@@ -15268,6 +15402,8 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
     brandId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productAttributes?: ProductAttributeUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -15282,6 +15418,8 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
     brandId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubCategoryAttributeUpdateWithoutSubCategoryInput = {
@@ -15450,6 +15588,8 @@ export namespace Prisma {
     slug: string
     images?: ProductCreateimagesInput | string[]
     subCategoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductUpdateWithoutBrandsInput = {
@@ -15462,6 +15602,8 @@ export namespace Prisma {
     discountPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subCategory?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
     productAttributes?: ProductAttributeUpdateManyWithoutProductNestedInput
   }
@@ -15477,6 +15619,8 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
     subCategoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productAttributes?: ProductAttributeUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -15491,6 +15635,8 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     images?: ProductUpdateimagesInput | string[]
     subCategoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -1,56 +1,28 @@
 'use server'
 import { prisma } from '@/lib/prisma';
-import { Prisma, SubCategory } from '../../../generated/prisma/index';
-import { subscribe } from 'diagnostics_channel';
+import { Prisma } from '../../../generated/prisma/index';
 
 
+export const getByCategory = async( where: Prisma.ProductWhereInput, category: string, sort: string = 'new') => {  
 
-// export const getByCategory = async( category: string, search: 'category' | 'subCategory' ) => {
+  let sortOrder: Prisma.ProductOrderByWithRelationInput  
 
-//   try {      
-        
-//     // const subCategory = await prisma.subCategory.findFirst({where: { name: category } })    
+  if (sort === 'new') {
+    sortOrder = {
+      createdAt: 'desc'
+    }
+  } else {
+    sortOrder = {
+      price: sort === 'highprice' ? 'desc' : 'asc'
+    }
+  }
 
-
-
-    
-//     let products
-
-//     if (search === 'subCategory') {
-//       products = await prisma.product.findMany({
-//         where: {
-//           OR:[
-//             { subCategory: { name: category }}
-//           ]
-//         },        
-//       })          
-//     } else {
-//      products = await prisma.product.findMany({
-//         where: {
-//           subCategory: {
-//             category: {
-//               name: category
-//             }
-//           }
-//         }      
-//       })        
-//     }
-        
-//       return products
-      
-//     } catch (error) {
-//       throw new Error('No se pudo cargar los productos');
-//       console.log(error)
-//     }
-
-// }
-
-export const getByCategory = async( where: Prisma.ProductWhereInput, category: string) => {
 
   try {    
 
     const products = await prisma.product.findMany({
-      where: where,      
+      where: where,
+      orderBy: sortOrder
     })
 
 

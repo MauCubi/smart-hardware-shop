@@ -1,6 +1,7 @@
 'use client'
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useFilter } from '@/hooks/useFilter'
+import { useSearchParams } from 'next/navigation'
 
 interface Filters {
   id: string,
@@ -13,35 +14,14 @@ interface Props {
 }
 
 
-
 export const DesktopFilter = ({ brandFilters, subCategoryFilter }: Props) => {
 
 
-    
-  const pathname = usePathname()
+  const { changeFilter, removeFilter } = useFilter()    
+
   const searchParams = useSearchParams()
-  const params = new URLSearchParams(searchParams.toString())
-  const router = useRouter()
 
-  
-  
-  const changeFilter = (filter: string, value: string) => {
-    
-    params.set(filter, value)
-
-    console.log(params.toString())
-
-    router.push(pathname + '?' + params)
-    
-  }
-
-  const removeFilter = (filter: string) => {
-
-    params.delete(filter)
-
-    router.push(pathname + '?' + params)
-  }
-
+  const arrayCheck = ['category', 'sort']
 
 
   return (
@@ -52,7 +32,8 @@ export const DesktopFilter = ({ brandFilters, subCategoryFilter }: Props) => {
         <div className='flex mb-4 gap-2'>                   
           {
             Array.from(searchParams.entries()).map( ([filter, value]) => (
-              filter !== 'category' && 
+              // filter !== 'category' &&
+              !arrayCheck.includes(filter) && 
               <div key={filter} className='flex flex-row w-fit bg-white py-1 px-2 rounded-lg gap-2'>
                 <p>{ value }</p>
                 <button className='font-bold cursor-pointer' onClick={ () => removeFilter(filter) } >x</button>

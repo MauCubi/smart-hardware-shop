@@ -1,11 +1,9 @@
-import { getPaginatedProducts } from '@/actions/product/get-paginated-products';
 import { getByCategory } from '@/actions/product/get-products-by-categories';
 import { DesktopFilter } from '@/components/filters/DesktopFilter';
 import { MobileFilter } from '@/components/filters/MobileFilter';
 import { ProductsGrid } from '@/components/products/ProductsGrid';
-import { products } from '@/data/products';
-import { IoFilterSharp } from 'react-icons/io5';
 import { Prisma } from '../../../../generated/prisma';
+import { SortMenu } from '@/components/filters/SortMenu';
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -16,6 +14,7 @@ interface Props {
 export default async function SearchPage({ searchParams }: Props) {
   const filters = await searchParams;  
 
+  const { sort } = filters
 
   const category = Array.isArray(filters.category)
   ? filters.category[0]
@@ -28,8 +27,6 @@ export default async function SearchPage({ searchParams }: Props) {
   const brand = Array.isArray(filters.brand)
     ? filters.brand[0]
     : filters.brand;
-
-  console.log(category, subcategory, brand)
 
   const andFilters: Prisma.ProductWhereInput[] = [];
 
@@ -53,12 +50,7 @@ export default async function SearchPage({ searchParams }: Props) {
     AND: andFilters
   };
   
-  // const value = (filters['category'] ? String(filters['category']): String(filters['subcategory']))
-  // const field = filters['category'] ? 'category' : 'subCategory'
-  
-  const {products, brandFilter, subCategoryFilter} = await getByCategory(where, category as string)   
-
-  console.log(products.length, brandFilter, subCategoryFilter)
+  const {products, brandFilter, subCategoryFilter} = await getByCategory(where, category as string, sort as string)   
 
   return (
     <div className='min-h-200 py-20 md:pt-14 xl:py-0'>
@@ -72,21 +64,11 @@ export default async function SearchPage({ searchParams }: Props) {
         <div className='flex flex-col w-full md:pt-8 xl:pt-6'>
           <h1 className='text-3xl titles px-8 mb-2'>{ filters['subcategory'] ? JSON.stringify(filters['subcategory'], null, 2).replace(/"/g, "") : JSON.stringify(filters['category'], null, 2).replace(/"/g, "") }</h1>
 
-          <div className='flex flex-col justify-center px-8'>
-            <label htmlFor="sort" className="block mb-2.5 text-sm font-bold text-heading titles">Order By</label>
-            <select
-              id='sort'
-              className='block w-full px-3 py-2.5  border border-default-medium border-[#0A84FF] rounded titles text-heading text-sm rounded-base shadow-xs'          
-            >          
-              <option className='text-gray-900 rounded' value='US'>All</option>
-              <option className='text-gray-900 rounded' value='CA'>Highest Price</option>
-              <option className='text-gray-900 rounded' value='FR'>Lowest Price</option>          
-            </select>
-          </div>
+          <SortMenu />
 
 
           <div className='md:hidden'>
-            <MobileFilter />
+            <MobileFilter brandFilters={brandFilter} subCategoryFilter={subCategoryFilter}/>
           </div>
 
           {products.length > 0
@@ -104,13 +86,6 @@ export default async function SearchPage({ searchParams }: Props) {
         </div>
 
       </div>
-
-
-      
-
-      
-
-
 
     </div>
   );

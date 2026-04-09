@@ -86,6 +86,8 @@ model Product {
   brandId String
 
   productAttributes ProductAttribute[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
 }
 
 model Brand {

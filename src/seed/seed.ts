@@ -8,10 +8,10 @@ const { categories, subCategories, products, attributes, attributeOptions, produ
 
 async function main() {  
 
-  await prisma.brand.deleteMany()
   await prisma.attributeOption.deleteMany()
   await prisma.productAttribute.deleteMany()
   await prisma.product.deleteMany()
+  await prisma.brand.deleteMany()
   await prisma.subCategoryAttribute.deleteMany()
   await prisma.subCategory.deleteMany()
   await prisma.category.deleteMany()
