@@ -28,7 +28,8 @@ export const LoginForm = () => {
 
     const response = await signIn('credentials', { email, password, redirect:false });
     console.log(response)
-    router.push('/') 
+    // router.push('/') 
+    // router.back()
   }
 
 
