@@ -1,3 +1,4 @@
+import { AddressForm } from '@/components/ui/address/AddressForm';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
@@ -14,8 +15,8 @@ export default async function CheckoutPage() {
   } 
 
   return (
-    <div>
-      <p>hola</p>
+    <div className='flex flex-col justify-center align-middle items-center'>
+      <AddressForm />
     </div>
   );
 }

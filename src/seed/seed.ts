@@ -2,6 +2,8 @@ import 'dotenv/config'
 import { Category, SubCategory, Product, Attribute, AttributeOption, Brand } from '../../generated/prisma';
 import { seedData } from './seed-products';
 import { prisma } from '@/lib/prisma';
+import { countries } from './seed-countries';
+
 
 
 const { categories, subCategories, products, attributes, attributeOptions, productAttributes, brands } = seedData
@@ -16,6 +18,7 @@ async function main() {
   await prisma.subCategory.deleteMany()
   await prisma.category.deleteMany()
   await prisma.attribute.deleteMany()
+  await prisma.country.deleteMany()
 
   
   const createdBrands: Record<string, Brand> = {}
@@ -25,6 +28,10 @@ async function main() {
   const createdAttributes: Record<string, Attribute> = {}
   const createdAttributeOptions: Record<string, AttributeOption> = {}
   // const createdProductAttributes: Record<string, ProductAttribute> = {}
+
+  await prisma.country.createMany({
+    data: countries
+  })
 
   for(const category of categories){
     const categoryDb = await prisma.category.create({

@@ -192,6 +192,60 @@ exports.Prisma.UserScalarFieldEnum = {
   rol: 'rol'
 };
 
+exports.Prisma.CountryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
+  price: 'price',
+  orderId: 'orderId',
+  productId: 'productId'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  subTotal: 'subTotal',
+  tax: 'tax',
+  total: 'total',
+  itemsInOrder: 'itemsInOrder',
+  isPaid: 'isPaid',
+  paidAt: 'paidAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.UserAddressScalarFieldEnum = {
+  id: 'id',
+  street: 'street',
+  streetNumber: 'streetNumber',
+  apartment: 'apartment',
+  city: 'city',
+  state: 'state',
+  zipCode: 'zipCode',
+  country: 'country',
+  additionalInfo: 'additionalInfo',
+  isDefault: 'isDefault',
+  userId: 'userId'
+};
+
+exports.Prisma.OrderAddressScalarFieldEnum = {
+  id: 'id',
+  street: 'street',
+  streetNumber: 'streetNumber',
+  apartment: 'apartment',
+  city: 'city',
+  state: 'state',
+  zipCode: 'zipCode',
+  additionalInfo: 'additionalInfo',
+  orderId: 'orderId',
+  countryId: 'countryId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -227,7 +281,12 @@ exports.Prisma.ModelName = {
   Product: 'Product',
   Brand: 'Brand',
   ProductAttribute: 'ProductAttribute',
-  User: 'User'
+  User: 'User',
+  Country: 'Country',
+  OrderItem: 'OrderItem',
+  Order: 'Order',
+  UserAddress: 'UserAddress',
+  OrderAddress: 'OrderAddress'
 };
 
 /**
