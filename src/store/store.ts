@@ -3,6 +3,7 @@ import { uiSlice } from './ui/uiSlice';
 import { builderSlice } from './builder/builderSlice';
 import { cartSlice } from './cart/cartSlice';
 import { authSlice } from './auth/authSlice';
+import { addressSlice } from './address/addressSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
       builder: builderSlice.reducer,
       cart: cartSlice.reducer,
       auth: authSlice.reducer,
+      address: addressSlice.reducer,
     },
   });
 };

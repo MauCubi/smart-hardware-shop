@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { BiTrash } from 'react-icons/bi';
 import { BsCartX } from 'react-icons/bs';
 import { TiDeleteOutline } from 'react-icons/ti';
-import { CartProducts } from '../../../types/product';
+import { CartProducts, Product } from '../../../types/product';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -39,6 +39,7 @@ export const CartItems = () => {
 
       
       const validateProducts = async () => {
+        console.log("OOOOO", products)
 
         if (products.length > 0) {
           const data = await fetch('/api/cart/validate', {
@@ -51,12 +52,21 @@ export const CartItems = () => {
   
           const productsValidated = await data.json()
 
-          if (!productsValidated?.items) return;
+          console.log(productsValidated)
 
-          const itemsWithImage = productsValidated.items.map((product: { images: string[], discountPrice: number | null, price: number; }) => ({
-            ...product,
+          if (!productsValidated) return;
+
+          // const itemsWithImage = productsValidated.map((product: { images: string[], discountPrice: number | null, price: number, id: string, stock: number, name: string }) => ({
+          const itemsWithImage = productsValidated.map((product: Product) => ({           
+            id: product.id,
+            slug: product.slug,
+            name: product.name,
+            max: product.stock,
             image: product.images?.[0] || null,
-            price: product.discountPrice ?? product.price
+            price: product.discountPrice ?? product.price,
+            quantity:  products.find(p => p.id === product.id)
+              ? Math.min(products.find(p => p.id === product.id)!.quantity, product.stock)
+              : product.stock
           }));
 
           dispatch(onLoadCart(itemsWithImage))        

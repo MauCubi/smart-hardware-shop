@@ -1,8 +1,9 @@
 'use client'
 import { countries, Country } from '@/seed/seed-countries';
+import { onSetAddress } from '@/store/address/addressSlice';
+import { useAppDispatch } from '@/store/hooks';
 import { useForm } from 'react-hook-form'
 import { FaInfoCircle } from 'react-icons/fa';
-import { FaExclamation } from 'react-icons/fa6';
 
 type FormInputs = {
   street: string,
@@ -12,7 +13,7 @@ type FormInputs = {
   city: string,
   state: string,
   zipCode: string,
-  observation: string,
+  observation?: string,
   name: string,
   phone: string,
   idNumber: string,
@@ -26,12 +27,13 @@ interface Props {
 
 export const AddressForm = () => {
   
-  const { reset, handleSubmit, formState, register } = useForm<FormInputs>()
+  const { reset, handleSubmit, formState: { errors } , register } = useForm<FormInputs>()
+
+  const dispatch = useAppDispatch()
 
   const onSubmit = ( data: FormInputs) => {
-
-    
-    
+    console.log(data)
+    dispatch(onSetAddress(data))    
   }
 
   return (
@@ -48,18 +50,21 @@ export const AddressForm = () => {
           <input id='street' type='text' { ...register('street', {required: "Street is required", minLength: { value: 3, message: "Street name too short" }}) }             
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '            
           />
+          {errors.street && <span className='text-red-500'>{errors.street.message}</span>}
         </div>
 
         <div className='flex md:justify-between gap-6 md:gap-4 '>
           <div className='flex flex-col'>
             <label htmlFor='streetNumber' className='block mb-2.5 text-sm titles'>Number*</label>
-            <input id='streetNumber' type='text' { ...register('streetNumber', {required: "Street number is required", pattern: { value: /^\d+$/, message: "Only numbers allowed" }}) } 
+            <input id='streetNumber' type='text' { ...register('streetNumber', {required: "Street number is required", pattern: { value: /^\d+$/, message: "Only numbers allowed" }}) }          
             inputMode="numeric"
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '
             onChange={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, "");
+                register('streetNumber').onChange(e)
               }}
             />
+            {errors.streetNumber && <span className='text-red-500'>{errors.streetNumber.message}</span>}
           </div>
           <div className='flex flex-col' >
             <label htmlFor='apartment' className='block mb-2.5 text-sm titles'>Appartment</label>
@@ -87,6 +92,7 @@ export const AddressForm = () => {
                 ))
               }
             </select>
+            {errors.country && <span className='text-red-500'>{errors.country.message}</span>}
           </div>
 
           <div className='flex flex-col w-full' >
@@ -94,6 +100,7 @@ export const AddressForm = () => {
             <input id='state' type='text' { ...register('state', {required: "State/Province is required"}) } 
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
             />
+            {errors.state && <span className='text-red-500'>{errors.state.message}</span>}
           </div>
 
         </div>
@@ -109,6 +116,7 @@ export const AddressForm = () => {
             <input id='city' type='text' { ...register('city', {required: "City is required", minLength: { value: 2, message: "City name too short" }}) } 
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
             />
+            {errors.city && <span className='text-red-500'>{errors.city.message}</span>}
           </div>
 
           <div className='flex flex-col w-full' >
@@ -118,8 +126,10 @@ export const AddressForm = () => {
               inputMode="numeric"
               onChange={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, "");
+                register('zipCode').onChange(e)
               }}
-              />
+            />
+            {errors.zipCode && <span className='text-red-500'>{errors.zipCode.message}</span>}
           </div>
 
         </div>
@@ -132,6 +142,7 @@ export const AddressForm = () => {
           <input id='observation' maxLength={100} type='text' { ...register('observation', {required: false, maxLength: { value: 100, message: "Max 100 characters"}}) } 
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
           />
+          {errors.observation && <span className='text-red-500'>{errors.observation.message}</span>}
         </div>        
       </div>
 
@@ -146,6 +157,7 @@ export const AddressForm = () => {
           <input id='name' maxLength={100} type='text' { ...register('name', {required: "Name is required", minLength: { value: 3, message: "Name too short"}}) } 
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
           />
+          {errors.name && <span className='text-red-500'>{errors.name.message}</span>}
         </div>        
       </div>
 
@@ -159,6 +171,7 @@ export const AddressForm = () => {
                 e.target.value = e.target.value.replace(/\D/g, "");
               }}
             />
+            {errors.phone && <span className='text-red-500'>{errors.phone.message}</span>}
           </div>
 
           <div className='flex flex-col w-full' >
@@ -169,7 +182,8 @@ export const AddressForm = () => {
               onChange={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, "");
               }}
-              />
+            />
+            {errors.idNumber && <span className='text-red-500'>{errors.idNumber.message}</span>}
           </div>
 
       </div>
@@ -185,7 +199,7 @@ export const AddressForm = () => {
             Back
           </button>
 
-          <button className='titles py-2 px-4 bg-[#0A84FF] rounded-lg cursor-pointer hover:bg-[#016edb]'>
+          <button type='submit' className='titles py-2 px-4 bg-[#0A84FF] rounded-lg cursor-pointer hover:bg-[#016edb]'>
             Continue
           </button>
 
