@@ -2,11 +2,11 @@ import { Address } from '@/types/address';
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface SliceAddress {
-  address: Address | null
+  currentAddress: Address | null
 }
 
 const initialState: SliceAddress = {
-  address: null,
+  currentAddress: null,
 };
 
 export const addressSlice = createSlice({
@@ -15,7 +15,7 @@ export const addressSlice = createSlice({
 
   reducers: {
     onSetAddress: ( state, { payload } ) => {
-      state.address = payload
+      state.currentAddress = payload
     },
   },
 });

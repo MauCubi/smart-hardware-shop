@@ -30,5 +30,10 @@
   .swiper-custom {
     @apply h-[100%] md:h-full
   }
+  
 }
+
+/* html {
+  overflow-y: scroll;
+} */
 

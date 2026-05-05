@@ -1,7 +1,8 @@
 'use client'
-import { countries, Country } from '@/seed/seed-countries';
+import { Country } from '@/seed/seed-countries';
 import { onSetAddress } from '@/store/address/addressSlice';
 import { useAppDispatch } from '@/store/hooks';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form'
 import { FaInfoCircle } from 'react-icons/fa';
 
@@ -25,15 +26,19 @@ interface Props {
 }
 
 
-export const AddressForm = () => {
-  
+export const AddressForm = ({ countries }: Props) => {
+
   const { reset, handleSubmit, formState: { errors } , register } = useForm<FormInputs>()
 
   const dispatch = useAppDispatch()
 
+  const route = useRouter()
+
   const onSubmit = ( data: FormInputs) => {
     console.log(data)
-    dispatch(onSetAddress(data))    
+    dispatch(onSetAddress(data))
+    route.push('/checkout/summary')
+    
   }
 
   return (
@@ -47,8 +52,8 @@ export const AddressForm = () => {
       <div className='flex flex-col md:flex-row justify-between mb-4 gap-4'>
         <div className='flex flex-col md:w-[60%]'>
           <label htmlFor='street' className='titles block mb-2.5 text-sm '>Street*</label>
-          <input id='street' type='text' { ...register('street', {required: "Street is required", minLength: { value: 3, message: "Street name too short" }}) }             
-            className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '            
+          <input id='street' type='text' { ...register('street', {required: "Street is required", minLength: { value: 3, message: "Street name too short" }}) }
+            className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '
           />
           {errors.street && <span className='text-red-500'>{errors.street.message}</span>}
         </div>
@@ -56,7 +61,7 @@ export const AddressForm = () => {
         <div className='flex md:justify-between gap-6 md:gap-4 '>
           <div className='flex flex-col'>
             <label htmlFor='streetNumber' className='block mb-2.5 text-sm titles'>Number*</label>
-            <input id='streetNumber' type='text' { ...register('streetNumber', {required: "Street number is required", pattern: { value: /^\d+$/, message: "Only numbers allowed" }}) }          
+            <input id='streetNumber' type='text' { ...register('streetNumber', {required: "Street number is required", pattern: { value: /^\d+$/, message: "Only numbers allowed" }}) }
             inputMode="numeric"
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '
             onChange={(e) => {
@@ -68,7 +73,7 @@ export const AddressForm = () => {
           </div>
           <div className='flex flex-col' >
             <label htmlFor='apartment' className='block mb-2.5 text-sm titles'>Appartment</label>
-            <input id='apartment' type='text' { ...register('apartment', {required: false}) } 
+            <input id='apartment' type='text' { ...register('apartment', {required: false}) }
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '
             />
           </div>
@@ -82,7 +87,7 @@ export const AddressForm = () => {
 
           <div className='flex flex-col w-full'>
             <label htmlFor='country' className='block mb-2.5 text-sm titles'>Country*</label>
-            <select id='country' { ...register('country', {required: "Country is required"}) } 
+            <select id='country' { ...register('country', {required: "Country is required"}) }
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
             >
               <option value=''>[ Select ]</option>
@@ -97,14 +102,14 @@ export const AddressForm = () => {
 
           <div className='flex flex-col w-full' >
             <label htmlFor='state' className='block mb-2.5 text-sm titles'>State/Province*</label>
-            <input id='state' type='text' { ...register('state', {required: "State/Province is required"}) } 
+            <input id='state' type='text' { ...register('state', {required: "State/Province is required"}) }
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
             />
             {errors.state && <span className='text-red-500'>{errors.state.message}</span>}
           </div>
 
         </div>
-        
+
       </div>
 
       <div className='flex flex-col md:flex-row justify-between mb-4 gap-4'>
@@ -113,7 +118,7 @@ export const AddressForm = () => {
 
           <div className='flex flex-col w-full' >
             <label htmlFor='city' className='block mb-2.5 text-sm titles'>City*</label>
-            <input id='city' type='text' { ...register('city', {required: "City is required", minLength: { value: 2, message: "City name too short" }}) } 
+            <input id='city' type='text' { ...register('city', {required: "City is required", minLength: { value: 2, message: "City name too short" }}) }
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
             />
             {errors.city && <span className='text-red-500'>{errors.city.message}</span>}
@@ -121,7 +126,7 @@ export const AddressForm = () => {
 
           <div className='flex flex-col w-full' >
             <label htmlFor='zipCode' className='block mb-2.5 text-sm titles'>Postal Code*</label>
-            <input id='zipCode' type='text' { ...register('zipCode', {required: true}) } 
+            <input id='zipCode' type='text' { ...register('zipCode', {required: true}) }
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
               inputMode="numeric"
               onChange={(e) => {
@@ -139,11 +144,11 @@ export const AddressForm = () => {
       <div className='flex justify-between'>
         <div className='flex flex-col w-full'>
           <label htmlFor='observation' className='titles block mb-2.5 text-sm '>Observations</label>
-          <input id='observation' maxLength={100} type='text' { ...register('observation', {required: false, maxLength: { value: 100, message: "Max 100 characters"}}) } 
+          <input id='observation' maxLength={100} type='text' { ...register('observation', {required: false, maxLength: { value: 100, message: "Max 100 characters"}}) }
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
           />
           {errors.observation && <span className='text-red-500'>{errors.observation.message}</span>}
-        </div>        
+        </div>
       </div>
 
       <div className='flex my-6 justify-between align-middle items-center gap-2'>
@@ -154,18 +159,18 @@ export const AddressForm = () => {
       <div className='flex justify-between mb-4'>
         <div className='flex flex-col w-full'>
           <label htmlFor='name' className='titles block mb-2.5 text-sm '>Full Name*</label>
-          <input id='name' maxLength={100} type='text' { ...register('name', {required: "Name is required", minLength: { value: 3, message: "Name too short"}}) } 
+          <input id='name' maxLength={100} type='text' { ...register('name', {required: "Name is required", minLength: { value: 3, message: "Name too short"}}) }
             className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
           />
           {errors.name && <span className='text-red-500'>{errors.name.message}</span>}
-        </div>        
+        </div>
       </div>
 
       <div className='flex md:justify-between gap-6 md:gap-4 w-full'>
 
           <div className='flex flex-col w-full' >
             <label htmlFor='city' className='block mb-2.5 text-sm titles'>Phone*</label>
-            <input id='phone' type='text' { ...register('phone', {required: "Phone is required", pattern: {  value: /^\d+$/, message: "Invalid phone number"   } }) } 
+            <input id='phone' type='text' { ...register('phone', {required: "Phone is required", pattern: {  value: /^\d+$/, message: "Invalid phone number"   } }) }
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
               onChange={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, "");
@@ -176,7 +181,7 @@ export const AddressForm = () => {
 
           <div className='flex flex-col w-full' >
             <label htmlFor='idNumber' className='block mb-2.5 text-sm titles'>ID Number*</label>
-            <input id='idNumber' type='text' { ...register('idNumber', {required: "ID Required", pattern: {  value: /^\d+$/, message: "Invalid ID number"   } }) } 
+            <input id='idNumber' type='text' { ...register('idNumber', {required: "ID Required", pattern: {  value: /^\d+$/, message: "Invalid ID number"   } }) }
               className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body '
               inputMode="numeric"
               onChange={(e) => {
