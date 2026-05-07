@@ -241,7 +241,10 @@ exports.Prisma.OrderAddressScalarFieldEnum = {
   city: 'city',
   state: 'state',
   zipCode: 'zipCode',
-  additionalInfo: 'additionalInfo',
+  observation: 'observation',
+  name: 'name',
+  phone: 'phone',
+  idNumber: 'idNumber',
   orderId: 'orderId',
   countryId: 'countryId'
 };

@@ -16938,7 +16938,10 @@ export namespace Prisma {
     city: string | null
     state: string | null
     zipCode: string | null
-    additionalInfo: string | null
+    observation: string | null
+    name: string | null
+    phone: string | null
+    idNumber: string | null
     orderId: string | null
     countryId: string | null
   }
@@ -16951,7 +16954,10 @@ export namespace Prisma {
     city: string | null
     state: string | null
     zipCode: string | null
-    additionalInfo: string | null
+    observation: string | null
+    name: string | null
+    phone: string | null
+    idNumber: string | null
     orderId: string | null
     countryId: string | null
   }
@@ -16964,7 +16970,10 @@ export namespace Prisma {
     city: number
     state: number
     zipCode: number
-    additionalInfo: number
+    observation: number
+    name: number
+    phone: number
+    idNumber: number
     orderId: number
     countryId: number
     _all: number
@@ -16979,7 +16988,10 @@ export namespace Prisma {
     city?: true
     state?: true
     zipCode?: true
-    additionalInfo?: true
+    observation?: true
+    name?: true
+    phone?: true
+    idNumber?: true
     orderId?: true
     countryId?: true
   }
@@ -16992,7 +17004,10 @@ export namespace Prisma {
     city?: true
     state?: true
     zipCode?: true
-    additionalInfo?: true
+    observation?: true
+    name?: true
+    phone?: true
+    idNumber?: true
     orderId?: true
     countryId?: true
   }
@@ -17005,7 +17020,10 @@ export namespace Prisma {
     city?: true
     state?: true
     zipCode?: true
-    additionalInfo?: true
+    observation?: true
+    name?: true
+    phone?: true
+    idNumber?: true
     orderId?: true
     countryId?: true
     _all?: true
@@ -17091,7 +17109,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo: string | null
+    observation: string | null
+    name: string
+    phone: string
+    idNumber: string
     orderId: string
     countryId: string
     _count: OrderAddressCountAggregateOutputType | null
@@ -17121,7 +17142,10 @@ export namespace Prisma {
     city?: boolean
     state?: boolean
     zipCode?: boolean
-    additionalInfo?: boolean
+    observation?: boolean
+    name?: boolean
+    phone?: boolean
+    idNumber?: boolean
     orderId?: boolean
     countryId?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -17136,7 +17160,10 @@ export namespace Prisma {
     city?: boolean
     state?: boolean
     zipCode?: boolean
-    additionalInfo?: boolean
+    observation?: boolean
+    name?: boolean
+    phone?: boolean
+    idNumber?: boolean
     orderId?: boolean
     countryId?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -17151,7 +17178,10 @@ export namespace Prisma {
     city?: boolean
     state?: boolean
     zipCode?: boolean
-    additionalInfo?: boolean
+    observation?: boolean
+    name?: boolean
+    phone?: boolean
+    idNumber?: boolean
     orderId?: boolean
     countryId?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -17166,12 +17196,15 @@ export namespace Prisma {
     city?: boolean
     state?: boolean
     zipCode?: boolean
-    additionalInfo?: boolean
+    observation?: boolean
+    name?: boolean
+    phone?: boolean
+    idNumber?: boolean
     orderId?: boolean
     countryId?: boolean
   }
 
-  export type OrderAddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "street" | "streetNumber" | "apartment" | "city" | "state" | "zipCode" | "additionalInfo" | "orderId" | "countryId", ExtArgs["result"]["orderAddress"]>
+  export type OrderAddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "street" | "streetNumber" | "apartment" | "city" | "state" | "zipCode" | "observation" | "name" | "phone" | "idNumber" | "orderId" | "countryId", ExtArgs["result"]["orderAddress"]>
   export type OrderAddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
@@ -17199,7 +17232,10 @@ export namespace Prisma {
       city: string
       state: string
       zipCode: string
-      additionalInfo: string | null
+      observation: string | null
+      name: string
+      phone: string
+      idNumber: string
       orderId: string
       countryId: string
     }, ExtArgs["result"]["orderAddress"]>
@@ -17634,7 +17670,10 @@ export namespace Prisma {
     readonly city: FieldRef<"OrderAddress", 'String'>
     readonly state: FieldRef<"OrderAddress", 'String'>
     readonly zipCode: FieldRef<"OrderAddress", 'String'>
-    readonly additionalInfo: FieldRef<"OrderAddress", 'String'>
+    readonly observation: FieldRef<"OrderAddress", 'String'>
+    readonly name: FieldRef<"OrderAddress", 'String'>
+    readonly phone: FieldRef<"OrderAddress", 'String'>
+    readonly idNumber: FieldRef<"OrderAddress", 'String'>
     readonly orderId: FieldRef<"OrderAddress", 'String'>
     readonly countryId: FieldRef<"OrderAddress", 'String'>
   }
@@ -18230,7 +18269,10 @@ export namespace Prisma {
     city: 'city',
     state: 'state',
     zipCode: 'zipCode',
-    additionalInfo: 'additionalInfo',
+    observation: 'observation',
+    name: 'name',
+    phone: 'phone',
+    idNumber: 'idNumber',
     orderId: 'orderId',
     countryId: 'countryId'
   };
@@ -19187,7 +19229,10 @@ export namespace Prisma {
     city?: StringFilter<"OrderAddress"> | string
     state?: StringFilter<"OrderAddress"> | string
     zipCode?: StringFilter<"OrderAddress"> | string
-    additionalInfo?: StringNullableFilter<"OrderAddress"> | string | null
+    observation?: StringNullableFilter<"OrderAddress"> | string | null
+    name?: StringFilter<"OrderAddress"> | string
+    phone?: StringFilter<"OrderAddress"> | string
+    idNumber?: StringFilter<"OrderAddress"> | string
     orderId?: StringFilter<"OrderAddress"> | string
     countryId?: StringFilter<"OrderAddress"> | string
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
@@ -19202,7 +19247,10 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zipCode?: SortOrder
-    additionalInfo?: SortOrderInput | SortOrder
+    observation?: SortOrderInput | SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    idNumber?: SortOrder
     orderId?: SortOrder
     countryId?: SortOrder
     order?: OrderOrderByWithRelationInput
@@ -19221,7 +19269,10 @@ export namespace Prisma {
     city?: StringFilter<"OrderAddress"> | string
     state?: StringFilter<"OrderAddress"> | string
     zipCode?: StringFilter<"OrderAddress"> | string
-    additionalInfo?: StringNullableFilter<"OrderAddress"> | string | null
+    observation?: StringNullableFilter<"OrderAddress"> | string | null
+    name?: StringFilter<"OrderAddress"> | string
+    phone?: StringFilter<"OrderAddress"> | string
+    idNumber?: StringFilter<"OrderAddress"> | string
     countryId?: StringFilter<"OrderAddress"> | string
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
     country?: XOR<CountryScalarRelationFilter, CountryWhereInput>
@@ -19235,7 +19286,10 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zipCode?: SortOrder
-    additionalInfo?: SortOrderInput | SortOrder
+    observation?: SortOrderInput | SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    idNumber?: SortOrder
     orderId?: SortOrder
     countryId?: SortOrder
     _count?: OrderAddressCountOrderByAggregateInput
@@ -19254,7 +19308,10 @@ export namespace Prisma {
     city?: StringWithAggregatesFilter<"OrderAddress"> | string
     state?: StringWithAggregatesFilter<"OrderAddress"> | string
     zipCode?: StringWithAggregatesFilter<"OrderAddress"> | string
-    additionalInfo?: StringNullableWithAggregatesFilter<"OrderAddress"> | string | null
+    observation?: StringNullableWithAggregatesFilter<"OrderAddress"> | string | null
+    name?: StringWithAggregatesFilter<"OrderAddress"> | string
+    phone?: StringWithAggregatesFilter<"OrderAddress"> | string
+    idNumber?: StringWithAggregatesFilter<"OrderAddress"> | string
     orderId?: StringWithAggregatesFilter<"OrderAddress"> | string
     countryId?: StringWithAggregatesFilter<"OrderAddress"> | string
   }
@@ -20103,7 +20160,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     order: OrderCreateNestedOneWithoutOrderAddressInput
     country: CountryCreateNestedOneWithoutOrderAddressInput
   }
@@ -20116,7 +20176,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     orderId: string
     countryId: string
   }
@@ -20129,7 +20192,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     order?: OrderUpdateOneRequiredWithoutOrderAddressNestedInput
     country?: CountryUpdateOneRequiredWithoutOrderAddressNestedInput
   }
@@ -20142,7 +20208,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
     countryId?: StringFieldUpdateOperationsInput | string
   }
@@ -20155,7 +20224,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     orderId: string
     countryId: string
   }
@@ -20168,7 +20240,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderAddressUncheckedUpdateManyInput = {
@@ -20179,7 +20254,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
     countryId?: StringFieldUpdateOperationsInput | string
   }
@@ -20995,7 +21073,10 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zipCode?: SortOrder
-    additionalInfo?: SortOrder
+    observation?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    idNumber?: SortOrder
     orderId?: SortOrder
     countryId?: SortOrder
   }
@@ -21008,7 +21089,10 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zipCode?: SortOrder
-    additionalInfo?: SortOrder
+    observation?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    idNumber?: SortOrder
     orderId?: SortOrder
     countryId?: SortOrder
   }
@@ -21021,7 +21105,10 @@ export namespace Prisma {
     city?: SortOrder
     state?: SortOrder
     zipCode?: SortOrder
-    additionalInfo?: SortOrder
+    observation?: SortOrder
+    name?: SortOrder
+    phone?: SortOrder
+    idNumber?: SortOrder
     orderId?: SortOrder
     countryId?: SortOrder
   }
@@ -23307,7 +23394,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     order: OrderCreateNestedOneWithoutOrderAddressInput
   }
 
@@ -23319,7 +23409,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     orderId: string
   }
 
@@ -23360,7 +23453,10 @@ export namespace Prisma {
     city?: StringFilter<"OrderAddress"> | string
     state?: StringFilter<"OrderAddress"> | string
     zipCode?: StringFilter<"OrderAddress"> | string
-    additionalInfo?: StringNullableFilter<"OrderAddress"> | string | null
+    observation?: StringNullableFilter<"OrderAddress"> | string | null
+    name?: StringFilter<"OrderAddress"> | string
+    phone?: StringFilter<"OrderAddress"> | string
+    idNumber?: StringFilter<"OrderAddress"> | string
     orderId?: StringFilter<"OrderAddress"> | string
     countryId?: StringFilter<"OrderAddress"> | string
   }
@@ -23584,7 +23680,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     country: CountryCreateNestedOneWithoutOrderAddressInput
   }
 
@@ -23596,7 +23695,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     countryId: string
   }
 
@@ -23673,7 +23775,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     country?: CountryUpdateOneRequiredWithoutOrderAddressNestedInput
   }
 
@@ -23685,7 +23790,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     countryId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -24316,7 +24424,10 @@ export namespace Prisma {
     city: string
     state: string
     zipCode: string
-    additionalInfo?: string | null
+    observation?: string | null
+    name: string
+    phone: string
+    idNumber: string
     orderId: string
   }
 
@@ -24328,7 +24439,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     order?: OrderUpdateOneRequiredWithoutOrderAddressNestedInput
   }
 
@@ -24340,7 +24454,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -24352,7 +24469,10 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
-    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    observation?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    idNumber?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
   }
 

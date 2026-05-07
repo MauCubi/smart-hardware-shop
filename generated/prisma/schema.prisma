@@ -194,13 +194,17 @@ model UserAddress {
 model OrderAddress {
   id String @id @default(uuid())
 
-  street         String
-  streetNumber   String
-  apartment      String?
-  city           String
-  state          String
-  zipCode        String
-  additionalInfo String?
+  street       String
+  streetNumber String
+  apartment    String?
+  city         String
+  state        String
+  zipCode      String
+  observation  String?
+
+  name     String
+  phone    String
+  idNumber String
 
   order   Order  @relation(fields: [orderId], references: [id])
   orderId String @unique

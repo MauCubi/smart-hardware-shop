@@ -1,4 +1,5 @@
 'use client'
+import { placeOrder } from '@/actions/order/place-order';
 import { CartProducts } from '@/components/checkout/CartProducts';
 import { useAppSelector } from '@/store/hooks';
 import { formatPriceUSD } from '@/utils/formatPrice';
@@ -14,7 +15,7 @@ import { useEffect } from 'react';
 export default function SummaryPage() {
 
   const { currentAddress } = useAppSelector(state => state.address)
-  const { productsInCart, total } = useAppSelector( state => state.cart )
+  const { productsInCart, total, products } = useAppSelector( state => state.cart )
 
   const totals = getTotals(total, 0.15)
 
@@ -25,6 +26,30 @@ export default function SummaryPage() {
   //     router.replace('/')
   //   }
   // }, [currentAddress, productsInCart, router]);
+
+  const onPlaceOrder = async () => {
+
+    const orderItems = products.map( product => ({
+      id: product.id,
+      quantity: product.quantity,
+      price: product.price
+    }))
+
+    console.log(orderItems)
+    
+    if (currentAddress) {
+      const resp = await placeOrder(orderItems, currentAddress)      
+
+      if (!resp.ok) {
+        console.log(resp.message)
+        return
+      }
+
+      router.replace(`/orders/${resp.order?.id}`)
+    }
+
+
+  }
 
   return (
     <div className='flex justify-center items-center mb-72 px-10 sm:px-0'>
@@ -105,7 +130,7 @@ export default function SummaryPage() {
 
                       <button 
                         className='flex justify-center w-full titles p-3 bg-[#0A84FF] rounded cursor-pointer hover:bg-[#016edb]'
-                        
+                        onClick={onPlaceOrder}
                       >
                         Place order
                       </button>
