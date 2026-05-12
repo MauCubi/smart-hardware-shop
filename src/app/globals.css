@@ -33,6 +33,11 @@
   
 }
 
+paypal-button,
+paypal-button iframe {
+  width: 100% !important;
+}
+
 /* html {
   overflow-y: scroll;
 } */

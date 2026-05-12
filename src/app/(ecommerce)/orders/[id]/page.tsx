@@ -1,5 +1,8 @@
 import { getOrderById } from '@/actions/order/get-order-by-id';
+import FastPayButton from '@/components/order/FastPayButton';
+import { PayPalButton } from '@/components/order/PayPalButton';
 import { formatPriceUSD } from '@/utils/formatPrice';
+import { PayPalOneTimePaymentButton } from '@paypal/react-paypal-js/sdk-v6';
 import Image from 'next/image';
 import { FaCheck, FaX } from 'react-icons/fa6';
 
@@ -14,6 +17,8 @@ export default async function OrderPage({ params }: Props) {
 
   const { order } = await getOrderById(id)
 
+  
+
   return (
         <div className='flex justify-center items-center mb-72 px-10 sm:px-0'>
 
@@ -23,6 +28,8 @@ export default async function OrderPage({ params }: Props) {
             ?
             <div className='flex flex-col  w-[1000px] '>
 
+              <h1 className='titles p-2'>Order ID { order.id }</h1>
+
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-10 titles'>
                 {/* Carrito */}
                 <div className='flex flex-col bg-[#121212] border border-[#637a91] mb-10 xl:mb-20 rounded-xl p-4 xl:mt-0 mt-20'>            
@@ -31,9 +38,9 @@ export default async function OrderPage({ params }: Props) {
                     { 
                       order.isPaid  
                       ? 
-                      <div className='gap-2 bg-green-800 rounded-lg flex my-4 items-center w-full p-2 font-bold'>
-                        <span className=''>Order Paid</span>
-                        <FaCheck />
+                      <div className='gap-2 bg-green-800 rounded-lg flex my-4 items-center w-full p-2 font-bold justify-between'>
+                        <span className='flex items-center gap-2'>Order Paid<FaCheck /></span>                        
+                        <span>{ order.paidAt?.toLocaleDateString('es-AR') }</span>
                       </div>
                       :
                       <div className='gap-2 bg-red-800 rounded-lg flex my-4 items-center w-full p-2 font-bold'>
@@ -120,17 +127,16 @@ export default async function OrderPage({ params }: Props) {
                         </div>
                       
 
-                      <div className='mb-5 mt-5 w-full font-bold'>
+                      <div className='flex flex-col mb-5 mt-5 w-full font-bold gap-4'>
                       
                         {/* <p className='text-red-500'>errorMessage</p> */}
+                        <FastPayButton id={order.id} isPaid={order.isPaid}/>
 
-                        <button 
-                          className='flex justify-center w-full titles p-3 bg-[#09a210] rounded cursor-pointer hover:bg-[#08670d]'
-                          
-                        >
-                          PAY
-                        </button>
+                        <div className='w-full flex'>
+                          <PayPalButton price={order.total}/>
+                        </div>
                       </div>
+
                     </div>
 
               </div>
