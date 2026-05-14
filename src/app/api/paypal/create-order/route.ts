@@ -43,10 +43,6 @@ export async function POST(req: Request) {
     return
   }
 
-  console.log(resp.order)
-
-  console.log(data)
-
   return Response.json({
     orderId: data.id,
   })

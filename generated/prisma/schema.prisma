@@ -170,7 +170,7 @@ model Order {
   OrderItem    OrderItem[]
   OrderAddress OrderAddress?
 
-  transactionId String?
+  transactionId String? @unique
 }
 
 model UserAddress {

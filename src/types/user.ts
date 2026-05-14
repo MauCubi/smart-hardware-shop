@@ -6,6 +6,7 @@ export interface User {
   lastName: string;
   email: string;
   password: string;
+  rol: 'admin' | 'user';
 }
 export interface SessionUser {
   id: string;
@@ -13,5 +14,6 @@ export interface SessionUser {
   lastName: string;
   email: string;
   emailVerified: Date | null
+  rol: 'admin' | 'user';
 }
 

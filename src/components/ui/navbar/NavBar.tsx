@@ -19,11 +19,11 @@ export const NavBar = () => {
   const pathname = usePathname();
   const { isSearchMenuOpen, isSideMenuOpen, isUserMenuOpen} = useAppSelector( state => state.ui )
   const { productsInCart } = useAppSelector( state => state.cart )
-  const { authenticatedUser, authStatus } = useAppSelector( state => state.auth )
+  // const { authenticatedUser, authStatus } = useAppSelector( state => state.auth )
  
 
   const { data: session, status } = useSession();
-  const isAuthenticated = !!session?.user;
+  // const isAuthenticated = !!session?.user;
   console.log(status)
 
   
@@ -171,6 +171,23 @@ export const NavBar = () => {
                       Logout
                     </button>
                   </div> 
+                  {
+                    session?.user.rol === 'admin' &&
+                  <div className='flex flex-col p-3'>
+                    <hr className='mb-3 font-bold text-white'></hr>
+                    <h1 className='titles text-lg'>Admin Dashboard</h1>
+                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                      Manage products
+                    </button>
+                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                      Manage orders
+                    </button>
+                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                      Manage users
+                    </button>                    
+                    
+                  </div> 
+                  }
               </div>
               :
               ''

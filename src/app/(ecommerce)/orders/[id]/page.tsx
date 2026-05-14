@@ -1,9 +1,10 @@
 import { getOrderById } from '@/actions/order/get-order-by-id';
 import FastPayButton from '@/components/order/FastPayButton';
 import { PayPalButton } from '@/components/order/PayPalButton';
+import { auth } from '@/lib/auth';
 import { formatPriceUSD } from '@/utils/formatPrice';
-import { PayPalOneTimePaymentButton } from '@paypal/react-paypal-js/sdk-v6';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 import { FaCheck, FaX } from 'react-icons/fa6';
 
 
@@ -14,13 +15,21 @@ interface Props {
 export default async function OrderPage({ params }: Props) {
 
   const { id } = await params
+  const session = await auth()
 
   const { order } = await getOrderById(id)
 
+  const isAdmin = session?.user?.rol
+  const isOwner = order?.userId === session?.user?.id
+
+  if (!isAdmin && !isOwner && !session) {
+    redirect('/')
+  }
+    
   
 
   return (
-        <div className='flex justify-center items-center mb-72 px-10 sm:px-0'>
+        <div className='flex justify-center items-center mb-72 px-2 xl:px-10 sm:px-0'>
 
 
           {
@@ -127,15 +136,30 @@ export default async function OrderPage({ params }: Props) {
                         </div>
                       
 
-                      <div className='flex flex-col mb-5 mt-5 w-full font-bold gap-4'>
-                      
-                        {/* <p className='text-red-500'>errorMessage</p> */}
-                        <FastPayButton id={order.id} isPaid={order.isPaid}/>
+                      {
+                        !order.isPaid ?
+                        <div className='flex flex-col mb-5 mt-5 w-full font-bold gap-4'>
+                        
+                          {/* <p className='text-red-500'>errorMessage</p> */}
+                          <FastPayButton id={order.id} isPaid={order.isPaid}/>
 
-                        <div className='w-full flex'>
-                          <PayPalButton price={order.total} orderNumber={ order.id }/>
+                          {
+                            session?.user.rol !== 'admin' ?
+                            <>
+                              <div className='w-full flex'>
+                                <PayPalButton price={order.total} orderNumber={ order.id }/>
+                              </div>
+                              <div className="mt-2 inline-flex items-center rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs text-yellow-200">
+                                Paypal sandbox mode — no real payments are processed.
+                              </div>
+                            </>
+                            :
+                            ''
+                          }
                         </div>
-                      </div>
+                        :
+                        ''
+                      }
 
                     </div>
 

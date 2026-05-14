@@ -1,6 +1,7 @@
 'use client'
 
 import { OnApproveDataOneTimePayments, PayPalOneTimePaymentButton } from '@paypal/react-paypal-js/sdk-v6'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   price: number,
@@ -8,6 +9,9 @@ interface Props {
 }
 
 export const PayPalButton = ({price, orderNumber}: Props) => {
+
+
+  const router = useRouter()
 
   const createOrder = async() => {
 
@@ -30,8 +34,10 @@ export const PayPalButton = ({price, orderNumber}: Props) => {
   }
   
   const approveOrder = async ({orderId}: OnApproveDataOneTimePayments) => {
-    await fetch(`/api/capture-order/${orderId}`, { method: "POST", }); 
+    console.log('started capturing!!!')
+    await fetch(`/api/paypal/capture-order/${orderId}`, { method: "POST", }); 
     console.log("Payment captured!");
+    router.refresh()
   }
   
 
