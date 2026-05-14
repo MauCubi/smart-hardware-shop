@@ -133,7 +133,7 @@ export default async function OrderPage({ params }: Props) {
                         <FastPayButton id={order.id} isPaid={order.isPaid}/>
 
                         <div className='w-full flex'>
-                          <PayPalButton price={order.total}/>
+                          <PayPalButton price={order.total} orderNumber={ order.id }/>
                         </div>
                       </div>
 

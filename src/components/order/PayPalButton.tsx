@@ -3,10 +3,11 @@
 import { OnApproveDataOneTimePayments, PayPalOneTimePaymentButton } from '@paypal/react-paypal-js/sdk-v6'
 
 interface Props {
-  price: number
+  price: number,
+  orderNumber: string
 }
 
-export const PayPalButton = ({price}: Props) => {
+export const PayPalButton = ({price, orderNumber}: Props) => {
 
   const createOrder = async() => {
 
@@ -16,12 +17,14 @@ export const PayPalButton = ({price}: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        price,
+        price, orderNumber
       }),
     }) 
 
     const { orderId } = await response.json()
     console.log(orderId)
+
+    
 
     return { orderId }
   }
@@ -37,7 +40,7 @@ export const PayPalButton = ({price}: Props) => {
       <PayPalOneTimePaymentButton 
         presentationMode='auto'
         createOrder={ createOrder }
-        onApprove={approveOrder}
+        onApprove={ approveOrder }
         />
     </div>
   )
