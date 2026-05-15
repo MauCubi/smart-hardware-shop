@@ -158,9 +158,11 @@ export const NavBar = () => {
               ?
               <div className='hidden xl:block xl:absolute  xl:w-50 rounded-2xl xl:h-fit xl:bg-gray-900'>
                   <div className='flex flex-col p-3'>
-                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
-                      My purchases
-                    </button>
+                    <Link href={'/orders/'}>
+                      <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                        My purchases
+                      </button>
+                    </Link>
                     <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
                       My favorites
                     </button>
@@ -179,12 +181,14 @@ export const NavBar = () => {
                     <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
                       Manage products
                     </button>
-                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
-                      Manage orders
-                    </button>
+                    <Link href={'/admin/orders/'}>
+                      <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                        Manage orders
+                      </button>
+                    </Link>
                     <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
                       Manage users
-                    </button>                    
+                    </button>           
                     
                   </div> 
                   }

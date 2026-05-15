@@ -7,39 +7,29 @@ import { redirect, usePathname, useSearchParams } from 'next/navigation';
 
 interface Props {
   totalPages: number
-  prodList: 'normal' | 'discount'
 }
 
 
 
-export const Pagination = ({ totalPages, prodList }: Props) => {
+export const GeneralPagination = ({ totalPages }: Props) => {
 
   const pathname = usePathname()
   const searchParams  = useSearchParams()
   
   const page = searchParams.get('page') ?? 1
   const currentPage = isNaN(+page) ? 1 : +page
-  
-  const discount = searchParams.get('discount') ?? 1
-  const currentDiscount= isNaN(+discount) ? 1 : +discount
 
-
-  if ((currentPage < 1 || isNaN(+page) || (currentDiscount < 1 || isNaN(+discount)))) {
+  if ((currentPage < 1 || isNaN(+page))) {
     redirect(pathname)
   }
 
   const paginationNumbers = generatePagination(currentPage, totalPages)
-  const paginationDiscountNumbers = generatePagination(currentDiscount, totalPages)
 
-  const generateRedirect = (pageParam: number | string) => {     
-    
-      if (prodList === 'normal') {
-        const redirectPath = `${pathname}?page=${pageParam}&discount=${discount}`     
+  const generateRedirect = (pageParam: number | string) => {        
+      
+        const redirectPath = `${pathname}?page=${pageParam}`     
         return redirectPath                       
-      } else {
-        const redirectPath = `${pathname}?page=${page}&discount=${pageParam}`       
-        return redirectPath   
-      }
+      
   }
 
   
@@ -56,7 +46,7 @@ export const Pagination = ({ totalPages, prodList }: Props) => {
             >
               <span className='sr-only'>Previous</span>
               <svg
-                className='w-4 h-4 rtl:rotate-180'
+                className='w-4 h-4 rtl:rotate-180 text-blue-300'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 width='24'
@@ -76,13 +66,12 @@ export const Pagination = ({ totalPages, prodList }: Props) => {
           </li>
 
           {
-            prodList === 'normal' 
-            ?
+            
             paginationNumbers.map( (pag,i) => 
             <li key={pag === '...' ? `ellipsis-${i}` : pag}>
               <Link              
                 className={clsx('flex items-center justify-center text-body bg-neutral-secondary-medium box-border border-[#0A84FF]', 
-                                'border border-default-medium hover:text-heading text-[#F1F1F1] font-medium text-sm w-10 h-10 focus:outline-none ',
+                                'border border-default-medium hover:text-heading text-[#F1F1F1] font-medium text-sm w-10 h-10 focus:outline-none',
                                 pag === currentPage && 'bg-[#0A84FF]',
                                 pag === '...' && 'cursor-default border-t-0 border-b-0'
                               )}
@@ -94,23 +83,7 @@ export const Pagination = ({ totalPages, prodList }: Props) => {
               </Link>
             </li>
             )
-            :
-            paginationDiscountNumbers.map( (pag,i) => 
-            <li key={pag === '...' ? `ellipsis-${i}` : pag}>
-              <Link              
-                className={clsx('flex items-center justify-center text-body bg-neutral-secondary-medium box-border border-[#0A84FF]', 
-                                'border border-default-medium hover:text-heading text-[#F1F1F1] font-medium text-sm w-10 h-10 focus:outline-none',
-                                pag === currentDiscount && 'bg-[#0A84FF]',
-                                pag === '...' && 'cursor-default border-t-0 border-b-0'
-                              )}
-                href={ generateRedirect(pag === '...' ? '#' : pag)}
-                onClick={ (e) => pag === '...' && e.preventDefault() }
-                scroll={false}
-              >
-                { pag }
-              </Link>
-            </li>
-            )
+            
           }
 
           <li>
@@ -119,7 +92,7 @@ export const Pagination = ({ totalPages, prodList }: Props) => {
             >
               <span className='sr-only'>Next</span>
               <svg
-                className='w-4 h-4 rtl:rotate-180'
+                className='w-4 h-4 rtl:rotate-180 text-blue-300'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 width='24'
