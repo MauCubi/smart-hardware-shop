@@ -5,9 +5,10 @@ interface Params {
   orders: Order[]
 }
 
-export const OrderList = ({orders}: Params) => {
+export const OrderTable = ({orders}: Params) => {
   return (
-    <div className='relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-lg border border-default xl:w-[50%]'>
+    <div className='relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-lg border border-default w-full xl:w-[50%] mt-2'>
+
       <table className='w-full text-sm text-left rtl:text-right text-body'>
         <thead className='bg-neutral-secondary-soft border-b border-default'>
           <tr className='titles bg-[#121212] font-roboto'>

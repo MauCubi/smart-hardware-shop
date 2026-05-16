@@ -31,6 +31,15 @@ export interface CartProducts {
   max: number;
 }
 
+export interface TableProducts {
+  id: string;
+  name: string;
+  stock: number;
+  price: number;
+  brand: string | undefined;
+  category: string
+}
+
 interface Attribute {  
   name:  string        
   type:  'STRING' | 'NUMBER' | 'BOOLEAN' | 'SELECT' 

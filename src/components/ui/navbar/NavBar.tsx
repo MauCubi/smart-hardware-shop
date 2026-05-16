@@ -178,9 +178,11 @@ export const NavBar = () => {
                   <div className='flex flex-col p-3'>
                     <hr className='mb-3 font-bold text-white'></hr>
                     <h1 className='titles text-lg'>Admin Dashboard</h1>
-                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
-                      Manage products
-                    </button>
+                    <Link href={'/admin/products/'}>
+                      <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                        Manage Products
+                      </button>
+                    </Link>
                     <Link href={'/admin/orders/'}>
                       <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
                         Manage orders
