@@ -15,7 +15,7 @@ export default async function AdminOrdersPage({ searchParams }: Props) {
 
   return (
     <div>
-      <div className='flex flex-col justify-center align-middle items-center my-10 xl:my-20'>
+      <div className='flex flex-col justify-center align-middle items-center my-10 xl:my-20  xl:px-25'>
         <h1 className='titles text-3xl xl:w-[50%] p-2 font-roboto'>
           Orders List
         </h1>

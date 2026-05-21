@@ -1,6 +1,7 @@
 import { getPaginatedTableProducts } from '@/actions/product/get-paginated-table-products';
 import { ProductsTable } from '@/components/products/ProductsTable';
 import { GeneralPagination } from '@/components/ui/pagination/GeneralPagination';
+import Link from 'next/link';
 
 
 interface Props {
@@ -22,7 +23,9 @@ export default async function AdminProductsPage({ searchParams }: Props) {
               Products List
             </h1>
             <button className='px-4 rounded bg-blue-500 titles font-roboto hover:bg-blue-700 cursor-pointer'>
-              Add Product
+              <Link href='/admin/product/new'>
+                New Product
+              </Link>
             </button>
           </div>
           <ProductsTable products={products} title='Poducts List' />

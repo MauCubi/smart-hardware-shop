@@ -21,6 +21,7 @@ export const getPaginatedTableProducts = async ({page = 1, take = 5}: Props) => 
         name: true,
         price: true,
         stock: true,
+        slug: true,
         subCategory: {
           select: {
             name: true,
@@ -50,6 +51,7 @@ export const getPaginatedTableProducts = async ({page = 1, take = 5}: Props) => 
         brand: data.brands?.name,
         price: Number(data.price.toFixed(2)),
         stock: data.stock,
+        slug: data.slug,
         category: data.subCategory.category.name + '/' + data.subCategory.name,
       }
     })

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { onToggleProductsMenu, onToggleSideMenu } from '@/store/ui/uiSlice';
 import { CiUser } from 'react-icons/ci';
 import { onSetAuthStatus, onSetLoggedUser } from '@/store/auth/authSlice';
+import { useSession } from 'next-auth/react';
 
 
 export const SubNavBar = () => {
@@ -20,6 +21,8 @@ export const SubNavBar = () => {
   const { authenticatedUser, authStatus } = useAppSelector( state => state.auth )
 
   const dispatch = useAppDispatch()
+
+  const { data: session, status } = useSession();
   
   
   const categoryMenu = useRef<HTMLDivElement>(null)
@@ -97,19 +100,21 @@ export const SubNavBar = () => {
           <hr className='text-[#0A84FF] xl:hidden'/>
           <div className='xl:hidden'>
             {
-              authStatus === 'authenticating'
+              status === 'loading'
               ? <span className='text-white'>Loading</span>
-              : authStatus === 'authenticated' 
+              : status === 'authenticated' 
               ?
               <div className='flex flex-col'>
                 <div className='flex flex-row bg-gray-900 navbar-text p-3 rounded-b-2xl align-middle items-center gap-2'>
                   <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />
-                  <span className={`text-sm`}>{ authenticatedUser?.name }</span>  
+                  <span className={`text-sm`}>{ session?.user.name }</span>  
                 </div>
                 <div className='flex flex-col p-1'>
-                  <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
-                    My purchases
-                  </button>
+                  <Link href={'/orders/'} onClick={ handleSideMenu } scroll>
+                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                      My purchases
+                    </button>
+                  </Link>
                   <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
                     My favorites
                   </button>
@@ -120,8 +125,30 @@ export const SubNavBar = () => {
                     Logout
                   </button>
                 </div> 
+
+                {
+                    session?.user.rol === 'admin' &&
+                  <div className='flex flex-col px-1 py-3'>
+                    <hr className='mb-3 font-bold text-white'></hr>
+                    <h1 className='titles text-lg ml-1'>Admin Dashboard</h1>
+                    <Link href={'/admin/products/'} onClick={ handleSideMenu } scroll>
+                      <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                        Manage Products
+                      </button>
+                    </Link>
+                    <Link href={'/admin/orders/'} onClick={ handleSideMenu } scroll>
+                      <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                        Manage orders
+                      </button>
+                    </Link>
+                    <button className='navbar-button navbar-text text-sm flex flex-row align-middle items-center gap-2' >
+                      Manage users
+                    </button>           
+                    
+                  </div> 
+                  }
               </div>
-              : authStatus === 'not-authenticated' &&
+              : status === 'unauthenticated' &&
               <Link href={'/auth'}>
                 <button className='navbar-button navbar-text flex flex-row align-middle items-center gap-2' onClick={ handleSideMenu }>
                   <CiUser className='text-[25px] xl:text-[30px]' color='#0A84FF' />

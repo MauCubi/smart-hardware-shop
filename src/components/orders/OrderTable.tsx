@@ -7,13 +7,14 @@ interface Params {
 
 export const OrderTable = ({orders}: Params) => {
   return (
-    <div className='relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-lg border border-default w-full xl:w-[50%] mt-2'>
+
+    <div className='relative overflow-x-auto xl:overflow-x-visible bg-neutral-primary-soft shadow-xs rounded-lg border border-default w-full mt-2'>
 
       <table className='w-full text-sm text-left rtl:text-right text-body'>
         <thead className='bg-neutral-secondary-soft border-b border-default'>
           <tr className='titles bg-[#121212] font-roboto'>
             <th scope='col' className='px-6 py-3 font-medium'>
-              Order ID
+              ID
             </th>
             <th scope='col' className='px-6 py-3 font-medium'>
               Customer

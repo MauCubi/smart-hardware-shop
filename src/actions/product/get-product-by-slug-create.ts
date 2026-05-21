@@ -1,5 +1,4 @@
 import { prisma } from '@/lib/prisma'
-import { groupBy } from '@/utils/orderAttributes'
 
 
 
@@ -7,7 +6,7 @@ interface Props {
   slug: string
 }
 
-export const getProductBySlug = async ( { slug }: Props ) => {
+export const getProductBySlugCreate = async ( { slug }: Props ) => {
 
 
   try {
@@ -40,34 +39,27 @@ export const getProductBySlug = async ( { slug }: Props ) => {
         subCategory: {
           select: {
             name: true,
-            category: true
+            category: true,
+            attributes: {
+              select: {
+                attribute: {
+                  include: {
+                    options: true
+                  }
+                },      
+                        
+              }
+            }
           }
         }   
         
       }      
-    })
-    
-
-    // console.log(product?.productAttributes)
-    
-
-    const attributes = product?.productAttributes.map(pa => ({
-      group: pa.attribute.group,
-      name: pa.attribute.name,
-      unit: pa.attribute.unit,
-      value: pa.valueString ?? pa.valueNumber ?? pa.valueBoolean ?? pa.option?.value ?? ''
-    }))
-
-    
-    const groupedAttributes = groupBy(attributes ? attributes : [], "group")      
-
-    // console.log(groupedAttributes)
-
+    })     
     
 
     return {
-      product,
-      groupedAttributes
+      product: product,
+      attributes: product?.subCategory.attributes
     }
     
   } catch (error) {

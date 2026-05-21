@@ -1,3 +1,6 @@
+import { AttributeType } from '../../generated/prisma/index';
+
+
 export interface Product {
     name: string;
     id: string;
@@ -11,14 +14,17 @@ export interface Product {
     subCategoryId: string;
     subCategory?: SubCategory; 
     brandId: string
+    productAttributes: ProductAttributeSchema[]
 }
 
 export interface Category {
-  name: string,  
+  name: string, 
+  subCategories?: SubCategory[] 
 }
 export interface SubCategory {
   name: string, 
-  category?: Category 
+  category?: Category,
+  attributes?: SubCategoryAttributes[]
 }
 
 export interface CartProducts {
@@ -37,15 +43,26 @@ export interface TableProducts {
   stock: number;
   price: number;
   brand: string | undefined;
-  category: string
+  category: string;
+  slug: string;
 }
 
-interface Attribute {  
-  name:  string        
-  type:  'STRING' | 'NUMBER' | 'BOOLEAN' | 'SELECT' 
-  group: string
-  required?: boolean
-  unit?: string
+export interface AttributeOption {
+  id: string,
+  value: string,  
+}
+
+export interface SubCategoryAttributes {
+  attribute: Attribute
+}
+export interface Attribute {
+  id: string,
+  name: string,
+  type: AttributeType,
+  group: string,
+  unit?: string,
+  required: boolean
+  options?: AttributeOption[]
 }
 
 export interface ProductAttribute {
@@ -53,5 +70,15 @@ export interface ProductAttribute {
     name: string;
     unit: string | null;
     value: string | number | boolean | null;
+}
+export interface ProductAttributeSchema {
+    id: number,
+    attribute: Attribute,
+    valueString?: string,
+    valueNumber?: number,
+    valueBoolean?: boolean,
+    option?: {
+      value: string
+    }
 }
 

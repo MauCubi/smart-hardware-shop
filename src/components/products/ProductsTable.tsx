@@ -58,7 +58,7 @@ export const ProductsTable = ({products}: Params) => {
                   <td className='px-6 py-4'>${ product.price.toFixed(2) }</td>
                   <td className='px-6 py-4 text-green-400'>Active</td>
                   <td className='px-6 py-4'>
-                    <Link href={`/orders/${product.id}`} className='font-medium text-fg-brand hover:underline text-[#bacb21] mr-2'>
+                    <Link href={`/admin/product/${product.slug}`} className='font-medium text-fg-brand hover:underline text-[#bacb21] mr-2'>
                       Edit
                     </Link>
                     <Link href={`/orders/${product.id}`} className='font-medium text-fg-brand hover:underline text-[#bc1515]'>
