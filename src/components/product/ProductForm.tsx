@@ -91,14 +91,14 @@ export const ProductForm = ({mode, product, attributes = [], categories}: Props)
                 <label htmlFor={ attribute.attribute.name } className='titles block mb-1 text-sm '>{ attribute.attribute.name } { attribute.attribute.required ? '*' : '' } </label>
                 {
                   attribute.attribute.type === 'BOOLEAN' ?
-                  <select defaultValue={product.productAttributes.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueBoolean === true ? "1" : "0" } className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '>
+                  <select defaultValue={product.productAttributes?.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueBoolean === true ? "1" : "0" } className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                   </select>
                   :
                   attribute.attribute.type === 'SELECT' 
                   ?
-                  <select defaultValue={ product && product.productAttributes.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.option?.value} className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '>
+                  <select defaultValue={ product && product.productAttributes?.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.option?.value} className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body border-2 focus:border-blue-400 focus:ring-0 outline-none '>
                     {
                       attribute.attribute.options?.map( option => 
                         <option key={option.id} value={option.value}>{ option.value }</option>
@@ -107,8 +107,8 @@ export const ProductForm = ({mode, product, attributes = [], categories}: Props)
                   </select>
                   :
                   <input value={ attribute.attribute.type === 'NUMBER' 
-                    ? !product ? 0 : product.productAttributes.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueNumber 
-                    : !product.productAttributes.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueString ? '' : product.productAttributes.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueString} 
+                    ? !product ? 0 : product.productAttributes?.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueNumber 
+                    : !product.productAttributes?.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueString ? '' : product.productAttributes.find( productAttribute => productAttribute.attribute.name === attribute.attribute.name )?.valueString} 
                     id={ attribute.attribute.name } type={attribute.attribute.type}
                     className='bg-zinc-100 rounded-md text-heading text-sm md:text-base focus:outline-[#0A84FF] block w-full px-3 py-2 placeholder:text-body'
                   />

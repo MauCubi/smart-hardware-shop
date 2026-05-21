@@ -14,7 +14,7 @@ export interface Product {
     subCategoryId: string;
     subCategory?: SubCategory; 
     brandId: string
-    productAttributes: ProductAttributeSchema[]
+    productAttributes?: ProductAttributeSchema[]
 }
 
 export interface Category {
