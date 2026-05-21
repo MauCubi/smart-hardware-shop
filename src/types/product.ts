@@ -68,7 +68,7 @@ export interface Attribute {
 export interface ProductAttribute {
     group: string;
     name: string;
-    unit: string | null;
+    unit: string | undefined;
     value: string | number | boolean | null;
 }
 export interface ProductAttributeSchema {
