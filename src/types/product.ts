@@ -14,6 +14,21 @@ export interface Product {
     subCategoryId: string;
     subCategory?: SubCategory; 
     brandId: string
+    // productAttributes?: ProductAttributeSchema[]
+}
+export interface ProductFormType {
+    name: string;
+    id: string;
+    description: string | null;
+    stock: number;
+    sku: string | null;
+    price: number;
+    discountPrice: number | null;
+    slug: string;
+    images: string[];
+    subCategoryId: string;
+    subCategory?: SubCategory; 
+    brandId: string
     productAttributes?: ProductAttributeSchema[]
 }
 
@@ -68,7 +83,7 @@ export interface Attribute {
 export interface ProductAttribute {
     group: string;
     name: string;
-    unit: string | undefined;
+    unit: string | undefined | null;
     value: string | number | boolean | null;
 }
 export interface ProductAttributeSchema {

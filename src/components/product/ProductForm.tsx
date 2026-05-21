@@ -1,11 +1,11 @@
 'use client'
-import { Category, Product, ProductAttributeSchema, SubCategoryAttributes } from '@/types/product';
+import { Category, Product, ProductAttributeSchema, ProductFormType, SubCategoryAttributes } from '@/types/product';
 import { SubCategory } from '../../types/product';
 import { ChangeEvent, useState } from 'react';
 
 interface Props {
   mode: string,
-  product?: Product,
+  product?: ProductFormType,
   attributes: SubCategoryAttributes[],
   categories?: Category[]
 }
