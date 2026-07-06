@@ -32,9 +32,9 @@ export interface ProductFormType {
     subCategoryId: string;
     subCategory?: SubCategory; 
     brandId: string
-    brands: {
+    brands?: {
       name: string
-    }
+    } | null
     productAttributes?: ProductAttributeSchema[]
 }
 

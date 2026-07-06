@@ -57,7 +57,7 @@ export const ProductForm = ({mode, product, attributes = [], categories}: Props)
       description: product?.description ? product.description : '',
       price: product ? product.price : 0,
       stock: product ? product.stock : 0,
-      brand: product ? product.brands.name : '',
+      brand: product ? product.brands?.name : '',
 
       attributes: product?.productAttributes?.reduce(
         (acc, attribute) => {
