@@ -20,7 +20,14 @@ export const getPaginatedDiscounts = async ({discountPage = 1, take = 8}: Props)
           discountPrice: { not: null }
         },
         skip: take * (discountPage - 1),
-        take: take
+        take: take,
+        include: {
+        brands: {
+          select: {
+            name: true
+          }
+        }
+      }  
     })    
 
     const discountPages = Math.ceil(await prisma.product.count({ where: { discountPrice: { not: null } } }) / take)

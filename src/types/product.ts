@@ -16,7 +16,7 @@ export interface Product {
     brandId: string;
     brands: {
       name: string
-    };
+    } | null;
     // productAttributes?: ProductAttributeSchema[]
 }
 export interface ProductFormType {

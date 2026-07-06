@@ -16,7 +16,7 @@ export const authenticate = async (prevState: string | undefined, formData: Form
     return 'Success';    
   } catch (error) {
     if (error instanceof AuthError) {
-      console.log(error);
+      console.log('errorsete', error);
       switch (error.type) {
         case 'CredentialsSignin':
           return 'Invalid credentials.';

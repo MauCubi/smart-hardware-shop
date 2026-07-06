@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { signIn } from "next-auth/react"
+import { useState } from 'react';
 
 
 type LoginInput = {
@@ -21,13 +22,19 @@ export const LoginForm = () => {
       setError
   } = useForm<LoginInput>()
 
+  const [formError, setFormError] = useState<string>('')
+
 
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
 
     const { email, password } = data
 
     const response = await signIn('credentials', { email, password, redirect:false });
-    console.log(response)
+    console.log('response', response)
+
+    if (response.error === 'CredentialsSignin') {
+      setFormError('Invalid Credentials')
+    }
     // router.push('/') 
     // router.back()
   }
@@ -79,6 +86,7 @@ export const LoginForm = () => {
         >
           Login
         </button>
+        <span className='text-red-800'>{formError}</span>
       </form>
 
       {/* <button onClick={() => signIn("google")}>

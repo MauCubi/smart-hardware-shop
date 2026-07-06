@@ -17,7 +17,14 @@ export const getPaginatedProducts = async ({page = 1, take = 8, discountPage}: P
 
     const products = await prisma.product.findMany({
       skip: take * (page - 1),
-      take: take      
+      take: take,
+      include: {
+        brands: {
+          select: {
+            name: true
+          }
+        }
+      }      
     })    
 
     const maxPages = Math.ceil(await prisma.product.count() / take)
