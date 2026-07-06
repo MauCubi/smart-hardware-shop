@@ -141,10 +141,18 @@ export default async function OrderPage({ params }: Props) {
                         <div className='flex flex-col mb-5 mt-5 w-full font-bold gap-4'>
                         
                           {/* <p className='text-red-500'>errorMessage</p> */}
-                          <FastPayButton id={order.id} isPaid={order.isPaid}/>
+                          {
+
+                            session?.user.rol === 'admin' || session?.user.id === order.userId 
+                            ?
+                              <FastPayButton id={order.id} isPaid={order.isPaid}/>
+                            :
+                            ''
+
+                          }
 
                           {
-                            session?.user.rol !== 'admin' ?
+                            session?.user.id === order.userId ?
                             <>
                               <div className='w-full flex'>
                                 <PayPalButton price={order.total} orderNumber={ order.id }/>

@@ -51,10 +51,17 @@ export const getProductBySlugCreate = async ( { slug }: Props ) => {
               }
             }
           }
+        },
+        brands: {
+          select: {
+            name: true
+          }
         }   
         
       }      
     })     
+
+    console.log(product)
     
 
     return {

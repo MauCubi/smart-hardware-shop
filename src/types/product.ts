@@ -13,7 +13,10 @@ export interface Product {
     images: string[];
     subCategoryId: string;
     subCategory?: SubCategory; 
-    brandId: string
+    brandId: string;
+    brands: {
+      name: string
+    };
     // productAttributes?: ProductAttributeSchema[]
 }
 export interface ProductFormType {
@@ -29,6 +32,9 @@ export interface ProductFormType {
     subCategoryId: string;
     subCategory?: SubCategory; 
     brandId: string
+    brands: {
+      name: string
+    }
     productAttributes?: ProductAttributeSchema[]
 }
 
