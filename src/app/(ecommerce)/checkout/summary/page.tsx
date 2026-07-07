@@ -47,8 +47,6 @@ export default function SummaryPage() {
 
       router.replace(`/orders/${resp.order?.id}`)
     }
-
-
   }
 
   return (
