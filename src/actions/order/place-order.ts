@@ -14,10 +14,8 @@ interface OrderProducts {
 
 export const placeOrder = async (orderItems: OrderProducts[], address: Address) => {
 
-  console.log("1")
-  const session = await auth();
 
-  console.log("2")
+  const session = await auth();
   const userId = session?.user?.id;
 
   if (!userId) {
@@ -27,9 +25,6 @@ export const placeOrder = async (orderItems: OrderProducts[], address: Address) 
     };
   }
 
-  console.log("3")
-
-
   const products = await prisma.product.findMany( {
     where: {
       id: {
@@ -37,8 +32,6 @@ export const placeOrder = async (orderItems: OrderProducts[], address: Address) 
       }
     }
   })
-
-  console.log("4")
 
 
   const itemsQuantity = orderItems.reduce( (count, product) => count + product.quantity, 0)
@@ -62,7 +55,6 @@ export const placeOrder = async (orderItems: OrderProducts[], address: Address) 
 
   console.log(subTotal, tax.toFixed(2), total.toFixed(2))
 
-  console.log("5")
 
   try {
 
@@ -94,7 +86,6 @@ export const placeOrder = async (orderItems: OrderProducts[], address: Address) 
         }
       });
 
-      console.log("6")
 
       const order = await tx.order.create({
         data: {
@@ -134,7 +125,6 @@ export const placeOrder = async (orderItems: OrderProducts[], address: Address) 
         }
       })
 
-      console.log("7")
 
 
       return {
@@ -145,7 +135,6 @@ export const placeOrder = async (orderItems: OrderProducts[], address: Address) 
 
     })
 
-    console.log("8")
 
     return {
       ok: true,
