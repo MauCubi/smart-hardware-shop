@@ -2,6 +2,7 @@ import { registerUser } from '@/actions/auth/register';
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 
 
@@ -13,6 +14,8 @@ type RegisterInput = {
 }
 
 export const RegisterForm =  () => {
+
+  const [loading, setLoading] = useState<boolean>(false)
  
   const router = useRouter()
 
@@ -25,6 +28,8 @@ export const RegisterForm =  () => {
 
   const onSubmit: SubmitHandler<RegisterInput> = async (data) => {  
 
+    setLoading(true)
+
     const { name, lastName, password, email} = data
 
     
@@ -32,6 +37,7 @@ export const RegisterForm =  () => {
 
     if (!user.ok) {       
       setError(user.type as keyof RegisterInput, { message: user.message })
+      setLoading(false)
       return
     }
 
@@ -40,6 +46,9 @@ export const RegisterForm =  () => {
     }
 
     await signIn('credentials', { email, password, redirect:false });
+
+    setLoading(false)
+
     router.push('/')    
   }
 
@@ -118,9 +127,14 @@ export const RegisterForm =  () => {
 
       <button
         type='submit'
-        className='titles w-full cursor-pointer bg-[#0A84FF] hover:bg-[#0a84ffad] rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base px-4 py-2.5 focus:outline-none'
+        disabled={loading}
+        className={`titles w-full ${ loading ? 'bg-[#5c6165]' : 'bg-[#0A84FF] hover:bg-[#0a84ffad] cursor-pointer'  } rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base px-4 py-2.5 focus:outline-none`}
       >
-        Register
+        {
+          !loading 
+          ? 'Register'
+          : <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-current self-center place-self-center" />
+        }
       </button>
     </form>
   );

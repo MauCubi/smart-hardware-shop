@@ -2,8 +2,8 @@
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { signIn } from "next-auth/react"
-import { useState } from 'react';
-
+import { useState } from 'react'
+import { OrbitProgress } from 'react-loading-indicators'
 
 type LoginInput = {
   email: string,
@@ -12,6 +12,7 @@ type LoginInput = {
 
 export const LoginForm = () => {
   
+  const [loading, setLoading] = useState<boolean>(false)
 
   const router = useRouter()
 
@@ -27,6 +28,8 @@ export const LoginForm = () => {
 
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
 
+    setLoading(true)
+
     const { email, password } = data
 
     const response = await signIn('credentials', { email, password, redirect:false });
@@ -35,6 +38,8 @@ export const LoginForm = () => {
     if (response.error === 'CredentialsSignin') {
       setFormError('Invalid Credentials')
     }
+
+    setLoading(false)
     // router.push('/') 
     // router.back()
   }
@@ -82,9 +87,15 @@ export const LoginForm = () => {
 
         <button
           type='submit'
-          className='titles w-full cursor-pointer bg-[#0A84FF] hover:bg-[#0a84ffad] rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base px-4 py-2.5 focus:outline-none'
+          disabled={loading}
+          // className='titles w-full cursor-pointer bg-[#0A84FF] hover:bg-[#0a84ffad] rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base px-4 py-2.5 focus:outline-none'
+          className={`titles w-full ${ loading ? 'bg-[#5c6165]' : 'bg-[#0A84FF] hover:bg-[#0a84ffad] cursor-pointer'  } rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base px-4 py-2.5 focus:outline-none`}
         >
-          Login
+          {
+            !loading 
+            ? 'Login'
+            : <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-current self-center place-self-center" />
+          }
         </button>
         <span className='text-red-800'>{formError}</span>
       </form>
