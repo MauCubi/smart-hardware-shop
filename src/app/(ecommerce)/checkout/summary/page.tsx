@@ -7,7 +7,7 @@ import { getTotals } from '@/utils/getTotals';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Router } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -16,6 +16,8 @@ export default function SummaryPage() {
 
   const { currentAddress } = useAppSelector(state => state.address)
   const { productsInCart, total, products } = useAppSelector( state => state.cart )
+
+  const [loading, setLoading] = useState<boolean>(false)
 
   const totals = getTotals(total, 0.15)
 
@@ -28,6 +30,8 @@ export default function SummaryPage() {
   // }, [currentAddress, productsInCart, router]);
 
   const onPlaceOrder = async () => {
+
+    setLoading(true)
 
     const orderItems = products.map( product => ({
       id: product.id,
@@ -42,8 +46,9 @@ export default function SummaryPage() {
 
       if (!resp.ok) {
         console.log(resp.message)
+        setLoading(false)
         return
-      }
+      }      
 
       router.replace(`/orders/${resp.order?.id}`)
     }
@@ -127,10 +132,15 @@ export default function SummaryPage() {
                       {/* <p className='text-red-500'>errorMessage</p> */}
 
                       <button 
-                        className='flex justify-center w-full titles p-3 bg-[#0A84FF] rounded cursor-pointer hover:bg-[#016edb]'
+                        // className='flex justify-center w-full titles p-3 bg-[#0A84FF] rounded cursor-pointer hover:bg-[#016edb]'
+                        className={`titles w-full ${ loading ? 'bg-[#5c6165]' : 'bg-[#0A84FF] hover:bg-[#0a84ffad] cursor-pointer'  } rounded box-border border border-transparent shadow-xs font-medium leading-5 rounded-base text-sm md:text-base p-3 focus:outline-none`}
                         onClick={onPlaceOrder}
                       >
-                        Place order
+                        {
+                          !loading 
+                          ? 'Place Order'
+                          : <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-current self-center place-self-center" />
+                        }
                       </button>
                     </div>
                   </div>
