@@ -284,6 +284,32 @@ export const seedData: SeedData = {
       { name: 'WiFi', type: 'BOOLEAN', group: 'Connectivity' },
     ],
 
+    processor: [
+      { name: 'Socket', type: 'STRING', group: 'General', required: true },
+      { name: 'Architecture', type: 'STRING', group: 'General' },
+      { name: 'Cores', type: 'NUMBER', group: 'Performance', required: true },
+      { name: 'Threads', type: 'NUMBER', group: 'Performance', required: true },
+
+      { name: 'Base clock', type: 'NUMBER', group: 'Performance', unit: 'ghz' },
+      { name: 'Boost clock', type: 'NUMBER', group: 'Performance', unit: 'ghz' },
+
+      { name: 'Cache', type: 'NUMBER', group: 'Performance', unit: 'mb' },
+
+      { name: 'TDP', type: 'NUMBER', group: 'Power', unit: 'w' },
+
+      { name: 'Integrated graphics', type: 'BOOLEAN', group: 'Graphics' },
+      { name: 'GPU model', type: 'STRING', group: 'Graphics' },
+
+      { name: 'Memory type', type: 'STRING', group: 'Memory' },
+      { name: 'Max memory', type: 'NUMBER', group: 'Memory', unit: 'gb' },
+      { name: 'Memory channels', type: 'NUMBER', group: 'Memory' },
+
+      { name: 'PCIe version', type: 'STRING', group: 'Expansion' },
+      { name: 'PCIe lanes', type: 'NUMBER', group: 'Expansion' },
+
+      { name: 'Unlocked', type: 'BOOLEAN', group: 'Features' },
+    ],
+
     psu: [
       { name: 'Power', type: 'NUMBER', group: 'General', unit: 'w', required: true },
       { name: 'Efficiency rating', type: 'STRING', group: 'General', required: true },
@@ -653,6 +679,36 @@ export const seedData: SeedData = {
     brand:'ASRock'
   },
   {
+    name: 'Motherboard MSI PRO B760M-P DDR4 Intel LGA1700 Micro ATX',
+    description: 'Motherboard MSI PRO B760M-P DDR4 Intel LGA1700 Micro ATX',
+    price: 520,
+    subCategory: 'Intel Motherboards',
+    images: [''],
+    slug: 'Motherboard_MSI_PRO_B760M-P_DDR4_Intel_LGA1700_Micro_ATX',
+    stock: 30,
+    brand: 'MSI'
+  },
+  {
+    name: 'Motherboard ASRock B550M-HDV AMD AM4 Ryzen Micro ATX DDR4',
+    description: 'Motherboard ASRock B550M-HDV AMD AM4 Ryzen Micro ATX DDR4',
+    price: 485,
+    subCategory: 'AMD Motherboards',
+    images: [''],
+    slug: 'Motherboard_ASRock_B550M-HDV_AMD_AM4_Ryzen_Micro_ATX_DDR4',
+    stock: 35,
+    brand: 'ASRock'
+  },
+  {
+    name: 'Motherboard Gigabyte B760M DS3H DDR4 Intel LGA1700 Micro ATX',
+    description: 'Motherboard Gigabyte B760M DS3H DDR4 Intel LGA1700 Micro ATX',
+    price: 575,
+    subCategory: 'Intel Motherboards',
+    images: [''],
+    slug: 'Motherboard_Gigabyte_B760M_DS3H_DDR4_Intel_LGA1700_Micro_ATX',
+    stock: 25,
+    brand: 'Gigabyte'
+  },
+  {
     name: 'Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency',
     description: 'Disco mecánico para almacenamiento masivo',
     price: 99,
@@ -662,6 +718,26 @@ export const seedData: SeedData = {
     slug: 'Power_Supply_Unit_PC_ATX_Segotep_U6_650W_2x_PCI-E_80_Efficency',
     stock: 50,
     brand:'Segotep'
+  },
+  {
+    name: 'AMD Ryzen 5 5600 6-Core 12-Thread AM4',
+    description: 'AMD Ryzen 5 5600 6-Core 12-Thread AM4',
+    price: 145,
+    subCategory: 'AMD Processors',
+    images: [''],
+    slug: 'AMD_Ryzen_5_5600_6-Core_12-Thread_AM4',
+    stock: 40,
+    brand: 'AMD'
+  },
+  {
+    name: 'Intel Core i5-12400F 6-Core 12-Thread LGA1700',
+    description: 'Intel Core i5-12400F 6-Core 12-Thread LGA1700',
+    price: 165,
+    subCategory: 'Intel Processors',
+    images: [''],
+    slug: 'Intel_Core_i5-12400F_6-Core_12-Thread_LGA1700',
+    stock: 40,
+    brand: 'Intel'
   },
   {
     name: 'Nictom Ergonomic Pro PC Gaming Chair, Black, Reclining, Corduroy Upholstery Material',
@@ -982,6 +1058,114 @@ export const seedData: SeedData = {
     { attribute:'USB ports', valueNumber:6 },
     { attribute:'Ethernet', valueBoolean:true },
     { attribute:'WiFi', valueBoolean:false },
+  ],
+
+  "Motherboard ASRock B550M-HDV AMD AM4 Ryzen Micro ATX DDR4": [
+    { attribute:'Socket', valueString:'AM4' },
+    { attribute:'Chipset', valueString:'B550' },
+    { attribute:'Form factor', valueString:'Micro ATX' },
+
+    { attribute:'Max memory', valueNumber:64 },
+    { attribute:'Memory slots', valueNumber:2 },
+
+    { attribute:'PCIe slots', valueNumber:2 },
+    { attribute:'M.2 slots', valueNumber:1 },
+
+    { attribute:'SATA ports', valueNumber:4 },
+
+    { attribute:'USB ports', valueNumber:6 },
+    { attribute:'Ethernet', valueBoolean:true },
+    { attribute:'WiFi', valueBoolean:false },
+  ],
+
+  "Motherboard MSI PRO B760M-P DDR4 Intel LGA1700 Micro ATX": [
+    { attribute:'Socket', valueString:'LGA1700' },
+    { attribute:'Chipset', valueString:'B760' },
+    { attribute:'Form factor', valueString:'Micro ATX' },
+
+    { attribute:'Max memory', valueNumber:128 },
+    { attribute:'Memory slots', valueNumber:4 },
+
+    { attribute:'PCIe slots', valueNumber:3 },
+    { attribute:'M.2 slots', valueNumber:2 },
+
+    { attribute:'SATA ports', valueNumber:4 },
+
+    { attribute:'USB ports', valueNumber:6 },
+    { attribute:'Ethernet', valueBoolean:true },
+    { attribute:'WiFi', valueBoolean:false },
+  ],
+
+  "Motherboard Gigabyte B760M DS3H DDR4 Intel LGA1700 Micro ATX": [
+    { attribute:'Socket', valueString:'LGA1700' },
+    { attribute:'Chipset', valueString:'B760' },
+    { attribute:'Form factor', valueString:'Micro ATX' },
+
+    { attribute:'Max memory', valueNumber:128 },
+    { attribute:'Memory slots', valueNumber:4 },
+
+    { attribute:'PCIe slots', valueNumber:3 },
+    { attribute:'M.2 slots', valueNumber:2 },
+
+    { attribute:'SATA ports', valueNumber:4 },
+
+    { attribute:'USB ports', valueNumber:7 },
+    { attribute:'Ethernet', valueBoolean:true },
+    { attribute:'WiFi', valueBoolean:false },
+  ],
+
+  "Intel Core i5-12400F 6-Core 12-Thread LGA1700": [
+    { attribute:'Socket', valueString:'LGA1700' },
+    { attribute:'Architecture', valueString:'Alder Lake' },
+
+    { attribute:'Cores', valueNumber:6 },
+    { attribute:'Threads', valueNumber:12 },
+
+    { attribute:'Base clock', valueNumber:2.5 },
+    { attribute:'Boost clock', valueNumber:4.4 },
+
+    { attribute:'Cache', valueNumber:18 },
+
+    { attribute:'TDP', valueNumber:65 },
+
+    { attribute:'Integrated graphics', valueBoolean:false },
+    { attribute:'GPU model', valueString:'None' },
+
+    { attribute:'Memory type', valueString:'DDR4 / DDR5' },
+    { attribute:'Max memory', valueNumber:128 },
+    { attribute:'Memory channels', valueNumber:2 },
+
+    { attribute:'PCIe version', valueString:'5.0' },
+    { attribute:'PCIe lanes', valueNumber:20 },
+
+    { attribute:'Unlocked', valueBoolean:false },
+  ],
+
+  "AMD Ryzen 5 5600 6-Core 12-Thread AM4": [
+    { attribute:'Socket', valueString:'AM4' },
+    { attribute:'Architecture', valueString:'Zen 3' },
+
+    { attribute:'Cores', valueNumber:6 },
+    { attribute:'Threads', valueNumber:12 },
+
+    { attribute:'Base clock', valueNumber:3.5 },
+    { attribute:'Boost clock', valueNumber:4.4 },
+
+    { attribute:'Cache', valueNumber:35 },
+
+    { attribute:'TDP', valueNumber:65 },
+
+    { attribute:'Integrated graphics', valueBoolean:false },
+    { attribute:'GPU model', valueString:'None' },
+
+    { attribute:'Memory type', valueString:'DDR4' },
+    { attribute:'Max memory', valueNumber:128 },
+    { attribute:'Memory channels', valueNumber:2 },
+
+    { attribute:'PCIe version', valueString:'4.0' },
+    { attribute:'PCIe lanes', valueNumber:24 },
+
+    { attribute:'Unlocked', valueBoolean:true },
   ],
 
   "Power Supply Unit PC ATX Segotep U6+ 650W 2x PCI-E +80% Efficency": [
